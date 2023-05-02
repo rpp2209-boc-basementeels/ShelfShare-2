@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --verbose",
+    "build": "webpack",
     "start": "nodemon ./server/index.js",
-    "build": "webpack --watch",
-    "docker-build": "webpack --watch && nodemon ./server/index.js"
+    "client-dev": "webpack --watch",
+    "docker-build": "webpack && node ./server/index.js"
   },
   "author": "",
   "license": "ISC",
