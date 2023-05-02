@@ -5,4 +5,6 @@ const ExpandedView = (props) => {
   return (
     <NavigationBar />
   );
-}
+};
+
+export default ExpandedView;

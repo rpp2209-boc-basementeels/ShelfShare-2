@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const ProfileType = () => {
-  return (
 
-  );
-}
+};
+
+export default ProfileType;

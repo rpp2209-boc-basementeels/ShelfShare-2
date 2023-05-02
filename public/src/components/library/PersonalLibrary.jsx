@@ -9,11 +9,15 @@ import Lent from './sub-components/Lent.jsx';
 
 const PersonalLibrary = () => {
   return (
-    <NavigationBar />
-    <ProfileType />
-    <ScanButton />
-    <Shelf />
-    <Borrowed />
-    <Lent />
+    <div>
+      <NavigationBar />
+      <ProfileType />
+      <ScanButton />
+      <Shelf />
+      <Borrowed />
+      <Lent />
+    </div>
   );
-}
+};
+
+export default PersonalLibrary;

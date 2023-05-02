@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const BookPopup = () => {
-  return (
 
-  );
 }
+
+export default BookPopup;
