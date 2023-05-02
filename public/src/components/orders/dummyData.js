@@ -34,6 +34,42 @@ var Data = [
     author: 'Al Gebra',
     status: 'loaned',
     pending: true
+  },
+  {
+    name: 'The Many Adventures of Weenie Dog',
+    author: 'Perrito Caliente',
+    status: 'loaned',
+    pending: false
+  },
+  {
+    name: 'New Age Potato Smashing',
+    author: 'R.P.P. 2209',
+    status: 'borrowed',
+    pending: true
+  },
+  {
+    name: 'The Art of Closing a Real Estate Deal',
+    author: 'Kevin "The Closer" Hoang',
+    status: 'borrowed',
+    pending: false
+  },
+  {
+    name: 'Recursion: Base-Case, or Recursion: Base-Case, or Recursion:...',
+    author: 'Max S. Calls',
+    status: 'borrowed',
+    pending: false
+  },
+  {
+    name: 'I Fell Asleep on the Keyboard',
+    author: 'Z. Zzzzzz',
+    status: 'loaned',
+    pending: false
+  },
+  {
+    name: 'The Swamp Provides',
+    author: 'Flo Rida',
+    status: 'loaned',
+    pending: true
   }
 ]
 

@@ -8,7 +8,7 @@ var Loaned = (props) => {
       {props.data.map(book => (
         <LoanedList data={book} key={index+=1}/>
       ))}
-      <button onClick={props.func}>🔽</button>
+      <button>🔽</button>
     </div>
   )
 }

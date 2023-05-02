@@ -7,23 +7,28 @@ import Data from './dummyData.js';
 
 var Orders = () => {
 
-  let expand = () => {
-    alert('YAY!');
-  }
-
   let sieve = (condition, info) => (
-    info.filter(book => book.status === condition)
+    info.filter(book => book.status === condition && book.pending === false)
   )
 
   let pending = (info) => {
-    console.log(info)
+    var filtered = [];
+    info.forEach(book => {
+      if (book.pending === true) {
+        if (book.status === 'borrowed') { book.status = 'Return'; }
+        else {book.status = 'Loaned'; }
+        filtered.push(book)
+      }
+    })
+    return filtered;
   }
+
 
   return (
     <div>
-      <Borrowed func={expand} data={sieve('borrowed', Data)}/>
-      <Loaned func={expand} data={sieve('loaned', Data)}/>
-      <Pending func={expand} data={Data}typeSort={pending}/>
+      <Borrowed data={sieve('borrowed', Data)}/>
+      <Loaned data={sieve('loaned', Data)}/>
+      <Pending data={pending(Data)}/>
     </div>
   )
 }
