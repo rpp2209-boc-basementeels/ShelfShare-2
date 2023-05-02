@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Header from './components/homepage/Header.js';
+import Header from './homepage/Header.jsx';
+import Gallery from './homepage/Gallery.jsx';
+import Footer from './homepage/Footer.jsx';
 
 const App = () => {
 
@@ -8,6 +10,8 @@ return (
 
   <div>
     <Header />
+    <Gallery />
+    <Footer />
   </div>
 
 )
