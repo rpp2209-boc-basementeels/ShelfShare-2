@@ -18,7 +18,7 @@ return (
     {clickedOnMyProfile ? <ProfilePage/> : null}
     <Header />
     <Gallery />
-    <Footer />
+    {/* <Footer /> */}
     <button onClick={() => {setClickedOnOrder(!clickedOnOrder)}}>My Orders </button>
     {clickedOnOrder ? <Orders/> : null}
     <PersonalLibrary />
