@@ -25,9 +25,17 @@ var PendingList = (props) => {
       }}>{arrow()}</button>
       {clicked ?
         <div>
-          {props.data.map(book => (
-            <PendingSingle data={book} key={index += 1} />
-          ))}
+          <table>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Author</th>
+              </tr>
+            </thead>
+            {props.data.map(book => (
+              <PendingSingle data={book} key={index += 1} />
+            ))}
+          </table>
         </div>
         :
         null}
