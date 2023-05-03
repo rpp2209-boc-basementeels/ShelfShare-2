@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 const NavigationBar = () => {
   return (
     <div>
-      <h1>ShelfShare</h1>
+      {/* <h1>ShelfShare</h1>
       <table>
         <tbody>
           <tr>
@@ -15,7 +15,7 @@ const NavigationBar = () => {
             </td>
           </tr>
         </tbody>
-      </table>
+      </table> */}
     </div>
   );
 };
