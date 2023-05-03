@@ -1,10 +1,36 @@
 import React from "react";
+import PendingList from './pendingList.jsx'
+import { useState, useEffect } from 'react';
 
 var Pending = (props) => {
+  const [clicked, setClick] = useState(false);
 
+  var arrow = () => {
+    if (clicked) { return '🔼' }
+    else { return '🔽' }
+  }
+
+
+  useEffect(() => {
+    Pending;
+    arrow;
+  }, [clicked])
+
+  var index = 0;
   return (
-    <div>SUPER Weenie Hut Jrs
-      <button onClick={props.func}>Expand Pending</button>
+    <div > Pending
+      <button onClick={(e) => {
+        e.preventDefault();
+        setClick(!clicked);
+      }}>{arrow()}</button>
+      {clicked ?
+        <div>
+          {props.data.map(book => (
+            <PendingList data={book} key={index += 1} />
+          ))}
+        </div>
+        :
+        null}
     </div>
   )
 }
