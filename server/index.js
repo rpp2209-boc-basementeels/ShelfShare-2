@@ -8,24 +8,21 @@ const cookieParser = require('cookie-parser');
 
 app.use(express.static(path.join(__dirname, "./public/dist")));
 app.use(cookieParser());
-app.use(express.urlencoded());
+app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cors());
 
 app.get('/', (req, res) => {
-  console.log(req.cookies);
   res.sendFile(path.join(__dirname, '../public/dist/index.html'))
 });
 
 app.post('/', (req, res) => {
-  console.log(req)
-  // console.log(res)
 });
 
 app.get('/bundle.js', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/dist/bundle.js'))
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`App listening on port ${process.env.PORT}`)
+app.listen(3000, () => {
+  console.log(`App listening on port 3000`)
 })

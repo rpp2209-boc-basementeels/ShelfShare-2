@@ -1,2 +1,2 @@
-import React from 'react';
-import Review from '/Review.jsx';
+// import React from 'react';
+// import Review from '/Review.jsx';
