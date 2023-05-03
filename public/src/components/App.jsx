@@ -9,6 +9,7 @@ import Orders from './orders/orders.jsx';
 
 const App = () => {
   const [clickedOnMyProfile, setClickedOnMyProfile] = useState(false);
+  const [clickedOnOrder, setClickedOnOrder] = useState(false);
 
 //conditional rendering of Gallery or Detail
 return (
@@ -18,7 +19,9 @@ return (
     {clickedOnMyProfile ? <ProfilePage/> : null}
     <Header />
     <Gallery />
-    <Footer />
+    {/* <Footer /> */}
+    <button onClick={() => {setClickedOnOrder(!clickedOnOrder)}}>My Orders </button>
+    {clickedOnOrder ? <Orders/> : null}
     <PersonalLibrary />
   </div>
 

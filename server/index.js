@@ -26,6 +26,7 @@ app.post('/books', (req, res) => {
   // .catch((err) => {
   //   res.status(200).send('An error adding a book to the library: ', err);
   // })
+app.post('/', (req, res) => {
 });
 
 app.get('/bundle.js', (req, res) => {
