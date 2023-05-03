@@ -6,6 +6,8 @@ import Orders from './orders/orders.jsx';
 
 const App = () => {
 
+  const [clickedOnOrder, setClickedOnOrder] = useState(false);
+
 //conditional rendering of Gallery or Detail
 return (
 
@@ -13,6 +15,8 @@ return (
     <Header />
     <Gallery />
     <Footer />
+    <button onClick={() => {setClickedOnOrder(!clickedOnOrder)}}>My Orders </button>
+    {clickedOnOrder ? <Orders/> : null}
   </div>
 
 )

@@ -10,6 +10,11 @@ var PendingList = (props) => {
     else { return '🔽' }
   }
 
+  let confirm = (e) => {
+    e.preventDefault();
+    alert('confirmed');
+  }
+
 
   useEffect(() => {
     PendingList;
@@ -33,7 +38,7 @@ var PendingList = (props) => {
               </tr>
             </thead>
             {props.data.map(book => (
-              <PendingSingle data={book} key={index += 1} />
+              <PendingSingle data={book} key={index += 1} func={confirm}/>
             ))}
           </table>
         </div>

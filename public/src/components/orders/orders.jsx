@@ -25,7 +25,7 @@ var Orders = () => {
 
 
   return (
-    <div> here
+    <div>
       <BorrowedList data={sieve('borrowed', Data)}/>
       <LoanedList data={sieve('loaned', Data)}/>
       <PendingList data={pending(Data)}/>
