@@ -6,6 +6,7 @@ var PendingSingle = (props) => {
       <tr>
         <td>{props.data.status}</td>
         <td>{props.data.name}</td>
+        <td><button onClick={props.func}>Confirm</button></td>
       </tr>
     </tbody>
   )
