@@ -14,5 +14,5 @@ RUN npm install
 COPY ./ ./
 
 # run webpack build and server start
-CMD [npm, docker-build]
+CMD ["npm", "docker-build"]
 
