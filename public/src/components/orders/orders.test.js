@@ -22,6 +22,6 @@ describe("Renders Orders", function () {
 
   test('renders here', () => {
     render(<Orders/>);
-    expect(screen.getByText(/here/)).toBeInTheDocument();
+    expect(screen.getByText(/Orders/)).toBeInTheDocument();
   });
 });
