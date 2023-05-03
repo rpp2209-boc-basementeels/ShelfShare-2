@@ -1,14 +1,17 @@
 # declare the base image
 FROM node:18
 
-# copy files
-COPY ./ ./
+# declare working directory
+WORKDIR /public
+
+# copy package.json file
+COPY package.json ./
 
 # install dependencies
 RUN npm install
 
-# declare working directory
-WORKDIR /public
+# copy files
+COPY ./ ./
 
 # run webpack build and server start
 CMD [npm, run, docker-build]
