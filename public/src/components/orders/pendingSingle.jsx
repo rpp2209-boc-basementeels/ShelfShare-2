@@ -2,7 +2,12 @@ import React from "react";
 
 var PendingSingle = (props) => {
   return (
-    <li>{props.data.status} {props.data.name}</li>
+    <tbody>
+      <tr>
+        <td>{props.data.status}</td>
+        <td>{props.data.name}</td>
+      </tr>
+    </tbody>
   )
 }
 
