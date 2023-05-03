@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from './homepage/Header.jsx';
 import Gallery from './homepage/Gallery.jsx';
 import Footer from './homepage/Footer.jsx';
+import PersonalLibrary from './library/PersonalLibrary.jsx'
 
 const App = () => {
 
@@ -12,6 +13,7 @@ return (
     <Header />
     <Gallery />
     <Footer />
+    <PersonalLibrary />
   </div>
 
 )

@@ -13,13 +13,10 @@ app.use(express.json());
 app.use(cors());
 
 app.get('/', (req, res) => {
-  console.log(req.cookies);
   res.sendFile(path.join(__dirname, '../public/dist/index.html'))
 });
 
 app.post('/', (req, res) => {
-  console.log(req)
-  // console.log(res)
 });
 
 app.get('/bundle.js', (req, res) => {
