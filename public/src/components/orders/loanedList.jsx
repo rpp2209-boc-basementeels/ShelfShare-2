@@ -1,9 +1,8 @@
 import React from "react";
-import { useState, useEffect } from 'react'
-import BorrowedSingle from './borrowedSingle.jsx';
+import LoanedSingle from './loanedSingle.jsx'
+import { useState, useEffect } from 'react';
 
-var BorrowedList = (props) => {
-
+var LoanedList = (props) => {
   const [clicked, setClick] = useState(false);
 
   var arrow = () => {
@@ -13,16 +12,16 @@ var BorrowedList = (props) => {
 
 
   useEffect(() => {
-    BorrowedList;
+    LoanedList;
     arrow;
   }, [clicked])
 
   var index = 0;
   return (
-    <div > Borrowed
+    <div > Loaned
       <button onClick={(e) => {
         e.preventDefault();
-        setClick(!clicked)
+        setClick(!clicked);
       }}>{arrow()}</button>
       {clicked ?
         <div>
@@ -34,7 +33,7 @@ var BorrowedList = (props) => {
               </tr>
             </thead>
             {props.data.map(book => (
-              <BorrowedSingle data={book} key={index += 1} />
+              <LoanedSingle data={book} key={index += 1} />
             ))}
           </table>
         </div>
@@ -44,4 +43,5 @@ var BorrowedList = (props) => {
   )
 }
 
-export default BorrowedList;
+
+export default LoanedList;

@@ -3,6 +3,7 @@ import Header from './homepage/Header.jsx';
 import Gallery from './homepage/Gallery.jsx';
 import Footer from './homepage/Footer.jsx';
 import PersonalLibrary from './library/PersonalLibrary.jsx'
+import Orders from './orders/orders.jsx';
 
 const App = () => {
 
