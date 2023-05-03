@@ -1,7 +1,7 @@
 import React from "react";
-import Borrowed from './borrowed.jsx';
-import Loaned from './loaned.jsx';
-import Pending from './pending.jsx';
+import BorrowedList from './borrowedList.jsx';
+import LoanedList from './loanedList.jsx';
+import PendingList from './pendingList.jsx';
 import Data from './dummyData.js';
 
 
@@ -26,9 +26,9 @@ var Orders = () => {
 
   return (
     <div>
-      <Borrowed data={sieve('borrowed', Data)}/>
-      <Loaned data={sieve('loaned', Data)}/>
-      <Pending data={pending(Data)}/>
+      <BorrowedList data={sieve('borrowed', Data)}/>
+      <LoanedList data={sieve('loaned', Data)}/>
+      <PendingList data={pending(Data)}/>
     </div>
   )
 }
