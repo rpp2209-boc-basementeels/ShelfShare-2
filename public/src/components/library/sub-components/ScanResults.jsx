@@ -22,7 +22,7 @@ const ResultContainerTable = ({ data }) => {
             <thead>
                 <tr>
                     <td>#</td>
-                    <td>Decoded Text</td>
+                    <td>ISBN</td>
                     <td>Format</td>
                 </tr>
             </thead>
@@ -46,7 +46,7 @@ const ScanResults = (props) => {
     const results = filterResults(props.results);
     return (
         <div className='Result-container'>
-            <div className='Result-header'>Scanned results ({results.length})</div>
+            <div className='Result-header'>Scanned ISBNs ({results.length})</div>
             <div className='Result-section'>
                 <ResultContainerTable data={results} />
             </div>
