@@ -18,19 +18,20 @@ app.get('/', (req, res) => {
 });
 
 app.post('/books', (req, res) => {
-  return addToLibrary(req.body)
-  .then(() => {
-    res.status(200).send();
-  })
-  .catch((err) => {
-    res.status(200).send('An error adding a book to the library: ', err);
-  })
+  console.log('req body', req.body)
+  // return addToLibrary(req.body)
+  // .then(() => {
+  //   res.status(200).send();
+  // })
+  // .catch((err) => {
+  //   res.status(200).send('An error adding a book to the library: ', err);
+  // })
 });
 
 app.get('/bundle.js', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/dist/bundle.js'))
 });
 
-app.listen('8080', '0.0.0.0', () => {
+app.listen(process.env.PORT, () => {
   console.log(`App listening on port 3000`)
 })

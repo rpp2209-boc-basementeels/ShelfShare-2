@@ -6,17 +6,26 @@ import ScanResults from './ScanResults.jsx';
 const App = (props) => {
     const [decodedResults, setDecodedResults] = useState([]);
     const onNewScanResult = (decodedText, decodedResult) => {
-        setDecodedResults(prev => [...prev, decodedResult]);
+      setDecodedResults(prev => [...prev, decodedResult]);
     };
 
     const saveResultsToLibrary = () => {
       decodedResults.forEach((result) => {
         var isbn = result.decodedText;
-        console.log('isbn ', isbn);
         axios.get(`https://openlibrary.org/isbn/${isbn}.json`)
         .then((bookInfo) => {
           console.log('bookinfo ', bookInfo.data);
-        });
+          axios.post('/books', bookInfo.data)
+          .then(() => {
+            setDecodedResults([]);
+          })
+          .catch((error) => {
+            console.log('Error posting book info: ', error);
+          })
+        })
+        .catch((error) => {
+          console.log('Error getting book info: ', error);
+        })
       })
     }
 
