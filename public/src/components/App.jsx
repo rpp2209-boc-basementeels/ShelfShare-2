@@ -19,7 +19,7 @@ return (
   <div>
     <Button variant="outline-primary" onClick={() => {setClickedOnMyProfile(!clickedOnMyProfile)}}>My Profile</Button>
     {clickedOnMyProfile ? <ProfilePage/> : null}
-    <Header />
+    <Header setBookClicked={updateShowBookDetail}/>
     {showBookDetail ? <Detail setBookClicked={updateShowBookDetail}/> : <Gallery setBookClicked={updateShowBookDetail}/>}
     {/* <Footer /> */}
     <button onClick={() => {setClickedOnOrder(!clickedOnOrder)}}>My Orders </button>
