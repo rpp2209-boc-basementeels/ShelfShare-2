@@ -25,8 +25,6 @@ return (
     {/* <Footer /> */}
     <button onClick={() => {setClickedOnOrder(!clickedOnOrder)}}>My Orders </button>
     {clickedOnOrder ? <Orders/> : null}
-    <Header setBookClicked={updateShowBookDetail}/>
-    {showBookDetail ? <Detail setBookClicked={updateShowBookDetail}/> : <Gallery setBookClicked={updateShowBookDetail}/>}
     {/* <Footer /> */}
     <PersonalLibrary />
   </div>
