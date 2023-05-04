@@ -7,11 +7,19 @@ var PendingList = (props) => {
 
   var index = 0;
   return (
-    <div >
+    <div>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Author</th>
+        </tr>
+      </thead>
       {props.data.map(book => (
-        <PendingSingle data={book} key={index += 1} func={confirm} />
+        <PendingSingle data={book} key={index += 1} />
       ))}
-    </div>
+    </table>
+  </div>
   )
 }
 
