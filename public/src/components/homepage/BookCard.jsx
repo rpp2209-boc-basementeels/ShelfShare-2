@@ -5,10 +5,11 @@ import Card from 'react-bootstrap/Card';
 const BookCard = (props) => {
   //conditional rendering of Gallery or Detail
 
+  //<div onClick={props.setBookClicked(true)}></div>
   return (
     <div>
 
-      <Card style={{ width: '18rem' }}>
+      <Card onClick={() => {props.setBookClicked(true)}} style={{ width: '18rem' }}>
       <Card.Img variant="top" src="holder.js/100px180" />
       <Card.Body>
         <Card.Title>{props.title}</Card.Title>
