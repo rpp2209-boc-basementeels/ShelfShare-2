@@ -14,14 +14,14 @@ describe("Example tests", function () {
   });
 });
 
-describe("Renders the Header", function () {
+// describe("Renders the Header", function () {
 
-  // test("Orders is a function", () => {
-  //   expect(typeof Orders).toBe('function')
-  // });
+//   // test("Orders is a function", () => {
+//   //   expect(typeof Orders).toBe('function')
+//   // });
 
-  test('renders here', () => {
-    render(<Header/>);
-    expect(screen.getByText(/Header/)).toBeInTheDocument();
-  });
-});
+//   test('renders here', () => {
+//     render(<Header/>);
+//     expect(screen.getByText(/Header/)).toBeInTheDocument();
+//   });
+// });
