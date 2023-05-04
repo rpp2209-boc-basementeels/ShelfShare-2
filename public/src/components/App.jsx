@@ -21,7 +21,7 @@ return (
     {clickedOnMyProfile ? <ProfilePage/> : null}
     <Button variant="outline-primary"  onClick={() => {setClickedOnOrder(!clickedOnOrder)}}>My Orders </Button>
     {clickedOnOrder ? <Orders/> : null}
-    <Header />
+    <Header setBookClicked={updateShowBookDetail}/>
     {showBookDetail ? <Detail setBookClicked={updateShowBookDetail}/> : <Gallery setBookClicked={updateShowBookDetail}/>}
     {/* <Footer /> */}
     <PersonalLibrary />
