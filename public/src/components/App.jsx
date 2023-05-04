@@ -6,10 +6,12 @@ import PersonalLibrary from './library/PersonalLibrary.jsx'
 import Button from 'react-bootstrap/Button';
 import ProfilePage from './profile/ProfilePage.jsx';
 import Orders from './orders/orders.jsx';
+import Detail from './book detail/Detail.jsx';
 
 const App = () => {
   const [clickedOnMyProfile, setClickedOnMyProfile] = useState(false);
   const [clickedOnOrder, setClickedOnOrder] = useState(false);
+  const [showBookDetail, updateShowBookDetail] = useState(false);
 
 //conditional rendering of Gallery or Detail
 return (
@@ -20,7 +22,7 @@ return (
     <Button variant="outline-primary"  onClick={() => {setClickedOnOrder(!clickedOnOrder)}}>My Orders </Button>
     {clickedOnOrder ? <Orders/> : null}
     <Header />
-    <Gallery />
+    {showBookDetail ? <Detail setBookClicked={updateShowBookDetail}/> : <Gallery setBookClicked={updateShowBookDetail}/>}
     {/* <Footer /> */}
     <PersonalLibrary />
   </div>
