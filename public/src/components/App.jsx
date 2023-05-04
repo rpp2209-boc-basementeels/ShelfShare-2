@@ -16,11 +16,11 @@ return (
   <div>
     <Button variant="outline-primary" onClick={() => {setClickedOnMyProfile(!clickedOnMyProfile)}}>My Profile</Button>
     {clickedOnMyProfile ? <ProfilePage/> : null}
+    <Button variant="outline-primary"  onClick={() => {setClickedOnOrder(!clickedOnOrder)}}>My Orders </Button>
+    {clickedOnOrder ? <Orders/> : null}
     <Header />
     <Gallery />
     {/* <Footer /> */}
-    <button onClick={() => {setClickedOnOrder(!clickedOnOrder)}}>My Orders </button>
-    {clickedOnOrder ? <Orders/> : null}
     <PersonalLibrary />
   </div>
 
