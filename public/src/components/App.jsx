@@ -9,6 +9,7 @@ import Orders from './orders/orders.jsx';
 import Detail from './book detail/Detail.jsx';
 
 const App = () => {
+  // need to pass down info about the current logged-in user to ProfilePage as props
   const [clickedOnMyProfile, setClickedOnMyProfile] = useState(false);
   const [clickedOnOrder, setClickedOnOrder] = useState(false);
   const [showBookDetail, updateShowBookDetail] = useState(false);

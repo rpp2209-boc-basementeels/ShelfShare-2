@@ -10,7 +10,7 @@ const ReviewList = (props) => {
     })
 
     return (
-        <div>
+        <div style={{"display": "flex", "justify-content": "center"}}>
             {reviews}
         </div>
     )
