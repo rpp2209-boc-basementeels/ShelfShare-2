@@ -1,7 +1,7 @@
 // This is where the main profile page will be rendered by importing supporting components
 import React from 'react';
 // import EditInfoModal from '/components/EditInfoModal.jsx';
-// import Information from '/components/Information.jsx';
+import Information from './components/Information.jsx';
 import ReviewList from './components/ReviewList.jsx';
 
 const ProfilePage = () => {
@@ -16,6 +16,10 @@ const ProfilePage = () => {
 
     return (
         <div>
+            <div style={{"display": "flex", "justify-content": "center"}}>
+                <h3>Logged-In User's Personal Information</h3>
+            </div>
+            <Information/>
             <div style={{"display": "flex", "justify-content": "center"}}>
                 <h3>Logged-In User's Review List</h3>
             </div>

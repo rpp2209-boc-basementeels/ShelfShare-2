@@ -8,7 +8,7 @@ const Review = (props) => {
     return (
         <Card style={{"width": "50vw", "border-width": "3px"}}>
             <Row>
-                <Card.Img style={{"height": "25vh", "width": "7vw"}} variant="top" src={props.review.image}></Card.Img>
+                <Card.Img style={{"height": "13vh", "width": "7vw"}} variant="top" src={props.review.image}></Card.Img>
                 <Col>
                     <Card.Title>{props.review.title}</Card.Title>
                     <Card.Subtitle>{props.review.date}</Card.Subtitle>
