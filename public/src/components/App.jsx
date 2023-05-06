@@ -39,24 +39,8 @@ const App = () => {
         {/* <Footer /> */}
         <PersonalLibrary />
       </div>
-  // <div>
-  //   <Button variant="outline-primary" onClick={() => {setClickedOnMyProfile(!clickedOnMyProfile)}}>My Profile</Button>
-  //   {clickedOnMyProfile ? <ProfilePage/> : null}
-  //   <Button variant="outline-primary"  onClick={() => {setClickedOnOrder(!clickedOnOrder)}}>My Orders </Button>
-  //   {clickedOnOrder ? <Orders/> : null}
-  //   <Header setBookClicked={updateShowBookDetail}/>
-  //   {showBookDetail ? <Detail setBookClicked={updateShowBookDetail}/> : <Gallery setBookClicked={updateShowBookDetail}/>}
-  //   {/* <Footer /> */}
-
-  //   {/* <Footer /> */}
-  //   <PersonalLibrary />
-  // </div>
-
     )
   }
-
-//conditional rendering of Gallery or Detail
-
 }
 
 export default App;
