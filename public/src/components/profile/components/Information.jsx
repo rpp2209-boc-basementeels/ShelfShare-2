@@ -1,16 +1,21 @@
-import React from 'react';
-import Image from 'react-bootstrap/Image'
+import React, { useState } from 'react';
+import Image from 'react-bootstrap/Image';
+import Button from 'react-bootstrap/Button';
 
-const Information = () => {
+const Information = (props) => {
+
     return (
-        <div style={{"display": "flex", "justify-content": "center"}}>
-            <div style={{"align-items": "center"}}>
-                <Image style={{"height": "17vh", "width": "15vw"}} roundedCircle src="https://cdn.shopify.com/s/files/1/0150/0643/3380/products/SB-Standees-Spong-1_1200x1200.jpg?v=1603744567"></Image>
-                <h4>Spongebob Squarepants</h4>
-                <h6>spongebob@gmail.com</h6>
-                <h6>Age: 18</h6>
-                <h6>Gender: Male</h6>
+        <div>
+            <div>
+                <Image roundedCircle src={props.info[0].photo}></Image>
+                <h4>{props.info[0].first_name + " " + props.info[0].last_name}</h4>
+                <h6>{props.info[0].email}</h6>
+                <h6>Age: {props.info[0].age}</h6>
+                <h6>Gender: {props.info[0].gender}</h6>
                 <h6>124 Conch St., Bikini Bottom, Earth 12345</h6>
+            </div>
+            <div>
+                <Button variant="outline-primary">Edit</Button>
             </div>
         </div>
     )

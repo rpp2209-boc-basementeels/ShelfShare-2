@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 const Review = (props) => {
     // do not want username to show up on reviews in person's profile, just have section called "Maddie's Reviews"
     return (
-        <Card style={{"width": "50vw", "border-width": "3px"}}>
+        <Card style={{"width": "50vw", "borderWidth": "2px"}}>
             <Row>
                 <Card.Img style={{"height": "13vh", "width": "7vw"}} variant="top" src={props.review.image}></Card.Img>
                 <Col>
