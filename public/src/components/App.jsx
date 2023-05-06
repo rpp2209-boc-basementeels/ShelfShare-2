@@ -15,12 +15,11 @@ const App = () => {
   const [clickedOnMyProfile, setClickedOnMyProfile] = useState(false);
   const [clickedOnOrder, setClickedOnOrder] = useState(false);
   const [clickedOnLibrary, setClickedOnLibrary] = useState(false);
-  const [showBookDetail, updateShowBookDetail] = useState(false);
   const [clickedLogin, setClickedLogin] = useState(false);
   const [user, setUser] = useState({});
-
+  const [showBookDetail, setShowDetail] = useState(false);
   const [galleryBooks, updateGalleryBooks] = useState(Data);
-  const [selectedBook, updateClickedBook] = useState(null);
+  const [selectedBook, updateSelectedBook] = useState(null);
 
   if (clickedLogin) {
     return (

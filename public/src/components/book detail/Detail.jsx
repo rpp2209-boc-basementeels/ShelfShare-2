@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 
-const Detail = () => {
+const Detail = (props) => {
   //conditional rendering of Gallery or Detail
 
   //iterate over the current list of books (state)
@@ -17,7 +17,7 @@ const Detail = () => {
       <Container>
         <Row xs={1} md={1} lg={1} xl={1} className="g-4">
           <Col>
-            <BookCard title="Snake Eater" author="Squidward Potato" description={"It's the spongebob/MGS mashup you never knew you needed, and probably don't deserve"}/>
+            {/* <BookCard title={props.book.name} author={props.book.author} description={"book description"}/> */}
           </Col>
         </Row>
       </Container>

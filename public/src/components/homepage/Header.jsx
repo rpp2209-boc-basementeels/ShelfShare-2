@@ -44,9 +44,9 @@ const Header = (props) => {
     <div>
 
       <Card className="my-5">
-        <Card.Img src="https://img.freepik.com/free-vector/modern-flowing-blue-wave-banner-background_1035-19862.jpg?w=1800&t=st=1683126398~exp=1683126998~hmac=32efcf4c46fe227b2b642e100b726273a18835340b836765feb001fa7a2cdb4e" alt="Card image" />
-        <Card.ImgOverlay>
-          <Card.Title onClick={() => { props.setBookClicked(false) }} className="justify-content-md-center">ShelfShare</Card.Title>
+      <Card.Img src="https://img.freepik.com/free-vector/modern-flowing-blue-wave-banner-background_1035-19862.jpg?w=1800&t=st=1683126398~exp=1683126998~hmac=32efcf4c46fe227b2b642e100b726273a18835340b836765feb001fa7a2cdb4e" alt="Card image"/>
+      <Card.ImgOverlay>
+        <Card.Title onClick={() => {props.setShowDetail(false)}} className="justify-content-md-center">ShelfShare</Card.Title>
 
           <Container>
             <Row className="justify-content-md-end">
@@ -80,7 +80,7 @@ const Header = (props) => {
                   <Navbar.Collapse id="homepage-navbar">
                     <Nav className="me-auto">
                       <Navbar.Text href="#home">Explore By:</Navbar.Text>
-                      <Nav.Link onClick={() => { props.setBookClicked(false) }} href="#link">Trending</Nav.Link>
+                      <Nav.Link onClick={() => { props.setShowDetail(false) }} href="#link">Trending</Nav.Link>
                       <NavDropdown title="Publication Date" id="pub-date-dropdown">
                         <NavDropdown.Item href="#action/3.1">1800-1900</NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.2">

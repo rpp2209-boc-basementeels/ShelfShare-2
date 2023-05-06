@@ -15,24 +15,31 @@ const Gallery = (props) => {
   //books array = props.books;
   //iterate over props.books
   //for each item, render a Column containing a book card
+  var handleClick = (event) => {
+    //update which book was clicked
+    //grab the key of the clicked element
+    //the key corresponds to the index of the book in the current books array
+    //books array at index should be the correct book object
+    var book = props.books[event.target.key];
+    console.log('event target', event.target.tagName);
+    props.updateSelectedBook(book);
+    //indicate to render the detail modal
+    props.setShowDetail(true);
+  }
+
 
   return (
     <div>
       <Container>
         <Row >
-
-          {props.books.map((book) =>
-
-            <Col xs={12} md={6} lg={4} xl={3} className="g-4">
-            <BookCard setBookClicked={props.setBookClicked} title={book.name} author={book.author} description={"description placeholder"}/>
+          {props.books.map((book, index) =>
+            <Col xs={12} md={6} lg={4} xl={4} className="g-4" key={index} onClick={handleClick}>
+            <BookCard books={props.books} updateSelectedBook={props.updateSelectedBook} setShowDetail={props.setShowDetail} title={book.name} author={book.author} description={"description placeholder"}/>
             </Col>
           )}
-
         </Row>
       </Container>
-
     </div>
-
   )
 }
 
