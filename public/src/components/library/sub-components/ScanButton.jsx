@@ -18,25 +18,23 @@ const App = (props) => {
         .then((bookInfo) => {
           const isbnString = `ISBN:${isbn}`;
           const bookData = bookInfo.data[isbnString];
-          const book = {
-            author: bookData.authors[0].name,
+          const bookPostData = {
+            authors: bookData.authors,
             title: bookData.title,
             genre: GenreFilter(bookData.subjects),
             pub_date: DateParser(bookData.publish_date),
-            ISBN: isbn,
+            ISBN: parseInt(isbn),
             image_url: bookData.cover.medium
           };
-          console.log('book object: ', book)
-          return book;
-        })
-        .then((bookInfo) => {
-          axios.post('/books', bookInfo.data)
-          .then(() => {
-            //TODO: Clear the 'scanned ISBNs' field
+          axios.post('http://localhost:8080/library', JSON.stringify(bookPostData), {
+            headers: {'Content-Type': 'application/json'}
           })
           .catch((error) => {
             console.log('Error posting book info: ', error);
           })
+        })
+        .then(() => {
+          //TODO: Clear the 'scanned ISBNs' field
         })
         .catch((error) => {
           console.log('Error getting book info: ', error);
