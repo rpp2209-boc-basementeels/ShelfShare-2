@@ -4,7 +4,7 @@ const app = express();
 const cors = require('cors');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const addToLibrary = require('../database/addToLibrary.js')
+const addToLibrary = require('../database/addToLibrary.js');
 const generator = require('./generatorSaltHash');
 const pg = require('pg');
 const dbQuery = require('../database/dbQuery');
@@ -17,11 +17,11 @@ app.use(express.json());
 app.use(cors());
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/dist/index.html'))
+  res.sendFile(path.join(__dirname, '../public/dist/index.html'));
 });
 
 app.post('/books', (req, res) => {
-  console.log('req body', req.body)
+  console.log('req body', req.body);
   // return addToLibrary(req.body)
   // .then(() => {
   //   res.status(200).send();
@@ -34,7 +34,33 @@ app.post('/', (req, res) => {
 });
 
 app.get('/bundle.js', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/dist/bundle.js'))
+  res.sendFile(path.join(__dirname, '../public/dist/bundle.js'));
+});
+
+//HOMEPAGE ROUTES
+
+//GET all trending
+app.get('/trending', (req, res) => {
+
+});
+
+//GET all from selected genre
+app.get('/genre', (req, res) => {
+
+});
+
+//GET all from selected pub date range
+app.get('/published', (req, res) => {
+
+});
+
+//GET details for selected books
+app.get('/detail', (req, res) => {
+
+});
+
+app.listen(3000, () => {
+  console.log(`App listening on port 3000`);
 });
 
 

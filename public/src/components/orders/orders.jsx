@@ -3,7 +3,7 @@ import BorrowedList from './borrowedList.jsx';
 import LoanedList from './loanedList.jsx';
 import PendingList from './pendingList.jsx';
 import Data from './dummyData.js';
-
+import Accordion from 'react-bootstrap/Accordion';
 
 var Orders = () => {
 
@@ -16,7 +16,7 @@ var Orders = () => {
     info.forEach(book => {
       if (book.pending === true) {
         if (book.status === 'borrowed') { book.status = 'Return'; }
-        else {book.status = 'Loaned'; }
+        else { book.status = 'Loaned'; }
         filtered.push(book)
       }
     })
@@ -25,11 +25,26 @@ var Orders = () => {
 
 
   return (
-    <div> My Orders
-      <BorrowedList data={sieve('borrowed', Data)}/>
-      <LoanedList data={sieve('loaned', Data)}/>
-      <PendingList data={pending(Data)}/>
-    </div>
+    <Accordion>
+      <Accordion.Item eventKey="0">
+        <Accordion.Header>Borrowed Books</Accordion.Header>
+        <Accordion.Body>
+          <BorrowedList data={sieve('borrowed', Data)} />
+        </Accordion.Body>
+      </Accordion.Item>
+      <Accordion.Item eventKey="1">
+        <Accordion.Header>Loaned Books</Accordion.Header>
+        <Accordion.Body>
+          <LoanedList data={sieve('loaned', Data)} />
+        </Accordion.Body>
+      </Accordion.Item>
+      <Accordion.Item eventKey="2">
+        <Accordion.Header>Pending</Accordion.Header>
+        <Accordion.Body>
+          <PendingList data={pending(Data)} />
+        </Accordion.Body>
+      </Accordion.Item>
+    </Accordion>
   )
 }
 
