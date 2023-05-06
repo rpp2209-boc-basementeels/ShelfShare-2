@@ -37,6 +37,10 @@ app.get('/bundle.js', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/dist/bundle.js'));
 });
 
+app.get('/index.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/dist/index.html'));
+});
+
 //HOMEPAGE ROUTES
 
 //GET all trending
@@ -59,12 +63,9 @@ app.get('/detail', (req, res) => {
 
 });
 
-app.listen(3000, () => {
-  console.log(`App listening on port 3000`);
-});
-
 
 // Authorization
+// For the homepage
 app.get('/getHash', (req, res) => {
 });
 
@@ -129,7 +130,8 @@ app.post('/newUser', (req, res) => {
           if (err) {
             res.status(500).send(err);
           } else {
-            res.status(201).send('User information was added.');
+            // res.status(201).send('User information was added.');
+            res.redirect(301, '/');
           }
         })
 
@@ -137,6 +139,10 @@ app.post('/newUser', (req, res) => {
     }
   });
 });
+
+app.get('/asdf', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/dist/index.html'));
+})
 
 app.get('/username', (req, res) => {
   dbQuery.checkTable('users', req.query, (err, data) => {
@@ -150,4 +156,4 @@ app.get('/username', (req, res) => {
 
 app.listen(process.env.PORT, () => {
   console.log(`App listening on port ${process.env.PORT}`)
-})
+});

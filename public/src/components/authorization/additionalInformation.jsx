@@ -41,10 +41,15 @@ const AdditionalInformation = (props) => {
             age: age !== '' ? age : -1,
             username: username.toLowerCase(),
           };
+          console.log(user);
           axios.post('/newUser', user)
             .then(data => {
+              props.setUser(user);
               axios.get('/')
-                .then((data) => {console.log(data)})
+                .then((data) => {
+                  console.log(data);
+                  props.setClickedLogin(false);
+                })
                 .catch(() => {});
             }) // then send back to homepage
             .catch(err => console.log(err));

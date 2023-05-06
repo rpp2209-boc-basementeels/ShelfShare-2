@@ -3,13 +3,12 @@ import jwt from 'jwt-decode';
 import AdditionalInformation from './additionalInformation.jsx';
 import axios from 'axios';
 
-const GoogleSignIn = () => {
+const GoogleSignIn = (props) => {
   const [currentUser, setCurrentUser] = useState({}); // may want this on the homepage
   const [nextPage, setNextPage] = useState(false);
 
   const handleGoogleCallback = (res) => {
     let user = jwt(res.credential);
-    console.log(user);
     setCurrentUser(user);
     let email = {email: user.email};
 
@@ -20,8 +19,8 @@ const GoogleSignIn = () => {
           setNextPage(true);
         } else { // user exists, but since authentication didn't work in the homepage, must update hash
           axios.patch('/updateSaltHash', email)
-            .then(data => console.log(data))
-            .catch(err => console.log(err));
+            .then(() => {})
+            .catch(() => {});
         }
       })
   };
@@ -48,7 +47,7 @@ const GoogleSignIn = () => {
   };
 
   const secondPage = () => {
-    return ( <AdditionalInformation currentUser={currentUser}/> )
+    return ( <AdditionalInformation currentUser={currentUser} setUser={props.setUser} setClickedLogin={props.setClickedLogin}/> )
   };
 
   return nextPage ? secondPage() : firstPage();
