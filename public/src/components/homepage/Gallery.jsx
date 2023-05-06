@@ -12,31 +12,22 @@ const Gallery = (props) => {
   //iterate over the current list of books (state)
   //render a card for each book, passing appropriate prop
 
+  //books array = props.books;
+  //iterate over props.books
+  //for each item, render a Column containing a book card
+
   return (
     <div>
       <Container>
-        <Row xs={12} md={12} lg={12} xl={12} className="g-4">
-          <Col>
-            <BookCard setBookClicked={props.setBookClicked} title="Snake Eater" author="Squidward Potato" description={"It's the spongebob/MGS mashup you never knew you needed, and probably don't deserve"}/>
-          </Col>
-          <Col>
-          <BookCard title="Snake Eater" author="Squidward Potato" description={"It's the spongebob/MGS mashup you never knew you needed, and probably don't deserve"}/>
-          </Col>
-          <Col>
-          <BookCard title="Snake Eater" author="Squidward Potato" description={"It's the spongebob/MGS mashup you never knew you needed, and probably don't deserve"}/>
-          </Col>
-          <Col>
-          <BookCard title="Snake Eater" author="Squidward Potato" description={"It's the spongebob/MGS mashup you never knew you needed, and probably don't deserve"}/>
-          </Col>
-          <Col>
-          <BookCard title="Snake Eater" author="Squidward Potato" description={"It's the spongebob/MGS mashup you never knew you needed, and probably don't deserve"}/>
-          </Col>
-          <Col>
-          <BookCard title="Snake Eater" author="Squidward Potato" description={"It's the spongebob/MGS mashup you never knew you needed, and probably don't deserve"}/>
-          </Col>
-          <Col>
-          <BookCard title="Snake Eater" author="Squidward Potato" description={"It's the spongebob/MGS mashup you never knew you needed, and probably don't deserve"}/>
-          </Col>
+        <Row >
+
+          {props.books.map((book) =>
+
+            <Col xs={12} md={6} lg={4} xl={3} className="g-4">
+            <BookCard setBookClicked={props.setBookClicked} title={book.name} author={book.author} description={"description placeholder"}/>
+            </Col>
+          )}
+
         </Row>
       </Container>
 
