@@ -8,4 +8,4 @@ import AdditionalInformation from './components/authorization/additionalInformat
 
 const node = document.getElementById('app');
 const root = createRoot(node);
-root.render(<GoogleSignIn />);
+root.render(<App />);
