@@ -18,8 +18,12 @@ const App = (props) => {
         .then((bookInfo) => {
           const isbnString = `ISBN:${isbn}`;
           const bookData = bookInfo.data[isbnString];
+          const authors = bookData.authors.map((author) => {
+            return author.name;
+          });
+          console.log('authors', authors)
           const bookPostData = {
-            authors: bookData.authors,
+            authors: authors,
             title: bookData.title,
             genre: GenreFilter(bookData.subjects),
             pub_date: DateParser(bookData.publish_date),

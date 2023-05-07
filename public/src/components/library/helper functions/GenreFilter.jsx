@@ -22,6 +22,7 @@ const GenreFilter = (subjectArray) => {
       return subjectArray[i].name;
     }
   }
+  return '';
 };
 
 export default GenreFilter;
