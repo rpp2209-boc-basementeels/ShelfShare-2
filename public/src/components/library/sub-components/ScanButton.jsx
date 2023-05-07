@@ -21,7 +21,6 @@ const App = (props) => {
           const authors = bookData.authors.map((author) => {
             return author.name;
           });
-          console.log('authors', authors)
           const bookPostData = {
             authors: authors,
             title: bookData.title,
