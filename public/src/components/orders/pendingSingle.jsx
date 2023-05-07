@@ -1,4 +1,5 @@
 import React from "react";
+import Button from 'react-bootstrap/Button';
 
 var PendingSingle = (props) => {
   return (
@@ -6,7 +7,7 @@ var PendingSingle = (props) => {
       <tr>
         <td>{props.data.status}</td>
         <td>{props.data.name}</td>
-        <td><button onClick={props.func}>Confirm</button></td>
+        <td><Button onClick={props.func}>Confirm</Button></td>
       </tr>
     </tbody>
   )
