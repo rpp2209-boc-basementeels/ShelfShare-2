@@ -12,6 +12,7 @@ const PersonalLibrary = () => {
   return (
     <div>
       <ScanButton />
+      <Shelf />
     </div>
   );
 };
