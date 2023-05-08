@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Html5QrcodePlugin from './Html5QrcodePlugin.jsx';
 import ScanResults from './ScanResults.jsx';
 import GenreFilter from '../helper functions/GenreFilter.jsx';
 import DateParser from '../helper functions/DateParser.jsx';
 
-const ScanButton = (props) => {
+const ScanButton = () => {
     const [decodedResults, setDecodedResults] = useState([]);
 
     const onNewScanResult = (isbn) => {

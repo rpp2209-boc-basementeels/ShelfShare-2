@@ -13,6 +13,7 @@ const App = () => {
   // need to pass down info about the current logged-in user to ProfilePage as props
   const [clickedOnMyProfile, setClickedOnMyProfile] = useState(false);
   const [clickedOnOrder, setClickedOnOrder] = useState(false);
+  const [clickedOnLibrary, setClickedOnLibrary] = useState(false);
   const [showBookDetail, updateShowBookDetail] = useState(false);
   const [clickedLogin, setClickedLogin] = useState(false);
   const [user, setUser] = useState({});
@@ -31,13 +32,14 @@ const App = () => {
         <Button variant="outline-primary" onClick={() => {setClickedOnMyProfile(!clickedOnMyProfile)}}>My Profile</Button>
         {clickedOnMyProfile ? <ProfilePage user={user}/> : null}
         <Button variant="outline-primary"  onClick={() => {setClickedOnOrder(!clickedOnOrder)}}>My Orders </Button>
+        <Button variant="outline-primary"  onClick={() => {setClickedOnLibrary(!clickedOnLibrary)}}>My Library </Button>
+        {clickedOnLibrary ? <PersonalLibrary loggedInUser={user.username} libraryOwner={user.username}/> : null}
         <Header setBookClicked={updateShowBookDetail} setClickedLogin={setClickedLogin} user={user}/>
         {showBookDetail ? <Detail setBookClicked={updateShowBookDetail}/> : <Gallery setBookClicked={updateShowBookDetail}/>}
         {/* <Footer /> */}
         <button onClick={() => {setClickedOnOrder(!clickedOnOrder)}}>My Orders </button>
         {clickedOnOrder ? <Orders/> : null}
         {/* <Footer /> */}
-        <PersonalLibrary />
       </div>
 
     )
