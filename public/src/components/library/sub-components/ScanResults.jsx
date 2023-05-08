@@ -15,24 +15,36 @@ function filterResults (results) {
 }
 
 const ResultContainerTable = ({ data }) => {
-  const results = filterResults(data);
+//   const results = filterResults(data);
   return (
     <table className={'Qrcode-result-table'}>
       <thead>
         <tr>
           <td>#</td>
+          <td>Cover</td>
+          <td>Title</td>
+          <td>Author(s)</td>
           <td>ISBN</td>
-          <td>Format</td>
         </tr>
       </thead>
       <tbody>
       {
-        results.map((result, i) => {
+        data.map((result, i) => {
           return (
-            <tr key={i}>
-              <td>{i}</td>
-              <td>{result.decodedText}</td>
-              <td>{result.result.format.formatName}</td>
+            <tr key={i + 1}>
+              <td>{i + 1}</td>
+              <td><img src={result.image_url_small}/></td>
+              <td>{result.title}</td>
+              <td>
+                {result.authors.map((author, i) => {
+                  if (i < result.authors.length - 1) {
+                    return author + ', ';
+                  } else {
+                    return author;
+                  }
+                })}
+              </td>
+              <td>{result.ISBN}</td>
             </tr>
             );
         })
@@ -43,10 +55,11 @@ const ResultContainerTable = ({ data }) => {
 };
 
 const ScanResults = (props) => {
+  console.log('scanresults:', props.results)
   const results = filterResults(props.results);
   return (
     <div className='Result-container'>
-    <div className='Result-header'>Scanned ISBNs ({results.length})</div>
+    <div className='Result-header'>Scanned Books ({results.length})</div>
     <div className='Result-section'>
       <ResultContainerTable data={results} />
     </div>
