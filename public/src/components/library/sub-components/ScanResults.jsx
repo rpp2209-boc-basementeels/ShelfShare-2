@@ -1,18 +1,4 @@
-import React from 'react';
-
-function filterResults (results) {
-  let filteredResults = [];
-  for (var i = 0; i < results.length; ++i) {
-    if (i === 0) {
-      filteredResults.push(results[i]);
-      continue;
-    }
-    if (results[i].decodedText !== results[i - 1].decodedText) {
-      filteredResults.push(results[i]);
-    }
-  }
-  return filteredResults;
-}
+import React, { useEffect, useState } from 'react';
 
 const ResultContainerTable = ({ data }) => {
 //   const results = filterResults(data);
@@ -55,8 +41,11 @@ const ResultContainerTable = ({ data }) => {
 };
 
 const ScanResults = (props) => {
-  console.log('scanresults:', props.results)
-  const results = filterResults(props.results);
+  const [results, saveResults] = useState([]);
+  useEffect(() => {
+    saveResults(props.results)
+  }, [JSON.stringify(props.results)]);
+
   return (
     <div className='Result-container'>
     <div className='Result-header'>Scanned Books ({results.length})</div>
