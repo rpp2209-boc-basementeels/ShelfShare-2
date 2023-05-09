@@ -1,7 +1,22 @@
 import React, { useEffect, useState } from 'react';
 
+function filterResults (results) {
+  let filteredResults = [];
+  for (var i = 0; i < results.length; ++i) {
+    if (i === 0) {
+      filteredResults.push(results[i]);
+      continue;
+    }
+
+    if (results[i].decodedText !== results[i - 1].decodedText) {
+      filteredResults.push(results[i]);
+    }
+  }
+  return filteredResults;
+}
+
 const ResultContainerTable = ({ data }) => {
-//   const results = filterResults(data);
+  const results = filterResults(data);
   return (
     <table className={'Qrcode-result-table'}>
       <thead>
@@ -15,7 +30,7 @@ const ResultContainerTable = ({ data }) => {
       </thead>
       <tbody>
       {
-        data.map((result, i) => {
+        results.map((result, i) => {
           return (
             <tr key={i + 1}>
               <td>{i + 1}</td>
