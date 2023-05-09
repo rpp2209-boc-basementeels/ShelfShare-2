@@ -37,8 +37,8 @@ const App = () => {
         <Button variant="outline-primary"  onClick={() => {setClickedOnLibrary(!clickedOnLibrary)}}>My Library </Button>
         {clickedOnLibrary ? <PersonalLibrary loggedInUser={'peckmc'} libraryOwner={'peckmc'}/> : null}
         {clickedOnOrder ? <Orders/> : null}
-        <Header setBookClicked={updateShowBookDetail} setClickedLogin={setClickedLogin} user={user} setUser={setUser}/>
-        {showBookDetail ? <Detail setBookClicked={updateShowBookDetail}/> : <Gallery books={galleryBooks} setBookClicked={updateShowBookDetail}/>}
+        <Header setShowDetail={setShowDetail} setClickedLogin={setClickedLogin} user={user} setUser={setUser}/>
+        {showBookDetail ? <Detail setShowDetail={setShowDetail}/> : <Gallery books={galleryBooks} setShowDetail={setShowDetail}/>}
             {/* <Footer /> */}
       </div>
     )
