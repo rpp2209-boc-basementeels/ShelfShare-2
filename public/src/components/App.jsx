@@ -31,11 +31,10 @@ const App = () => {
         <Button variant="outline-primary" onClick={() => {setClickedOnMyProfile(!clickedOnMyProfile)}}>My Profile</Button>
         {clickedOnMyProfile ? <ProfilePage user={user}/> : null}
         <Button variant="outline-primary"  onClick={() => {setClickedOnOrder(!clickedOnOrder)}}>My Orders </Button>
+        {clickedOnOrder ? <Orders/> : null}
         <Header setBookClicked={updateShowBookDetail} setClickedLogin={setClickedLogin} user={user} setUser={setUser}/>
         {showBookDetail ? <Detail setBookClicked={updateShowBookDetail}/> : <Gallery setBookClicked={updateShowBookDetail}/>}
         {/* <Footer /> */}
-        <button onClick={() => {setClickedOnOrder(!clickedOnOrder)}}>My Orders </button>
-        {clickedOnOrder ? <Orders/> : null}
         {/* <Footer /> */}
         <PersonalLibrary />
       </div>
