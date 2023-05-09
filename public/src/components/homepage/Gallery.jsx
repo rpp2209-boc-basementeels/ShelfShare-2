@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import BookCard from './BookCard.jsx';
@@ -7,6 +8,17 @@ import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 
 const Gallery = (props) => {
+
+//upon component loading
+  useEffect(() => {
+    //make an axios call to the trending endpoint
+    Axios.get('/trending')
+    .then(() => {
+      console.log('axios req/res cycle in gallery component complete')
+    });
+    //update the books state with the returned data
+  })
+
   //conditional rendering of Gallery or Detail
 
   //iterate over the current list of books (state)
