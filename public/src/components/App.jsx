@@ -27,13 +27,13 @@ const App = () => {
     )
   } else {
     return (
-
       <div>
         <Button variant="outline-primary" onClick={() => {setClickedOnMyProfile(!clickedOnMyProfile)}}>My Profile</Button>
         {clickedOnMyProfile ? <ProfilePage user={user}/> : null}
         <Button variant="outline-primary"  onClick={() => {setClickedOnOrder(!clickedOnOrder)}}>My Orders </Button>
+        {/* TODO: only show 'My Library' button if user is logged in */}
         <Button variant="outline-primary"  onClick={() => {setClickedOnLibrary(!clickedOnLibrary)}}>My Library </Button>
-        {clickedOnLibrary ? <PersonalLibrary loggedInUser={user.username} libraryOwner={user.username}/> : null}
+        {clickedOnLibrary ? <PersonalLibrary loggedInUser={'peckmc'} libraryOwner={'peckmc'}/> : null}
         <Header setBookClicked={updateShowBookDetail} setClickedLogin={setClickedLogin} user={user}/>
         {showBookDetail ? <Detail setBookClicked={updateShowBookDetail}/> : <Gallery setBookClicked={updateShowBookDetail}/>}
         {/* <Footer /> */}
@@ -41,7 +41,6 @@ const App = () => {
         {clickedOnOrder ? <Orders/> : null}
         {/* <Footer /> */}
       </div>
-
     )
   }
 

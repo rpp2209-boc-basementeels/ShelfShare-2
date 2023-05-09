@@ -13,8 +13,12 @@ const PersonalLibrary = ({ loggedInUser, libraryOwner }) => {
 
   return (
     <div>
-      {isUsersOwnLibrary ? <ScanButton /> : null}
-      <Shelf libraryOwner={libraryOwner}/>
+      {isUsersOwnLibrary ? <ScanButton user={loggedInUser}/> : null}
+      <div className="List">
+          <section className="List-section">
+          <Shelf libraryOwner={libraryOwner}/>
+          </section>
+      </div>
       {isUsersOwnLibrary ? <Lent /> : null}
       {isUsersOwnLibrary ? <Borrowed /> : null}
     </div>

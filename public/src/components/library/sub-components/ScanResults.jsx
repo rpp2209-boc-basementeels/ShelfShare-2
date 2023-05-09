@@ -48,10 +48,10 @@ const ScanResults = (props) => {
 
   return (
     <div className='Result-container'>
-    <div className='Result-header'>Scanned Books ({results.length})</div>
-    <div className='Result-section'>
-      <ResultContainerTable data={results} />
-    </div>
+      <div className='Result-header'>Scanned Books ({results.length})</div>
+      <div className='Result-section'>
+        <ResultContainerTable data={results} />
+      </div>
     </div>
   );
 };

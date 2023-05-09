@@ -5,7 +5,7 @@ import ScanResults from './ScanResults.jsx';
 import GenreFilter from '../helper functions/GenreFilter.jsx';
 import DateParser from '../helper functions/DateParser.jsx';
 
-const ScanButton = () => {
+const ScanButton = ({ user }) => {
     const [decodedResults, setDecodedResults] = useState([]);
 
     const onNewScanResult = (isbn) => {
@@ -35,6 +35,7 @@ const ScanButton = () => {
 
     const saveResultsToLibrary = () => {
       for (var i = 0; i < decodedResults.length; i++) {
+        decodedResults[i].user = user;
         axios.post('http://localhost:8080/library', decodedResults[i], {
           headers: {'Content-Type': 'application/json'}
         })
@@ -46,8 +47,8 @@ const ScanButton = () => {
     }
 
     return (
-      <div className="Scan">
-          <section className="Scan-section">
+      <div className="List">
+          <section className="List-section">
               <Html5QrcodePlugin
                 fps={50}
                 qrbox={250}
