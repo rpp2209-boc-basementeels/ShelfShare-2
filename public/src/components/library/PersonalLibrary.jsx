@@ -8,10 +8,19 @@ import Shelf from './sub-components/Shelf.jsx';
 import Borrowed from './sub-components/Borrowed.jsx';
 import Lent from './sub-components/Lent.jsx';
 
-const PersonalLibrary = () => {
+const PersonalLibrary = ({ loggedInUser, libraryOwner }) => {
+  const [isUsersOwnLibrary, setisUsersOwnLibrary] = useState(loggedInUser === libraryOwner);
+
   return (
     <div>
-      <ScanButton />
+      {isUsersOwnLibrary ? <ScanButton user={loggedInUser}/> : null}
+      <div className="List">
+          <section className="List-section">
+          <Shelf libraryOwner={libraryOwner}/>
+          </section>
+      </div>
+      {isUsersOwnLibrary ? <Lent /> : null}
+      {isUsersOwnLibrary ? <Borrowed /> : null}
     </div>
   );
 };

@@ -4,10 +4,7 @@ const app = express();
 const cors = require('cors');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const addToLibrary = require('../database/addToLibrary.js');
 const generator = require('./generatorSaltHash');
-const pg = require('pg');
-const dbQuery = require('../database/dbQuery');
 
 
 app.use(express.static(path.join(__dirname, "./public/dist")));

@@ -1,4 +1,3 @@
-
 const GenreFilter = (subjectArray) => {
   const validGenres = {
     'Fiction': 0,
