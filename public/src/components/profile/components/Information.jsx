@@ -10,9 +10,9 @@ const Information = (props) => {
 
     return (
         <div>
-            {editButtonClicked ? <EditInfoModal closeButton={setEditButtonClicked} buttonClicked={editButtonClicked}/> : <div style={{"display": "flex", "alignItems": "flex-start", "justifyContent": "center"}}>
+            {editButtonClicked ? <EditInfoModal info={props.info} closeButton={setEditButtonClicked} buttonClicked={editButtonClicked}/> : <div style={{"display": "flex", "alignItems": "flex-start", "justifyContent": "center"}}>
             <div style={{"textAlign": "center", "position": "relative", "width": "30vw", "minWidth": "max-content"}}>
-                <img style={{"borderRadius": "50%"}} src={props.info[0].photo}></img>
+                <Image style={{"borderRadius": "50%"}} src={props.info[0].photo}></Image>
                 <h4>{props.info[0].first_name + " " + props.info[0].last_name}</h4>
                 <h6>{props.info[0].email}</h6>
                 <h6>Age: {props.info[0].age}</h6>
