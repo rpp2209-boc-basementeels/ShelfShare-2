@@ -17,6 +17,7 @@ const Detail = (props) => {
       <Container>
         <Row xs={1} md={1} lg={1} xl={1} className="g-4">
           <Col>
+          Here's a detail view
             {/* <BookCard title={props.book.name} author={props.book.author} description={"book description"}/> */}
           </Col>
         </Row>
