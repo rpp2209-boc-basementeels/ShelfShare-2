@@ -7,10 +7,10 @@ const ReviewList = (props) => {
         return (
             <Review review={review} key={index}/>
         )
-    })
+    });
 
     return (
-        <div style={{"display": "flex", "justify-content": "center"}}>
+        <div style={{"display": "flex", "justifyContent": "center"}}>
             {reviews}
         </div>
     )
