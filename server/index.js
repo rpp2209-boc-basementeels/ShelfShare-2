@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser');
 const generator = require('./generatorSaltHash');
 const pg = require('pg');
 //const dbQuery = require('../database/dbQuery');
+const axios = require('axios');
 
 
 app.use(express.static(path.join(__dirname, "./public/dist")));
@@ -35,6 +36,15 @@ app.get('/index.html', (req, res) => {
 
 //GET all trending
 app.get('/trending', (req, res) => {
+  console.log('request made to /trending endpoint');
+  //make a request to the back end server
+  axios.get('http://localhost:8080/trending')
+  .then(() => {
+    res.status(200).send();
+  })
+  .catch(() => {
+    res.status(400).send();
+  })
 
 });
 
