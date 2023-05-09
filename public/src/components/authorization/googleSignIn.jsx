@@ -10,7 +10,7 @@ const GoogleSignIn = (props) => {
   const handleGoogleCallback = (res) => {
     let user = jwt(res.credential);
     setCurrentUser(user);
-    let email = {email: user.email};
+    let email = { email: user.email };
 
     // check database for user based on email
     axios.get('/email', { params: email })
@@ -19,7 +19,10 @@ const GoogleSignIn = (props) => {
           setNextPage(true);
         } else { // user exists, but since authentication didn't work in the homepage, must update hash
           axios.patch('/updateSaltHash', email)
-            .then(() => {})
+            .then(() => {
+              props.setClickedLogin(false);
+              props.setUser(data.data[0]);
+            })
             .catch(() => {});
         }
       })
@@ -47,7 +50,7 @@ const GoogleSignIn = (props) => {
   };
 
   const secondPage = () => {
-    return ( <AdditionalInformation currentUser={currentUser} setUser={props.setUser} setClickedLogin={props.setClickedLogin}/> )
+    return (<AdditionalInformation currentUser={currentUser} setUser={props.setUser} setClickedLogin={props.setClickedLogin} />)
   };
 
   return nextPage ? secondPage() : firstPage();

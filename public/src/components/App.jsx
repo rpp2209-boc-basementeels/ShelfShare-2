@@ -31,7 +31,7 @@ const App = () => {
         <Button variant="outline-primary" onClick={() => {setClickedOnMyProfile(!clickedOnMyProfile)}}>My Profile</Button>
         {clickedOnMyProfile ? <ProfilePage user={user}/> : null}
         <Button variant="outline-primary"  onClick={() => {setClickedOnOrder(!clickedOnOrder)}}>My Orders </Button>
-        <Header setBookClicked={updateShowBookDetail} setClickedLogin={setClickedLogin} user={user}/>
+        <Header setBookClicked={updateShowBookDetail} setClickedLogin={setClickedLogin} user={user} setUser={setUser}/>
         {showBookDetail ? <Detail setBookClicked={updateShowBookDetail}/> : <Gallery setBookClicked={updateShowBookDetail}/>}
         {/* <Footer /> */}
         <button onClick={() => {setClickedOnOrder(!clickedOnOrder)}}>My Orders </button>
@@ -39,28 +39,8 @@ const App = () => {
         {/* <Footer /> */}
         <PersonalLibrary />
       </div>
-
     )
   }
-
-//conditional rendering of Gallery or Detail
-
-// return (
-
-//  <div>
-//    <Button variant="outline-primary" onClick={() => {setClickedOnMyProfile(!clickedOnMyProfile)}}>My Profile</Button>
-//    {clickedOnMyProfile ? <ProfilePage/> : null}
-//    <Button variant="outline-primary"  onClick={() => {setClickedOnOrder(!clickedOnOrder)}}>My Orders </Button>
-    //{clickedOnOrder ? <Orders/> : null}
-    //<Header setBookClicked={updateShowBookDetail}/>
-    //{showBookDetail ? <Detail setBookClicked={updateShowBookDetail}/> : <Gallery setBookClicked={updateShowBookDetail}/>}
-    //{/* <Footer /> */}
-
-    //{/* <Footer /> */}
-    //<PersonalLibrary />
-  //</div>
-
-//)
 }
 
 export default App;

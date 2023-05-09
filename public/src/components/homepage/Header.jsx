@@ -33,7 +33,7 @@ const Header = (props) => {
             <NavDropdown.Item href="#action/3.2">My Shelf</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.3">Orders</NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">Logout</NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.4" onClick={() => {props.setUser({})}}>Logout</NavDropdown.Item>
           </NavDropdown>
         </>
       )
