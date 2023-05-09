@@ -66,93 +66,93 @@ app.get('/detail', (req, res) => {
 
 // Authorization
 // For the homepage
-app.get('/getHash', (req, res) => {
-});
+// app.get('/getHash', (req, res) => {
+// });
 
-app.get('/email', (req, res) => {
-  dbQuery.checkTable('users', req.query, (err, data) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.status(200).send(data);
-    }
-  })
-});
+// app.get('/email', (req, res) => {
+//   dbQuery.checkTable('users', req.query, (err, data) => {
+//     if (err) {
+//       res.status(500).send(err);
+//     } else {
+//       res.status(200).send(data);
+//     }
+//   })
+// });
 
-app.patch('/updateSaltHash', (req, res) => {
-  const salt = generator.generatorSalt(req.cookies.g_state);
-  const hash = generator.generatorHash(req.cookies.g_state, salt);
-  const whereObj = req.body;
-  const setSaltObj = { salt: salt };
-  const setHashObj = { hash: hash };
-  dbQuery.updateTable('users', whereObj, setSaltObj, (err, data) => {
-    if (err) {
-      res.status(500).send('1');
-    } else {
-      dbQuery.getID('users', whereObj, (err, data) => {
-        if (err) {
-          res.status(500).send('2');
-        } else {
-          const result = {
-            user_id: data[0].id
-          };
-          dbQuery.updateTable('sessions', result, setHashObj, (err, data) => {
-            if (err) {
-              res.status(500).send('3');
-            } else {
-              res.status(200).send('Salt and hash have been updated!')
-            }
-          })
-        }
-      })
-    }
-  })
-});
+// app.patch('/updateSaltHash', (req, res) => {
+//   const salt = generator.generatorSalt(req.cookies.g_state);
+//   const hash = generator.generatorHash(req.cookies.g_state, salt);
+//   const whereObj = req.body;
+//   const setSaltObj = { salt: salt };
+//   const setHashObj = { hash: hash };
+//   dbQuery.updateTable('users', whereObj, setSaltObj, (err, data) => {
+//     if (err) {
+//       res.status(500).send('1');
+//     } else {
+//       dbQuery.getID('users', whereObj, (err, data) => {
+//         if (err) {
+//           res.status(500).send('2');
+//         } else {
+//           const result = {
+//             user_id: data[0].id
+//           };
+//           dbQuery.updateTable('sessions', result, setHashObj, (err, data) => {
+//             if (err) {
+//               res.status(500).send('3');
+//             } else {
+//               res.status(200).send('Salt and hash have been updated!')
+//             }
+//           })
+//         }
+//       })
+//     }
+//   })
+// });
 
-app.post('/newUser', (req, res) => {
-  const salt = generator.generatorSalt(req.cookies.g_state);
-  const hash = generator.generatorHash(req.cookies.g_state, salt);
-  const result = {
-    ...req.body,
-    salt: salt,
-    // hash: hash,
-  };
-  dbQuery.addToTable('users', result, (err, data) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      dbQuery.getID('users', { email: req.body.email }, (err, data) => {
-        const result2 = {
-          user_id: data[0].id,
-          hash: hash,
-        };
-        dbQuery.addToTable('sessions', result2, (err, data) => {
-          if (err) {
-            res.status(500).send(err);
-          } else {
-            // res.status(201).send('User information was added.');
-            res.redirect(301, '/');
-          }
-        })
+// app.post('/newUser', (req, res) => {
+//   const salt = generator.generatorSalt(req.cookies.g_state);
+//   const hash = generator.generatorHash(req.cookies.g_state, salt);
+//   const result = {
+//     ...req.body,
+//     salt: salt,
+//     // hash: hash,
+//   };
+//   dbQuery.addToTable('users', result, (err, data) => {
+//     if (err) {
+//       res.status(500).send(err);
+//     } else {
+//       dbQuery.getID('users', { email: req.body.email }, (err, data) => {
+//         const result2 = {
+//           user_id: data[0].id,
+//           hash: hash,
+//         };
+//         dbQuery.addToTable('sessions', result2, (err, data) => {
+//           if (err) {
+//             res.status(500).send(err);
+//           } else {
+//             // res.status(201).send('User information was added.');
+//             res.redirect(301, '/');
+//           }
+//         })
 
-      })
-    }
-  });
-});
+//       })
+//     }
+//   });
+// });
 
-app.get('/asdf', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/dist/index.html'));
-})
+// app.get('/asdf', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../public/dist/index.html'));
+// })
 
-app.get('/username', (req, res) => {
-  dbQuery.checkTable('users', req.query, (err, data) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.status(200).send(data);
-    }
-  })
-});
+// app.get('/username', (req, res) => {
+//   dbQuery.checkTable('users', req.query, (err, data) => {
+//     if (err) {
+//       res.status(500).send(err);
+//     } else {
+//       res.status(200).send(data);
+//     }
+//   })
+// });
 
 app.listen(process.env.PORT, () => {
   console.log(`App listening on port ${process.env.PORT}`)
