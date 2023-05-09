@@ -34,11 +34,10 @@ const App = () => {
         {/* TODO: only show 'My Library' button if user is logged in */}
         <Button variant="outline-primary"  onClick={() => {setClickedOnLibrary(!clickedOnLibrary)}}>My Library </Button>
         {clickedOnLibrary ? <PersonalLibrary loggedInUser={'peckmc'} libraryOwner={'peckmc'}/> : null}
+        {clickedOnOrder ? <Orders/> : null}
         <Header setBookClicked={updateShowBookDetail} setClickedLogin={setClickedLogin} user={user} setUser={setUser}/>
         {showBookDetail ? <Detail setBookClicked={updateShowBookDetail}/> : <Gallery setBookClicked={updateShowBookDetail}/>}
         {/* <Footer /> */}
-        <button onClick={() => {setClickedOnOrder(!clickedOnOrder)}}>My Orders </button>
-        {clickedOnOrder ? <Orders/> : null}
         {/* <Footer /> */}
       </div>
     )
