@@ -8,16 +8,18 @@ import ProfilePage from './profile/ProfilePage.jsx';
 import Orders from './orders/orders.jsx';
 import Detail from './book detail/Detail.jsx';
 import GoogleSignIn from './authorization/googleSignIn.jsx';
+import Data from './orders/dummyData.js';
 
 const App = () => {
   // need to pass down info about the current logged-in user to ProfilePage as props
   const [clickedOnMyProfile, setClickedOnMyProfile] = useState(false);
   const [clickedOnOrder, setClickedOnOrder] = useState(false);
   const [clickedOnLibrary, setClickedOnLibrary] = useState(false);
-  const [showBookDetail, updateShowBookDetail] = useState(false);
   const [clickedLogin, setClickedLogin] = useState(false);
   const [user, setUser] = useState({});
-
+  const [showBookDetail, setShowDetail] = useState(false);
+  const [galleryBooks, updateGalleryBooks] = useState(Data);
+  const [selectedBook, updateSelectedBook] = useState(null);
 
   if (clickedLogin) {
     return (
@@ -35,10 +37,9 @@ const App = () => {
         <Button variant="outline-primary"  onClick={() => {setClickedOnLibrary(!clickedOnLibrary)}}>My Library </Button>
         {clickedOnLibrary ? <PersonalLibrary loggedInUser={'peckmc'} libraryOwner={'peckmc'}/> : null}
         {clickedOnOrder ? <Orders/> : null}
-        <Header setBookClicked={updateShowBookDetail} setClickedLogin={setClickedLogin} user={user} setUser={setUser}/>
-        {showBookDetail ? <Detail setBookClicked={updateShowBookDetail}/> : <Gallery setBookClicked={updateShowBookDetail}/>}
-        {/* <Footer /> */}
-        {/* <Footer /> */}
+        <Header setShowDetail={setShowDetail} setClickedLogin={setClickedLogin} user={user} setUser={setUser}/>
+        {showBookDetail ? <Detail setShowDetail={setShowDetail}/> : <Gallery books={galleryBooks} setShowDetail={setShowDetail}/>}
+            {/* <Footer /> */}
       </div>
     )
   }
