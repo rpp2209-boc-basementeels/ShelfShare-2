@@ -21,11 +21,11 @@ const ScanButton = ({ user }) => {
           title: bookData.title,
           genre: GenreFilter(bookData.subjects),
           pub_date: DateParser(bookData.publish_date),
-          ISBN: parseInt(isbn),
-          image_url_small: bookData.cover.small,
-          image_url_med: bookData.cover.medium,
-          image_url_large: bookData.cover.large
+          ISBN: parseInt(isbn)
         };
+        if (Object.hasOwn(bookData, 'cover')) {
+          bookPostData.image_url = bookData.cover.small;
+        }
         setDecodedResults(prev => [...prev, bookPostData]);
       })
       .catch((error) => {

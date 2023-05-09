@@ -22,7 +22,7 @@ const Shelf = ({ libraryOwner }) => {
     dataFetch();
   }, [])
 
-  if (!shelfBooks) return "Loading...";
+  if (!shelfBooks) return null;
 
   return (
     <div className='Result-container'>

@@ -34,7 +34,7 @@ const ResultContainerTable = ({ data }) => {
           return (
             <tr key={i + 1}>
               <td>{i + 1}</td>
-              <td><img src={result.image_url_small}/></td>
+              <td><img src={result.image_url}/></td>
               <td>{result.title}</td>
               <td>
                 {result.authors.map((author, i) => {
