@@ -28,8 +28,12 @@ const ProfilePage = (props) => {
     return (
         <div>
             <Information info={exampleProfileData}/>
-            <hr></hr>
-            <h3 style={{"marginTop": "5vh", "marginBottom": "5vh", "textAlign": "center", "font-family": "Helvetica"}}>My Reviews</h3>
+            <div style={{"display": "flex", "alignItems": "flex-start", "justifyContent": "center"}}>
+                <div style={{"textAlign": "center", "position": "relative", "width": "30vw", "minWidth": "max-content"}}>
+                    <hr></hr>
+                </div>
+            </div>
+            <h3 style={{"marginTop": "5vh", "marginBottom": "5vh", "textAlign": "center", "fontFamily": "Helvetica"}}>My Reviews</h3>
             <div>
                 <ReviewList reviews={exampleReviewData}/>
             </div>
