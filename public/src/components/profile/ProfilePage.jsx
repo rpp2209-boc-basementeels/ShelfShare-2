@@ -4,7 +4,8 @@ import React from 'react';
 import Information from './components/Information.jsx';
 import ReviewList from './components/ReviewList.jsx';
 
-const ProfilePage = () => {
+const ProfilePage = (props) => {
+    // props.user is the data about the current user passed down from App.jsx
     // render ReviewList with necessary data from ALL reviews for this user
     var exampleReviewData = [{
         body: 'This book was very informative on eels and I would suggest that you read it if you like eels.',
@@ -27,7 +28,12 @@ const ProfilePage = () => {
     return (
         <div>
             <Information info={exampleProfileData}/>
-            <h3 style={{"marginTop": "40px", "textAlign": "center"}}>My Reviews</h3>
+            <div style={{"display": "flex", "alignItems": "flex-start", "justifyContent": "center"}}>
+                <div style={{"textAlign": "center", "position": "relative", "width": "30vw", "minWidth": "max-content"}}>
+                    <hr></hr>
+                </div>
+            </div>
+            <h3 style={{"marginTop": "5vh", "marginBottom": "5vh", "textAlign": "center", "fontFamily": "Helvetica"}}>My Reviews</h3>
             <div>
                 <ReviewList reviews={exampleReviewData}/>
             </div>
