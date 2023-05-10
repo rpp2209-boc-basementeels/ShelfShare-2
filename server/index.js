@@ -13,7 +13,7 @@ const axios = require('axios');
 
 app.use(express.static(path.join(__dirname, "./public/dist")));
 app.use(cookieParser());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
@@ -39,12 +39,12 @@ app.get('/trending', (req, res) => {
   console.log('request made to /trending endpoint');
   //make a request to the back end server
   axios.get('http://localhost:8080/trending')
-  .then(() => {
-    res.status(200).send();
-  })
-  .catch(() => {
-    res.status(400).send();
-  })
+    .then((data) => {
+      res.status(200).send(data.data);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
 
 });
 

@@ -12,7 +12,7 @@ const BookCard = (props) => {
     <div>
       <Container className={props.index}>
       <Card style={{ width: '18rem' }}>
-      <Card.Img className={props.index} variant="top" src="https://pictures.abebooks.com/isbn/9781787550360-us.jpg" />
+      <Card.Img className={props.index} variant="top" src={props.image} />
       <Card.Body>
         <Card.Title className={props.index}>{props.title}</Card.Title>
         <Card.Subtitle className={props.index} className="mb-2 text-muted">by {props.author}</Card.Subtitle>
