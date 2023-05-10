@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container, Table } from 'react-bootstrap';
 
 function filterResults (results) {
   let filteredResults = [];
@@ -18,14 +19,14 @@ function filterResults (results) {
 const ResultContainerTable = ({results}) => {
   const result = filterResults(results);
   return (
-    <table className={'Qrcode-result-table'}>
+    <Table striped bordered>
       <thead>
         <tr>
-          <td>#</td>
-          <td>Cover</td>
-          <td>Title</td>
-          <td>Author(s)</td>
-          <td>ISBN</td>
+          <th>#</th>
+          <th>COVER</th>
+          <th>TITLE</th>
+          <th>AUTHOR(S)</th>
+          <th>ISBN</th>
         </tr>
       </thead>
       <tbody>
@@ -51,18 +52,17 @@ const ResultContainerTable = ({results}) => {
         })
       }
       </tbody>
-    </table>
+    </Table>
     );
 };
 
 const ScanResults = ({ results }) => {
   return (
-    <div className='Result-container'>
-      <div className='Result-header'>Scanned Books ({results.length})</div>
-      <div className='Result-section'>
-        <ResultContainerTable results={results} />
-      </div>
-    </div>
+    <>
+      <p></p>
+      <h5>SCANNED BOOKS ({results.length})</h5>
+      <ResultContainerTable results={results} />
+    </>
   );
 };
 

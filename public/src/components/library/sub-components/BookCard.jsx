@@ -5,7 +5,6 @@ function BookCard({ b }) {
   let image_url;
   if (b.image_url) {
     let imageHost = b.image_url.slice(0, 26);
-    console.log('imageHost', imageHost)
     if (imageHost = 'https://covers.openlibrary') {
       image_url = (b.image_url.slice(0, -5)).concat('M.jpg')
     }
@@ -17,8 +16,8 @@ function BookCard({ b }) {
   }
 
   return (
-    <Card border='light' style={{ width: '8rem' }} data-toggle="tooltip" data-placement="top" title={tooltip}>
-      <Card.Img variant="top" src={image_url} onError={addDefaultSrc}/>
+    <Card border='light' style={{ width: '14rem' }} data-toggle="tooltip" data-placement="top" title={tooltip}>
+      <Card.Img variant="top" src={image_url || require('./placeholder.png')} onError={addDefaultSrc} style={{ height: "14rem" }} className="align-items-center"/>
     </Card>
   );
 }

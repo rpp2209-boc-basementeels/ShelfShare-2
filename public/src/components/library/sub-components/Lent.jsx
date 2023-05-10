@@ -31,18 +31,20 @@ const Lent = ({ libraryOwner }) => {
   }, [])
 
   return (
-    <div>
+    <>
       {lent.data ?
-      <div className='Result-container'>
-      <div className='Result-header'>Lent Books ({lent.data.length})</div>
-        <Row xs={1} md={2} className="g-4">
-        {lent.data.map((b, i) => (
-          <BookCard key={i} b={b} />
-        ))}
+      <>
+        <p></p>
+        <h5>LENT BOOKS ({lent.data.length})</h5>
+        <hr />
+        <Row xs={1} md={2} className="g-5">
+          {lent.data.map((b, i) => (
+            <BookCard key={i} b={b} />
+          ))}
         </Row>
-      </div>
+      </>
       : null}
-    </div>
+    </>
   );
 };
 

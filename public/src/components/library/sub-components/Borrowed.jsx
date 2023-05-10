@@ -31,18 +31,20 @@ const Borrowed = ({ libraryOwner }) => {
   }, [])
 
   return (
-    <div>
+    <>
       {borrowed.data ?
-      <div className='Result-container'>
-      <div className='Result-header'>Borrowed Books ({borrowed.data.length})</div>
-        <Row xs={1} md={2} className="g-4">
+      <>
+      <p></p>
+      <h5>BORROWED BOOKS ({borrowed.data.length})</h5>
+      <hr />
+      <Row xs={1} md={2} className="g-5">
         {borrowed.data.map((b, i) => (
           <BookCard key={i} b={b} />
         ))}
-        </Row>
-      </div>
+      </Row>
+      </>
       : null}
-    </div>
+    </>
   );
 };
 

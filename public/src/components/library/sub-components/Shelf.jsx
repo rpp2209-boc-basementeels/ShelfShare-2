@@ -31,18 +31,20 @@ const Shelf = ({ fetchTrigger, libraryOwner }) => {
   }, [fetchTrigger])
 
   return (
-    <div>
+    <>
       {!isLoading ?
-      <div className='Result-container'>
-      <div className='Result-header'>My Shelf ({library.data.length})</div>
-        <Row xs={1} md={2} className="g-4">
+      <>
+      <p></p>
+      <h5>MY SHELF ({library.data.length})</h5>
+      <hr />
+      <Row xs={1} md={2} className="g-5">
         {library.data.map((b, i) => (
           <BookCard key={i} b={b} />
         ))}
-        </Row>
-      </div>
+      </Row>
+      </>
       : null}
-    </div>
+    </>
   );
 }
 
