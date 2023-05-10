@@ -50,7 +50,7 @@ const Gallery = (props) => {
         <Row >
           {props.books.map((book, index) =>
             <Col xs={12} md={6} lg={4} xl={4} key={index} className={index} onClick={handleClick}>
-            <BookCard books={props.books} updateSelectedBook={props.updateSelectedBook} setShowDetail={props.setShowDetail} title={book.name} author={book.author} description={"description placeholder"}/>
+            <BookCard books={props.books} updateSelectedBook={props.updateSelectedBook} setShowDetail={props.setShowDetail} title={book.title} author={book.author} image={book.image_url_large} description={"description placeholder"}/>
             </Col>
           )}
         </Row>
