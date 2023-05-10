@@ -32,6 +32,10 @@ app.get('/index.html', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/dist/index.html'));
 });
 
+app.get('/0f4328edd6df3f5cd6c6.png', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/dist/0f4328edd6df3f5cd6c6.png'));
+});
+
 //HOMEPAGE ROUTES
 
 //GET all trending

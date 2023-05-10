@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import Row from 'react-bootstrap/Row';
 import axios from 'axios';
+import BookCard from './BookCard.jsx'
 
 const Borrowed = ({ libraryOwner }) => {
   const [borrowed, setBorrowed] = useState({data: []});
@@ -33,37 +35,12 @@ const Borrowed = ({ libraryOwner }) => {
       {borrowed.data ?
       <div className='Result-container'>
       <div className='Result-header'>Borrowed Books ({borrowed.data.length})</div>
-        <div className='Result-section'>
-        <table className={'Qrcode-result-table'}>
-          <thead>
-            <tr>
-              <td>#</td>
-              <td>Cover</td>
-              <td>Title</td>
-              <td>Author(s)</td>
-              <td>ISBN</td>
-            </tr>
-          </thead>
-          <tbody>
-          {
-            borrowed.data.map((result, i) => {
-              return (
-                <tr key={i + 1}>
-                  <td>{i + 1}</td>
-                  <td><img src={result.image_url}/></td>
-                  <td>{result.title}</td>
-                  <td>
-                    {result.author}
-                  </td>
-                  <td>{result.isbn}</td>
-                </tr>
-                );
-            })
-          }
-          </tbody>
-        </table>
-        </div>
-        </div>
+        <Row xs={1} md={2} className="g-4">
+        {borrowed.data.map((b, i) => (
+          <BookCard key={i} b={b} />
+        ))}
+        </Row>
+      </div>
       : null}
     </div>
   );

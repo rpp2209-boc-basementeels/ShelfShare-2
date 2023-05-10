@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import Row from 'react-bootstrap/Row';
 import axios from 'axios';
+import BookCard from './BookCard.jsx'
 
 const Shelf = ({ fetchTrigger, libraryOwner }) => {
   const [library, setLibrary] = useState({data: []});
@@ -20,7 +22,7 @@ const Shelf = ({ fetchTrigger, libraryOwner }) => {
         }, {});
         setLibrary({data: Object.values(out)});
       } catch (err) {
-        console.log('error',err.message);
+        console.log('error', err.message);
       } finally {
         setIsLoading(false);
       }
@@ -33,37 +35,12 @@ const Shelf = ({ fetchTrigger, libraryOwner }) => {
       {!isLoading ?
       <div className='Result-container'>
       <div className='Result-header'>My Shelf ({library.data.length})</div>
-        <div className='Result-section'>
-        <table className={'Qrcode-result-table'}>
-          <thead>
-            <tr>
-              <td>#</td>
-              <td>Cover</td>
-              <td>Title</td>
-              <td>Author(s)</td>
-              <td>ISBN</td>
-            </tr>
-          </thead>
-          <tbody>
-          {
-            library.data.map((result, i) => {
-              return (
-                <tr key={i + 1}>
-                  <td>{i + 1}</td>
-                  <td><img src={result.image_url}/></td>
-                  <td>{result.title}</td>
-                  <td>
-                    {result.author}
-                  </td>
-                  <td>{result.isbn}</td>
-                </tr>
-                );
-            })
-          }
-          </tbody>
-        </table>
-        </div>
-        </div>
+        <Row xs={1} md={2} className="g-4">
+        {library.data.map((b, i) => (
+          <BookCard key={i} b={b} />
+        ))}
+        </Row>
+      </div>
       : null}
     </div>
   );
