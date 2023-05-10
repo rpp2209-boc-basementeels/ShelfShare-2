@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './Library.css';
+import { Button, Container, Row, Col, Card }  from 'react-bootstrap';
 import GenreFilter from './helper functions/GenreFilter.jsx';
 import DateParser from './helper functions/DateParser.jsx';
 import NavigationBar from './sub-components/NavigationBar.jsx';
@@ -57,31 +57,18 @@ const PersonalLibrary = ({ loggedInUser, libraryOwner }) => {
   };
 
   return (
-    <div>
-      {isUsersOwnLibrary ? <ScanButton user={loggedInUser} onNewScanResult={onNewScanResult} scanResults={scanResults} setScanResults={setScanResults}/> : null}
-      <div className="List">
-        <section className="List-section">
-        <button onClick={saveResultsToLibrary}>Save to Library</button>
+    <Container>
+      <Row>
+        {isUsersOwnLibrary ? <ScanButton onNewScanResult={onNewScanResult} scanResults={scanResults} setScanResults={setScanResults}/> : null}
+      </Row>
+      <Row>
+        <Col style={{ display: "flex", justifyContent: "center"}}>
+          {scanResults.length > 0 ? <Button onClick={saveResultsToLibrary}>SAVE TO SHELF</Button> : null}
+        </Col>
+      </Row>
         <Shelf fetchTrigger={fetchTrigger} libraryOwner={libraryOwner}/>
-        </section>
-      </div>
-      <>
-      {isUsersOwnLibrary ?
-        <>
-          <div className="List">
-            <section className="List-section">
-              <Borrowed libraryOwner={libraryOwner}/>
-            </section>
-          </div>
-          <div className="List">
-            <section className="List-section">
-              <Lent libraryOwner={libraryOwner}/>
-            </section>
-          </div>
-        </>
-      : null}
-      </>
-    </div>
+        {isUsersOwnLibrary ? <div><Borrowed libraryOwner={libraryOwner}/> <Lent libraryOwner={libraryOwner}/></div> : null}
+    </Container>
   );
 };
 
