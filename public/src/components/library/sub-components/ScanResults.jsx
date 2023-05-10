@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 function filterResults (results) {
   let filteredResults = [];
@@ -8,15 +8,15 @@ function filterResults (results) {
       continue;
     }
 
-    if (results[i].decodedText !== results[i - 1].decodedText) {
+    if (results[i].ISBN !== results[i - 1].ISBN) {
       filteredResults.push(results[i]);
     }
   }
   return filteredResults;
 }
 
-const ResultContainerTable = ({ data }) => {
-  const results = filterResults(data);
+const ResultContainerTable = ({results}) => {
+  const result = filterResults(results);
   return (
     <table className={'Qrcode-result-table'}>
       <thead>
@@ -30,22 +30,22 @@ const ResultContainerTable = ({ data }) => {
       </thead>
       <tbody>
       {
-        results.map((result, i) => {
+        result.map((book, i) => {
           return (
             <tr key={i + 1}>
               <td>{i + 1}</td>
-              <td><img src={result.image_url}/></td>
-              <td>{result.title}</td>
+              <td><img src={book.image_url}/></td>
+              <td>{book.title}</td>
               <td>
-                {result.authors.map((author, i) => {
-                  if (i < result.authors.length - 1) {
+                {book.authors.map((author, i) => {
+                  if (i < book.authors.length - 1) {
                     return author + ', ';
                   } else {
                     return author;
                   }
                 })}
               </td>
-              <td>{result.ISBN}</td>
+              <td>{book.ISBN}</td>
             </tr>
             );
         })
@@ -55,17 +55,12 @@ const ResultContainerTable = ({ data }) => {
     );
 };
 
-const ScanResults = (props) => {
-  const [results, saveResults] = useState([]);
-  useEffect(() => {
-    saveResults(props.results)
-  }, [JSON.stringify(props.results)]);
-
+const ScanResults = ({ results }) => {
   return (
     <div className='Result-container'>
       <div className='Result-header'>Scanned Books ({results.length})</div>
       <div className='Result-section'>
-        <ResultContainerTable data={results} />
+        <ResultContainerTable results={results} />
       </div>
     </div>
   );
