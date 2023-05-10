@@ -9,15 +9,19 @@ import Container from 'react-bootstrap/Container';
 
 const Gallery = (props) => {
 
-//upon component loading
-  useEffect(() => {
-    //make an axios call to the trending endpoint
-    Axios.get('/trending')
-    .then(() => {
-      console.log('axios req/res cycle in gallery component complete')
-    });
-    //update the books state with the returned data
-  })
+// //upon component loading
+//   useEffect(() => {
+//     //make an axios call to the trending endpoint
+//     Axios.get('http://localhost:3000/trending')
+//     .then((books) => {
+//       console.log(books.data);
+//       props.updateGalleryBooks(books.data);
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+//     //update the books state with the returned data
+//   });
 
   //conditional rendering of Gallery or Detail
 

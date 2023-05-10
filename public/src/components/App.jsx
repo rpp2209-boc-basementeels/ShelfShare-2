@@ -9,8 +9,24 @@ import Orders from './orders/orders.jsx';
 import Detail from './book detail/Detail.jsx';
 import GoogleSignIn from './authorization/googleSignIn.jsx';
 import Data from './orders/dummyData.js';
+import axios from 'axios';
 
 const App = () => {
+
+  //upon component loading
+  useEffect(() => {
+    //make an axios call to the trending endpoint
+    axios.get('http://localhost:3000/trending')
+    .then((books) => {
+      console.log(books.data);
+      updateGalleryBooks(books.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+    //update the books state with the returned data
+  }, [galleryBooks]);
+
   // need to pass down info about the current logged-in user to ProfilePage as props
   const [clickedOnMyProfile, setClickedOnMyProfile] = useState(false);
   const [clickedOnOrder, setClickedOnOrder] = useState(false);
@@ -38,7 +54,7 @@ const App = () => {
         {clickedOnLibrary ? <PersonalLibrary loggedInUser={'peckmc'} libraryOwner={'peckmc'}/> : null}
         {clickedOnOrder ? <Orders/> : null}
         <Header setShowDetail={setShowDetail} setClickedLogin={setClickedLogin} user={user} setUser={setUser}/>
-        {showBookDetail ? <Detail setShowDetail={setShowDetail}/> : <Gallery books={galleryBooks} setShowDetail={setShowDetail}/>}
+        {showBookDetail ? <Detail setShowDetail={setShowDetail}/> : <Gallery updateGalleryBooks={updateGalleryBooks} books={galleryBooks} setShowDetail={setShowDetail}/>}
             {/* <Footer /> */}
       </div>
     )
