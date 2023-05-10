@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const Shelf = ({ scanResults, fetchTrigger, libraryOwner, loggedInUser }) => {
+const Shelf = ({ fetchTrigger, libraryOwner }) => {
   const [library, setLibrary] = useState({data: []});
   const [isLoading, setIsLoading] = useState(false);
 

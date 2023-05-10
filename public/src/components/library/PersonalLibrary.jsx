@@ -62,11 +62,25 @@ const PersonalLibrary = ({ loggedInUser, libraryOwner }) => {
       <div className="List">
         <section className="List-section">
         <button onClick={saveResultsToLibrary}>Save to Library</button>
-        <Shelf fetchTrigger={fetchTrigger} scanResults={scanResults} setScanResults={setScanResults} libraryOwner={libraryOwner} loggedInUser={loggedInUser}/>
+        <Shelf fetchTrigger={fetchTrigger} libraryOwner={libraryOwner}/>
         </section>
       </div>
-      {/* {isUsersOwnLibrary ? <Lent /> : null} */}
-      {isUsersOwnLibrary ? <Borrowed /> : null}
+      <>
+      {isUsersOwnLibrary ?
+        <>
+          <div className="List">
+            <section className="List-section">
+              <Borrowed libraryOwner={libraryOwner}/>
+            </section>
+          </div>
+          <div className="List">
+            <section className="List-section">
+              <Lent libraryOwner={libraryOwner}/>
+            </section>
+          </div>
+        </>
+      : null}
+      </>
     </div>
   );
 };
