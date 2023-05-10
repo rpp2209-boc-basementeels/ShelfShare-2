@@ -34,12 +34,19 @@ const Gallery = (props) => {
       keyboard={false}
     >
     <Modal.Header closeButton>
-      <Modal.Title>Modal title</Modal.Title>
+      <Modal.Title>Book Title</Modal.Title>
     </Modal.Header>
     <Modal.Body>
       This is the Modal Body Text
+      It should contain a thumbnail of the book
+      the author or authors
+      genre
+      a book description
     </Modal.Body>
     <Modal.Footer>
+    <Button variant="primary" onClick={handleClose}>
+        Request to Borrow
+      </Button>
       <Button variant="secondary" onClick={handleClose}>
         Back to Gallery
       </Button>
