@@ -23,6 +23,17 @@ const App = () => {
   const [galleryBooks, updateGalleryBooks] = useState(Data);
   const [selectedBook, updateSelectedBook] = useState(null);
 
+  useEffect(() => {
+    axios.get('http://localhost:3000/trending')
+    .then((books) => {
+      console.log(books.data);
+      updateGalleryBooks(books.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }, [Gallery]);
+
   if (clickedLogin) {
     return (
       <div>
