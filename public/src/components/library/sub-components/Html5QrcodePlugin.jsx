@@ -23,7 +23,6 @@ const createConfig = (props) => {
 };
 
 const Html5QrcodePlugin = (props) => {
-
     useEffect(() => {
         // when component mounts
         const config = createConfig(props);

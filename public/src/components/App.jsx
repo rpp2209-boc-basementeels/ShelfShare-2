@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+
 import Header from './homepage/Header.jsx';
 import Gallery from './homepage/Gallery.jsx';
 import Footer from './homepage/Footer.jsx';
 import PersonalLibrary from './library/PersonalLibrary.jsx'
-import Button from 'react-bootstrap/Button';
 import ProfilePage from './profile/ProfilePage.jsx';
 import Orders from './orders/orders.jsx';
 import Detail from './book detail/Detail.jsx';
 import GoogleSignIn from './authorization/googleSignIn.jsx';
+import Data from './orders/dummyData.js';
+import axios from 'axios';
 
 const App = () => {
-  // need to pass down info about the current logged-in user to ProfilePage as props
-  const [clickedOnMyProfile, setClickedOnMyProfile] = useState(false);
-  const [clickedOnOrder, setClickedOnOrder] = useState(false);
-  const [showBookDetail, updateShowBookDetail] = useState(false);
+  const [selectedPage, setSelectedPage] = useState('Home');
   const [clickedLogin, setClickedLogin] = useState(false);
 //   const [user, setUser] = useState({
 //     first_name: 'Kevin',
@@ -25,7 +28,20 @@ const App = () => {
 //     username: 'kevinduh'
 // });
   const [user, setUser] = useState({});
+  const [showBookDetail, setShowDetail] = useState(false);
+  const [galleryBooks, updateGalleryBooks] = useState(Data);
+  const [selectedBook, updateSelectedBook] = useState(null);
 
+  useEffect(() => {
+    axios.get('http://localhost:3000/trending')
+    .then((books) => {
+      console.log(books.data);
+      updateGalleryBooks(books.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }, [Gallery]);
 
   if (clickedLogin) {
     return (
@@ -35,19 +51,29 @@ const App = () => {
     )
   } else {
     return (
-
-      <div>
-        <Button variant="outline-primary" onClick={() => {setClickedOnMyProfile(!clickedOnMyProfile)}}>My Profile</Button>
-        {clickedOnMyProfile ? <ProfilePage user={user}/> : null}
-        <Button variant="outline-primary"  onClick={() => {setClickedOnOrder(!clickedOnOrder)}}>My Orders </Button>
-        <Header setBookClicked={updateShowBookDetail} setClickedLogin={setClickedLogin} user={user} setUser={setUser}/>
-        {showBookDetail ? <Detail setBookClicked={updateShowBookDetail}/> : <Gallery setBookClicked={updateShowBookDetail}/>}
-        {/* <Footer /> */}
-        <button onClick={() => {setClickedOnOrder(!clickedOnOrder)}}>My Orders </button>
-        {clickedOnOrder ? <Orders/> : null}
-        {/* <Footer /> */}
-        <PersonalLibrary />
-      </div>
+      <Container>
+        <Row>
+          <Col>
+            <Button variant="outline-primary" onClick={() => {setSelectedPage('Home')}}>Home</Button>
+          </Col>
+          <Col>
+            <Button variant="outline-primary" onClick={() => {setSelectedPage('Profile')}}>My Profile</Button>
+          </Col>
+          <Col>
+            <Button variant="outline-primary" onClick={() => {setSelectedPage('Orders')}}>My Orders </Button>
+          </Col>
+          <Col>
+            <Button variant="outline-primary" onClick={() => {setSelectedPage('Library')}}>My Library</Button>
+          </Col>
+            <Header setShowDetail={setShowDetail} setClickedLogin={setClickedLogin} user={user} setUser={setUser}/>
+          {selectedPage === 'Login' ? <GoogleSignIn setUser={setUser} setClickedLogin={setClickedLogin}/> : null}
+          {selectedPage === 'Profile' ? <ProfilePage user={user}/> : null}
+          {selectedPage === 'Library' ? <PersonalLibrary loggedInUser={'peckmc'} libraryOwner={'peckmc'}/> : null}
+          {selectedPage === 'Orders' ? <Orders/> : null}
+          {showBookDetail ? <Detail setShowDetail={setShowDetail}/> : selectedPage === ('Home') ? <Gallery books={galleryBooks} setShowDetail={setShowDetail}/> : null}
+          {/* <Footer /> */}
+        </Row>
+      </Container>
     )
   }
 }
