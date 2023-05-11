@@ -15,6 +15,15 @@ const App = () => {
   const [clickedOnOrder, setClickedOnOrder] = useState(false);
   const [showBookDetail, updateShowBookDetail] = useState(false);
   const [clickedLogin, setClickedLogin] = useState(false);
+//   const [user, setUser] = useState({
+//     first_name: 'Kevin',
+//     last_name: 'Hoang',
+//     photo: `https://lh3.googleusercontent.com/a/AGNmyxbKSB-E9sl8llXqjsc04GfTzVm9fN8CgXHl_mv7=s96-c`,
+//     email: 'knhoangre@gmail.com',
+//     gender: 'male',
+//     age: '100',
+//     username: 'kevinduh'
+// });
   const [user, setUser] = useState({});
 
 
