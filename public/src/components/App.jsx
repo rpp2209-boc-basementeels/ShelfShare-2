@@ -48,7 +48,7 @@ const App = () => {
             <Header setShowDetail={setShowDetail} setClickedLogin={setClickedLogin} user={user} setUser={setUser}/>
           {selectedPage === 'Login' ? <GoogleSignIn setUser={setUser} setClickedLogin={setClickedLogin}/> : null}
           {selectedPage === 'Profile' ? <ProfilePage user={user}/> : null}
-          {selectedPage === 'Library' ? <PersonalLibrary loggedInUser={'peckmc'} libraryOwner={'peckmc'}/> : null}
+          {selectedPage === 'Library' ? <PersonalLibrary loggedInUser={'Melodie'} libraryOwner={'Melodie'}/> : null}
           {selectedPage === 'Orders' ? <Orders/> : null}
           {showBookDetail ? <Detail setShowDetail={setShowDetail}/> : selectedPage === ('Home') ? <Gallery books={galleryBooks} setShowDetail={setShowDetail}/> : null}
           {/* <Footer /> */}
