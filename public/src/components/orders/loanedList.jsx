@@ -4,7 +4,14 @@ import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 
 var LoanedList = (props) => {
+  let books = props.loan;
   var index = 0;
+  console.log('ll', props)
+
+  useEffect(() => {
+    LoanedList;
+  }, [props])
+
   return (
     <div>
     <table>
@@ -14,7 +21,7 @@ var LoanedList = (props) => {
           <th>Author</th>
         </tr>
       </thead>
-      {props.data.map(book => (
+      {books.map(book => (
         <LoanedSingle data={book} key={index += 1} />
       ))}
     </table>

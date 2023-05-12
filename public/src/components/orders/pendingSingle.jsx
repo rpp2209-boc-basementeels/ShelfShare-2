@@ -5,8 +5,8 @@ var PendingSingle = (props) => {
   return (
     <tbody>
       <tr>
-        <td>{props.data.status}</td>
-        <td>{props.data.name}</td>
+        <td>{props.data.details[0].title}</td>
+        <td>{props.data.details[0].author}</td>
         <td><Button onClick={props.func}>Confirm</Button></td>
       </tr>
     </tbody>

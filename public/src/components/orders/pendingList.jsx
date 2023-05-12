@@ -5,6 +5,8 @@ import Button from 'react-bootstrap/Button';
 
 var PendingList = (props) => {
 
+  let books = props.pending;
+
   var index = 0;
   return (
     <div>
@@ -15,7 +17,7 @@ var PendingList = (props) => {
           <th>Author</th>
         </tr>
       </thead>
-      {props.data.map(book => (
+      {books.map(book => (
         <PendingSingle data={book} key={index += 1} />
       ))}
     </table>

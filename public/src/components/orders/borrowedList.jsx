@@ -7,7 +7,6 @@ import { Accordion } from "react-bootstrap";
 
 var BorrowedList = (props) => {
 let books = props.borrow;
-console.log(books)
 
 useEffect(() => {
   BorrowedList;

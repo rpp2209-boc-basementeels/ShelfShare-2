@@ -49,13 +49,13 @@ var Orders = (props) => {
       <Accordion.Item eventKey="0">
         <Accordion.Header>Borrowed Books</Accordion.Header>
         <Accordion.Body>
-          <BorrowedList data={sieve('borrowed', Data)} borrow={borrow}/>
+          <BorrowedList borrow={borrow}/>
         </Accordion.Body>
       </Accordion.Item>
       <Accordion.Item eventKey="1">
         <Accordion.Header>Loaned Books</Accordion.Header>
         <Accordion.Body>
-          <LoanedList data={sieve('loaned', Data)} loan={loan}/>
+          <LoanedList loan={loan}/>
         </Accordion.Body>
       </Accordion.Item>
       <Accordion.Item eventKey="2">
