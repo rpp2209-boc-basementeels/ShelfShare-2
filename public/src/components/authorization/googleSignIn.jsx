@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import jwt from 'jwt-decode';
 import AdditionalInformation from './additionalInformation.jsx';
 import axios from 'axios';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const GoogleSignIn = (props) => {
   const [currentUser, setCurrentUser] = useState({}); // may want this on the homepage
@@ -23,7 +26,7 @@ const GoogleSignIn = (props) => {
               props.setClickedLogin(false);
               props.setUser(data.data[0]);
             })
-            .catch(() => {});
+            .catch(() => { });
         }
       })
   };
@@ -42,18 +45,22 @@ const GoogleSignIn = (props) => {
 
   const firstPage = () => {
     return (
-      <>
-        Sign In or Sign Up With Google
-        <div id='signInButton'></div>
-      </>
+      <Container>
+        <Row className='justify-content-center' xll='auto'>
+          <Col>
+            Sign In or Sign Up With Google
+            <div id='signInButton'></div>
+          </Col>
+        </Row>
+      </Container>
     )
   };
 
-  const secondPage = () => {
-    return (<AdditionalInformation currentUser={currentUser} setUser={props.setUser} setClickedLogin={props.setClickedLogin} />)
-  };
+const secondPage = () => {
+  return (<AdditionalInformation currentUser={currentUser} setUser={props.setUser} setClickedLogin={props.setClickedLogin} />);
+};
 
-  return nextPage ? secondPage() : firstPage();
+return nextPage ? secondPage() : firstPage();
 };
 
 export default GoogleSignIn;
