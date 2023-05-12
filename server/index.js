@@ -67,6 +67,40 @@ app.get('/detail', (req, res) => {
 
 });
 
+// PROFILE ROUTES
+
+// GET all reviews for a specific user
+app.get('/reviews/:username', (req, res) => {
+  var username = req.params.username;
+  // direct request to backend repository
+  axios.get(`http://localhost:8080/reviews/${username}`)
+    .then((data) => {
+      console.log('data here', data);
+      res.status(200).send(data.data);
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+    })
+});
+
+// GET user's personal information
+app.get('/personalInformation/:username', (req, res) => {
+  // direct request to backend repository
+ 
+});
+
+// POST to update user's personal information
+app.post('/personalInformation/:username', (req, res) => {
+  // direct request to backend repository
+
+});
+
+// GET user's public-facing information
+app.get('/publicPersonalInformation/:username', (req, res) => {
+  // direct request to backend repository
+
+});
+
 app.get('/orders/:id', (req, res) => {
   var uniqueId = req.params.id;
   let url = `http://localhost:8080/orders/${uniqueId}`;
