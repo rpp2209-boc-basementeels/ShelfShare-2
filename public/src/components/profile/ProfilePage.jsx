@@ -15,10 +15,10 @@ const ProfilePage = (props) => {
         // the user's personal information
         // will replace the two variables with dummy data below
 
-        // fill in the below with props.user.username as param
-        axios.get(`/reviews/maddiesime`)
+        // Below will work when authentication works
+        axios.get(`/reviews/${props.user.username}`)
           .then((reviewData) => {
-            setUserReviews(reviewData);
+            setUserReviews(reviewData.data);
           })
           .catch((error) => {
             console.log("There was an error while trying to retrieve the user's reviews", error);
@@ -33,14 +33,6 @@ const ProfilePage = (props) => {
         //     console.log("There was an error while trying to retrieve the user's personal information", error);
         //   })
     }, []);
-
-    var exampleReviewData = [{
-        body: 'This book was very informative on eels and I would suggest that you read it if you like eels.',
-        title: 'The Book of Eels',
-        date: 'May 4, 2023',
-        image: 'https://static01.nyt.com/images/2020/05/26/books/22EELBOOK/22EELBOOK-superJumbo.jpg?quality=75&auto=webp',
-        username: 'iloveeels1234'
-    }];
 
     var exampleProfileData = [{
         "first_name": "Kevin",
@@ -62,7 +54,7 @@ const ProfilePage = (props) => {
             </div>
             <h3 style={{"marginTop": "5vh", "marginBottom": "5vh", "textAlign": "center", "fontFamily": "Helvetica"}}>My Reviews</h3>
             <div>
-                <ReviewList reviews={exampleReviewData}/>
+                <ReviewList reviews={userReviews}/>
             </div>
         </div>
     )

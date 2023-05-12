@@ -75,12 +75,12 @@ app.get('/reviews/:username', (req, res) => {
   // direct request to backend repository
   axios.get(`http://localhost:8080/reviews/${username}`)
     .then((data) => {
-      console.log('This is the data from the backend repository: ', data);
+      console.log('data here', data);
+      res.status(200).send(data.data);
     })
     .catch((error) => {
-      console.log('There was an error :/', error);
+      res.status(400).send(error);
     })
-
 });
 
 // GET user's personal information

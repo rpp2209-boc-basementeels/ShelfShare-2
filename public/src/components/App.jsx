@@ -36,7 +36,7 @@ const App = () => {
   // to the individual reviews for a book (use Review component in profile/components/Review.jsx). This component
   // is set up to receive these props of the same names (usernameThatWasClicked and setUsernameThatWasClicked)
   // and will update below, triggering a re-rendering of the clicked-on-user's public profile page, line 42
-  // Will need to find a way to reset the state to an empty string, maybe when the user leaves said profile page?
+  // When "back" button is clicked on this profile page, state resets to an empty string
   const [usernameThatWasClicked, setUsernameThatWasClicked] = useState('');
 
   useEffect(() => {
@@ -59,7 +59,7 @@ const App = () => {
   } else if (usernameThatWasClicked !== '') {
     return (
       <div>
-        <PublicProfilePage username={usernameThatWasClicked}/>
+        <PublicProfilePage set={setUsernameThatWasClicked} username={usernameThatWasClicked}/>
       </div>
     )
   } else {
