@@ -7,9 +7,9 @@ import Accordion from 'react-bootstrap/Accordion';
 import axios from 'axios';
 
 var Orders = (props) => {
-  const [loan, setLoan] = useState([])
-  const [borrow, setBorrow] = useState([])
-  const [pend, setPend] = useState([])
+  const [loan, setLoan] = useState([]);
+  const [borrow, setBorrow] = useState([]);
+  const [pend, setPend] = useState([]);
 
   let testUser = 7;
 
