@@ -69,7 +69,7 @@ const App = () => {
           {selectedPage === 'Login' ? <GoogleSignIn setUser={setUser} setClickedLogin={setClickedLogin}/> : null}
           {selectedPage === 'Profile' ? <ProfilePage user={user}/> : null}
           {selectedPage === 'Library' ? <PersonalLibrary loggedInUser={'peckmc'} libraryOwner={'peckmc'}/> : null}
-          {selectedPage === 'Orders' ? <Orders/> : null}
+          {selectedPage === 'Orders' ? <Orders user={user} page={selectedPage}/> : null}
           {selectedPage === 'Home' ? <Gallery books={galleryBooks} showBookDetail={showBookDetail} setShowDetail={setShowDetail}/> : null}
           {/* <Footer /> */}
         </Row>

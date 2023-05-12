@@ -67,6 +67,15 @@ app.get('/detail', (req, res) => {
 
 });
 
+app.get('/orders/:id', (req, res) => {
+  var uniqueId = req.params.id;
+  let url = `http://localhost:8080/orders/${uniqueId}`;
+
+  axios.get(url)
+  .then(list => res.status(200).send(list.data))
+  .catch(err => res.sendStatus(404));
+});
+
 
 // Authorization
 // For the homepage
