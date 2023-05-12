@@ -61,7 +61,7 @@ const App = () => {
           {selectedPage === 'Profile' ? <ProfilePage user={user}/> : null}
           {selectedPage === 'Library' ? <PersonalLibrary loggedInUser={'peckmc'} libraryOwner={'peckmc'}/> : null}
           {selectedPage === 'Orders' ? <Orders/> : null}
-          {showBookDetail ? <Detail setShowDetail={setShowDetail}/> : selectedPage === ('Home') ? <Gallery books={galleryBooks} setShowDetail={setShowDetail}/> : null}
+          {selectedPage === 'Home' ? <Gallery books={galleryBooks} showBookDetail={showBookDetail} setShowDetail={setShowDetail}/> : null}
           {/* <Footer /> */}
         </Row>
       </Container>
