@@ -6,7 +6,12 @@ import Button from 'react-bootstrap/Button';
 import { Accordion } from "react-bootstrap";
 
 var BorrowedList = (props) => {
+let books = props.borrow;
+console.log(books)
 
+useEffect(() => {
+  BorrowedList;
+}, [props])
 
   var index = 0;
   return (
@@ -16,9 +21,10 @@ var BorrowedList = (props) => {
         <tr>
           <th>Title</th>
           <th>Author</th>
+          <th>Return Date</th>
         </tr>
       </thead>
-      {props.data.map(book => (
+      {books.map(book => (
         <BorrowedSingle data={book} key={index += 1} />
       ))}
     </table>
