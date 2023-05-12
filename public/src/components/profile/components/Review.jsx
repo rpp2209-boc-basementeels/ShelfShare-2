@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 
 const Review = (props) => {
     // do not want username to show up on reviews in person's profile, just have section called "Maddie's Reviews"
+
     return (
         <Card style={{"width": "50vw", "borderWidth": "1px"}}>
             <Row>
@@ -13,6 +14,11 @@ const Review = (props) => {
                     <Card.Title>{props.review.title}</Card.Title>
                     <Card.Subtitle>{props.review.date}</Card.Subtitle>
                     <Card.Body style={{"padding": "0"}}>{props.review.body}</Card.Body>
+                    <Card.Body style={{"position": "absolute", "top": 0, "right": 0, "paddingTop": "1vh", "paddingRight": "1vw", "cursor": "pointer"}} onClick={() => {
+                        if (props.usernameThatWasClicked === '') {
+                            props.setUsernameThatWasClicked(props.review.username);
+                        }
+                    }}>{props.review.username}</Card.Body>
                 </Col>
             </Row>
         </Card>

@@ -1,12 +1,39 @@
-// This is where the main profile page will be rendered by importing supporting components
-import React from 'react';
-// import EditInfoModal from '/components/EditInfoModal.jsx';
+import React, { useEffect, useState } from 'react';
 import Information from './components/Information.jsx';
 import ReviewList from './components/ReviewList.jsx';
+import axios from 'axios';
 
 const ProfilePage = (props) => {
     // props.user is the data about the current user passed down from App.jsx
-    // render ReviewList with necessary data from ALL reviews for this user
+
+    const [userReviews, setUserReviews] = useState([]);
+    const [userInfo, setUserInfo] = useState([]);
+
+    useEffect(() => {
+        // upon loading of profile page, need to get two things:
+        // ALL of the user's reviews
+        // the user's personal information
+        // will replace the two variables with dummy data below
+
+        // fill in the below with props.user.username as param
+        axios.get(`/reviews/maddiesime`)
+          .then((reviewData) => {
+            setUserReviews(reviewData);
+          })
+          .catch((error) => {
+            console.log("There was an error while trying to retrieve the user's reviews", error);
+          })
+        //   .then(() => {
+        //     return axios.get('/personalInformation');
+        //   })
+        //   .then((infoData) => {
+        //     setUserInfo(infoData);
+        //   })
+        //   .catch((error) => {
+        //     console.log("There was an error while trying to retrieve the user's personal information", error);
+        //   })
+    }, []);
+
     var exampleReviewData = [{
         body: 'This book was very informative on eels and I would suggest that you read it if you like eels.',
         title: 'The Book of Eels',
