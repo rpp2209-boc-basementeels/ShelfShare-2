@@ -12,7 +12,7 @@ const Gallery = (props) => {
 
   const handleClose = () => props.setShowDetail(false);
 
-console.log('book id', props.selectedBookId);
+  const [book, setBook] = useState({});
 
   return (
     <div>
@@ -24,7 +24,7 @@ console.log('book id', props.selectedBookId);
       keyboard={false}
     >
     <Modal.Header closeButton>
-      <Modal.Title>Book Title</Modal.Title>
+      <Modal.Title>Book Title: {book.title}</Modal.Title>
     </Modal.Header>
     <Modal.Body>
       This is the Modal Body Text
@@ -47,7 +47,7 @@ console.log('book id', props.selectedBookId);
         <Row >
           {props.books.map((book, index) =>
             <Col xs={12} md={6} lg={4} xl={4} key={index} className={index}>
-            <BookCard id={book.book_id} books={props.books} updateSelectedBookId={props.updateSelectedBookId} setShowDetail={props.setShowDetail} title={book.title} author={book.author} image={book.image_url_large} description={"description placeholder"}/>
+            <BookCard setBook={setBook} id={book.book_id} books={props.books} updateSelectedBookId={props.updateSelectedBookId} setShowDetail={props.setShowDetail} title={book.title} author={book.author} image={book.image_url_large} description={"description placeholder"}/>
             </Col>
           )}
         </Row>
