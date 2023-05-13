@@ -43,8 +43,8 @@ app.get('/trending', (req, res) => {
   console.log('request made to /trending endpoint');
   //make a request to the back end server
   axios.get('http://localhost:8080/trending')
-    .then((data) => {
-      res.status(200).send(data.data);
+    .then((result) => {
+      res.status(200).send(result.data);
     })
     .catch((err) => {
       res.status(400).send(err);
@@ -64,7 +64,15 @@ app.get('/published', (req, res) => {
 
 //GET details for selected books
 app.get('/detail', (req, res) => {
-
+  let bookId = req.query.bookId;
+  axios.get('http://localhost:8080/detail', {params: {bookId: bookId}})
+    .then((result) => {
+      console.log(result.data);
+      res.status(200).send(result.data);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
 });
 
 // PROFILE ROUTES
@@ -73,7 +81,7 @@ app.get('/detail', (req, res) => {
 app.get('/reviews/:username', (req, res) => {
   var username = req.params.username;
   // direct request to backend repository
-  axios.get(`http://localhost:8080/reviews/${username}`)
+  axios.get(`${process.env.API_URL}/reviews/${username}`)
     .then((data) => {
       console.log('data here', data);
       res.status(200).send(data.data);
@@ -85,8 +93,15 @@ app.get('/reviews/:username', (req, res) => {
 
 // GET user's personal information
 app.get('/personalInformation/:username', (req, res) => {
+  var username = req.params.username;
   // direct request to backend repository
-
+  axios.get(`${process.env.API_URL}/personalInformation/${username}`)
+    .then((data) => {
+      res.status(200).send(data.data);
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+    })
 });
 
 // POST to update user's personal information
@@ -98,6 +113,11 @@ app.post('/personalInformation/:username', (req, res) => {
 // GET user's public-facing information
 app.get('/publicPersonalInformation/:username', (req, res) => {
   // direct request to backend repository
+
+});
+
+// GET all reviews for a specific book_id
+app.get('/bookReviews/:book_id', (req, res) => {
 
 });
 
