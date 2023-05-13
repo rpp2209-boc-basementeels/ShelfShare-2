@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
+import axios from 'axios';
 
 const BookCard = (props) => {
   //conditional rendering of Gallery or Detail
@@ -11,6 +12,7 @@ const BookCard = (props) => {
   const handleClick = (event) => {
     props.updateSelectedBookId(props.id);
     //make axios get request for the individual book info
+    axios.get('/detail', {params: {bookId: props.id}});
     //THEN
     //-> props.setShowDetail(true);
   }
