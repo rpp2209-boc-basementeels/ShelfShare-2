@@ -73,7 +73,7 @@ app.get('/detail', (req, res) => {
 app.get('/reviews/:username', (req, res) => {
   var username = req.params.username;
   // direct request to backend repository
-  axios.get(`http://localhost:8080/reviews/${username}`)
+  axios.get(`${process.env.API_URL}/reviews/${username}`)
     .then((data) => {
       console.log('data here', data);
       res.status(200).send(data.data);
@@ -87,7 +87,7 @@ app.get('/reviews/:username', (req, res) => {
 app.get('/personalInformation/:username', (req, res) => {
   var username = req.params.username;
   // direct request to backend repository
-  axios.get(`http://localhost:8080/personalInformation/${username}`)
+  axios.get(`${process.env.API_URL}/personalInformation/${username}`)
     .then((data) => {
       res.status(200).send(data.data);
     })
