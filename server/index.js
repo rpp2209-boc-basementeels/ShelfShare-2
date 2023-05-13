@@ -108,6 +108,11 @@ app.get('/publicPersonalInformation/:username', (req, res) => {
 
 });
 
+// GET all reviews for a specific book_id
+app.get('/bookReviews/:book_id', (req, res) => {
+
+});
+
 app.get('/orders/:id', (req, res) => {
   var uniqueId = req.params.id;
   let url = `http://localhost:8080/orders/${uniqueId}`;
