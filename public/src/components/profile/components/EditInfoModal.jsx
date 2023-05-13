@@ -15,13 +15,13 @@ const EditInfoModal = (props) => {
                     <Col>
                         <Form.Group>
                             <Form.Label>First Name</Form.Label>
-                            <Form.Control defaultValue={props.info[0].first_name}></Form.Control>
+                            <Form.Control defaultValue={props.info.first_name}></Form.Control>
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group>
                             <Form.Label>Last Name</Form.Label>
-                            <Form.Control defaultValue={props.info[0].last_name}></Form.Control>
+                            <Form.Control defaultValue={props.info.last_name}></Form.Control>
                         </Form.Group>
                     </Col>
                 </Row>
@@ -29,19 +29,19 @@ const EditInfoModal = (props) => {
                     <Form.Label style={{"marginTop": "2vh"}}>Username</Form.Label>
                     <InputGroup>
                         <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
-                        <Form.Control defaultValue={props.info[0].username}></Form.Control>
+                        <Form.Control defaultValue={props.info.username}></Form.Control>
                     </InputGroup>
                 </Form.Group>
                 <Form.Group>
                     <Form.Label style={{"marginTop": "2vh"}}>Email Address</Form.Label>
-                    <Form.Control defaultValue={props.info[0].email}></Form.Control>
+                    <Form.Control defaultValue={props.info.email}></Form.Control>
                     <Form.Text>We'll never share your email with anyone else.</Form.Text>
                 </Form.Group>
                 <Row>
                     <Col>
                         <Form.Group>
                             <Form.Label style={{"marginTop": "2vh"}}>Age</Form.Label>
-                            <Form.Control defaultValue={props.info[0].age}></Form.Control>
+                            <Form.Control defaultValue={props.info.age}></Form.Control>
                             <Form.Text>We'll never share your age with anyone else.</Form.Text>
                         </Form.Group>
                     </Col>

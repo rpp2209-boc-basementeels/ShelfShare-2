@@ -42,7 +42,7 @@ app.get('/0f4328edd6df3f5cd6c6.png', (req, res) => {
 app.get('/trending', (req, res) => {
   console.log('request made to /trending endpoint');
   //make a request to the back end server
-  axios.get('http://localhost:8080/trending')
+  axios.get(process.env.API_URL + '/trending')
     .then((result) => {
       res.status(200).send(result.data);
     })
@@ -65,7 +65,7 @@ app.get('/published', (req, res) => {
 //GET details for selected books
 app.get('/detail', (req, res) => {
   let bookId = req.query.bookId;
-  axios.get('http://localhost:8080/detail', {params: {bookId: bookId}})
+  axios.get(process.env.API_URL + '/detail', {params: {bookId: bookId}})
     .then((result) => {
       console.log(result.data);
       res.status(200).send(result.data);
@@ -81,7 +81,7 @@ app.get('/detail', (req, res) => {
 app.get('/reviews/:username', (req, res) => {
   var username = req.params.username;
   // direct request to backend repository
-  axios.get(`http://localhost:8080/reviews/${username}`)
+  axios.get(`${process.env.API_URL}/reviews/${username}`)
     .then((data) => {
       console.log('data here', data);
       res.status(200).send(data.data);
@@ -93,8 +93,15 @@ app.get('/reviews/:username', (req, res) => {
 
 // GET user's personal information
 app.get('/personalInformation/:username', (req, res) => {
+  var username = req.params.username;
   // direct request to backend repository
-
+  axios.get(`${process.env.API_URL}/personalInformation/${username}`)
+    .then((data) => {
+      res.status(200).send(data.data);
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+    })
 });
 
 // POST to update user's personal information
@@ -109,9 +116,15 @@ app.get('/publicPersonalInformation/:username', (req, res) => {
 
 });
 
+// GET all reviews for a specific book_id
+app.get('/bookReviews/:book_id', (req, res) => {
+
+});
+
 app.get('/orders/:id', (req, res) => {
   var uniqueId = req.params.id;
-  let url = `http://localhost:8080/orders/${uniqueId}`;
+  let url = `${process.env.API_URL}/orders/${uniqueId}`;
+  console.log(url)
 
   axios.get(url)
   .then(list => res.status(200).send(list.data))
