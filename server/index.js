@@ -42,7 +42,7 @@ app.get('/0f4328edd6df3f5cd6c6.png', (req, res) => {
 app.get('/trending', (req, res) => {
   console.log('request made to /trending endpoint');
   //make a request to the back end server
-  axios.get('http://localhost:8080/trending')
+  axios.get(process.env.API_URL + '/trending')
     .then((result) => {
       res.status(200).send(result.data);
     })
@@ -65,7 +65,7 @@ app.get('/published', (req, res) => {
 //GET details for selected books
 app.get('/detail', (req, res) => {
   let bookId = req.query.bookId;
-  axios.get('http://localhost:8080/detail', {params: {bookId: bookId}})
+  axios.get(process.env.API_URL + '/detail', {params: {bookId: bookId}})
     .then((result) => {
       console.log(result.data);
       res.status(200).send(result.data);
