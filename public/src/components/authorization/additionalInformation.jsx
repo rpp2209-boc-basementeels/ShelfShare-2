@@ -35,7 +35,7 @@ const AdditionalInformation = (props) => {
       isLibrary === '' ? setIsLibraryError(true) : null;
     } else {
 
-      axios.get('/username', { params: { username: username } })
+      axios.get(`${process.env.API_URL}/username`, { params: { username: username } })
         .then(data => {
           if (data.data.length === 0) { // username does not exist
             if (isLibrary === '') {
@@ -67,10 +67,10 @@ const AdditionalInformation = (props) => {
                 is_library: isLibrary === 'Yes' ? true : false,
               };
 
-              axios.post('/newUser', user)
+              axios.post(`${process.env.API_URL}/newUser`, user)
                 .then(data => {
                   props.setUser(user);
-                  axios.get('/')
+                  axios.get(`${process.env.API_URL}/`)
                     .then((data) => {
                       props.setClickedLogin(false);
                     })
@@ -153,12 +153,12 @@ const AdditionalInformation = (props) => {
   // Handling errors
   const allErrors = () => {
     return (
-      <ul>
-        {usernameEmpty ? <li>{usernameError}</li> : null}
-        {showAgeError ? <li>{ageError}</li> : null}
-        {showOtherGenderInput ? <li>{otherGenderMessage}</li> : null}
-        {isLibraryError ? <li>{libraryError}</li> : null}
-        {usernameExist ? <li>{usernameExistMessage}</li> : null}
+      <ul className='additional-information-errors'>
+        {usernameEmpty ? <li className='additional-information-error'>{usernameError}</li> : null}
+        {showAgeError ? <li className='additional-information-error'>{ageError}</li> : null}
+        {showOtherGenderInput ? <li className='additional-information-error'>{otherGenderMessage}</li> : null}
+        {isLibraryError ? <li className='additional-information-error'>{libraryError}</li> : null}
+        {usernameExist ? <li className='additional-information-error'>{usernameExistMessage}</li> : null}
       </ul>
     )
   };
@@ -206,8 +206,8 @@ const AdditionalInformation = (props) => {
   };
 
   return (
-    <Container fluid='sm'>
-      <Form onSubmit={handleAdditionalSubmit}>
+    <div className='additional-information-container'>
+      <Form className='additional-information-form' onSubmit={handleAdditionalSubmit}>
         {userGreeting()}
         {allErrors()}
         <Form.Group>
@@ -222,10 +222,12 @@ const AdditionalInformation = (props) => {
 
         {genderOptions()}
         {userIsALibrary()}
-        <button id='cancel' name='cancel' onClick={handleCancelButton}>Cancel</button>
-        <input type='submit' id='submit' name='submit' value='Submit'></input>
+        <div className='additional-information-buttons'>
+          <button id='cancel' name='cancel' onClick={handleCancelButton}>Cancel</button>
+          <input type='submit' id='submit' name='submit' value='Submit'></input>
+        </div>
       </Form>
-    </Container>
+    </div>
   )
 };
 

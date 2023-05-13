@@ -6,6 +6,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Stack from 'react-bootstrap/Stack';
+import './googleAndDemo.css';
+// import process from 'dotenv';
 
 const GoogleSignIn = (props) => {
   const [currentUser, setCurrentUser] = useState({}); // may want this on the homepage
@@ -17,12 +19,12 @@ const GoogleSignIn = (props) => {
     let email = { email: user.email };
 
     // check database for user based on email
-    axios.get('/email', { params: email })
+    axios.get(`http://localhost:3000/email`, { params: email })
       .then(data => {
         if (data.data.length === 0) { // if user does not exist
           setNextPage(true);
         } else { // user exists, but since authentication didn't work in the homepage, must update hash
-          axios.patch('/updateSaltHash', email)
+          axios.patch(`${process.env.REACT_APP_API_URL}/updateSaltHash`, email)
             .then(() => {
               props.setClickedLogin(false);
               props.setUser(data.data[0]);
@@ -46,22 +48,20 @@ const GoogleSignIn = (props) => {
 
   const firstPage = () => {
     return (
-      <Container fluid='xxl'>
-        <Row className='justify-content-center'>
-          <Stack>
-            Sign In or Sign Up With Google
-            <Row id='signInButton' className='justify-content-center'></Row>
-            </Stack>
-        </Row>
-      </Container>
+      <div className='google-container'>
+        <div className='google-sign-in'>
+          <label className='google-label'>Sign In or Sign Up With Google</label>
+          <div id='signInButton'></div>
+        </div>
+      </div>
     )
   };
 
-const secondPage = () => {
-  return (<AdditionalInformation currentUser={currentUser} setUser={props.setUser} setClickedLogin={props.setClickedLogin} />);
-};
+  const secondPage = () => {
+    return (<AdditionalInformation currentUser={currentUser} setUser={props.setUser} setClickedLogin={props.setClickedLogin} />);
+  };
 
-return nextPage ? secondPage() : firstPage();
+  return nextPage ? secondPage() : firstPage();
 };
 
 export default GoogleSignIn;
