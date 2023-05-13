@@ -5,6 +5,7 @@ import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Stack from 'react-bootstrap/Stack';
 
 const GoogleSignIn = (props) => {
   const [currentUser, setCurrentUser] = useState({}); // may want this on the homepage
@@ -45,12 +46,12 @@ const GoogleSignIn = (props) => {
 
   const firstPage = () => {
     return (
-      <Container>
-        <Row className='justify-content-center' xll='auto'>
-          <Col>
+      <Container fluid='xxl'>
+        <Row className='justify-content-center'>
+          <Stack>
             Sign In or Sign Up With Google
-            <div id='signInButton'></div>
-          </Col>
+            <Row id='signInButton' className='justify-content-center'></Row>
+            </Stack>
         </Row>
       </Container>
     )
