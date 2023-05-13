@@ -23,22 +23,6 @@ var Orders = (props) => {
     .catch(err => console.log('err in orders', err));
 }
 
-  let sieve = (condition, info) => (
-    info.filter(book => book.status === condition && book.pending === false)
-  )
-
-  let pending = (info) => {
-    var filtered = [];
-    info.forEach(book => {
-      if (book.pending === true) {
-        if (book.status === 'borrowed') { book.status = 'Return'; }
-        else { book.status = 'Loaned'; }
-        filtered.push(book)
-      }
-    })
-    return filtered;
-  }
-
   useEffect(() => {
     fetcher();
   }, [props])
@@ -61,7 +45,7 @@ var Orders = (props) => {
       <Accordion.Item eventKey="2">
         <Accordion.Header>Pending</Accordion.Header>
         <Accordion.Body>
-          <PendingList data={pending(Data)} pending={pend}/>
+          <PendingList pending={pend}/>
         </Accordion.Body>
       </Accordion.Item>
     </Accordion>
