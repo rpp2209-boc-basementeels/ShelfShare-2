@@ -12,9 +12,15 @@ const BookCard = (props) => {
   const handleClick = (event) => {
     props.updateSelectedBookId(props.id);
     //make axios get request for the individual book info
-    axios.get('/detail', {params: {bookId: props.id}});
-    //THEN
-    //-> props.setShowDetail(true);
+    axios.get('/detail', {params: {bookId: props.id}})
+    .then((book) => {
+      console.log('handle click - book', book.data[0]);
+      props.setBook(book.data[0]);
+    })
+    .then(() => {
+      props.setShowDetail(true);
+    })
+
   }
 
   return (

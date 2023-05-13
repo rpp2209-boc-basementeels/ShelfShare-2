@@ -14,7 +14,6 @@ const Header = (props) => {
   //conditional rendering of Gallery or Detail
 
   const userLogin = () => {
-    console.log(props.user)
     const keys = Object.keys(props.user);
     if (keys.length === 0) {
       return (
