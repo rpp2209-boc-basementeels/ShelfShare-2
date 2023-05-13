@@ -86,7 +86,7 @@ app.get('/reviews/:username', (req, res) => {
 // GET user's personal information
 app.get('/personalInformation/:username', (req, res) => {
   // direct request to backend repository
- 
+
 });
 
 // POST to update user's personal information
@@ -103,7 +103,8 @@ app.get('/publicPersonalInformation/:username', (req, res) => {
 
 app.get('/orders/:id', (req, res) => {
   var uniqueId = req.params.id;
-  let url = `http://localhost:8080/orders/${uniqueId}`;
+  let url = `${process.env.API_URL}/orders/${uniqueId}`;
+  console.log(url)
 
   axios.get(url)
   .then(list => res.status(200).send(list.data))
