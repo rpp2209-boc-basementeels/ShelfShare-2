@@ -18,7 +18,6 @@ const ProfilePage = (props) => {
         photo_url: ''});
 
     useEffect(() => {
-        console.log('shit');
         // Below will work when authentication works
         axios.get(`/reviews/${props.user.username}`)
           .then((reviewData) => {
@@ -28,11 +27,9 @@ const ProfilePage = (props) => {
             console.log("There was an error while trying to retrieve the user's reviews", error);
           })
           .then(() => {
-            console.log(23)
             return axios.get('/personalInformation/maddiesime');
           })
           .then((infoData) => {
-            console.log('infoData', infoData.data);
             setUserInfo(infoData.data[0]);
           })
           .catch((error) => {

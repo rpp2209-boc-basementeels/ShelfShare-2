@@ -17,6 +17,7 @@ import Data from './orders/dummyData.js';
 import axios from 'axios';
 
 const App = () => {
+
   const [selectedPage, setSelectedPage] = useState('Home');
   const [clickedLogin, setClickedLogin] = useState(false);
 //   const [user, setUser] = useState({
@@ -31,7 +32,7 @@ const App = () => {
   const [user, setUser] = useState({});
   const [showBookDetail, setShowDetail] = useState(false);
   const [galleryBooks, updateGalleryBooks] = useState(Data);
-  const [selectedBook, updateSelectedBook] = useState(null);
+  const [selectedBookId, updateSelectedBookId] = useState(null);
   // Pass both usernameThatWasClicked and setUsernameThatWasClicked down as props through homepage components,
   // to the individual reviews for a book (use Review component in profile/components/Review.jsx). This component
   // is set up to receive these props of the same names (usernameThatWasClicked and setUsernameThatWasClicked)
@@ -83,7 +84,7 @@ const App = () => {
           {selectedPage === 'Profile' ? <ProfilePage user={user}/> : null}
           {selectedPage === 'Library' ? <PersonalLibrary loggedInUser={'peckmc'} libraryOwner={'peckmc'}/> : null}
           {selectedPage === 'Orders' ? <Orders user={user} page={selectedPage}/> : null}
-          {selectedPage === 'Home' ? <Gallery books={galleryBooks} showBookDetail={showBookDetail} setShowDetail={setShowDetail}/> : null}
+          {selectedPage === 'Home' ? <Gallery selectedBookId={selectedBookId} updateSelectedBookId={updateSelectedBookId} books={galleryBooks} showBookDetail={showBookDetail} setShowDetail={setShowDetail}/> : null}
           {/* <Footer /> */}
         </Row>
       </Container>

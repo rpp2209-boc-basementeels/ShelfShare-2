@@ -43,8 +43,8 @@ app.get('/trending', (req, res) => {
   console.log('request made to /trending endpoint');
   //make a request to the back end server
   axios.get('http://localhost:8080/trending')
-    .then((data) => {
-      res.status(200).send(data.data);
+    .then((result) => {
+      res.status(200).send(result.data);
     })
     .catch((err) => {
       res.status(400).send(err);
@@ -64,7 +64,15 @@ app.get('/published', (req, res) => {
 
 //GET details for selected books
 app.get('/detail', (req, res) => {
-
+  let bookId = req.query.bookId;
+  axios.get('http://localhost:8080/detail', {params: {bookId: bookId}})
+    .then((result) => {
+      console.log(result.data);
+      res.status(200).send(result.data);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
 });
 
 // PROFILE ROUTES

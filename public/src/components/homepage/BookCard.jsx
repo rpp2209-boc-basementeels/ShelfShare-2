@@ -2,16 +2,31 @@ import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
+import axios from 'axios';
 
 const BookCard = (props) => {
   //conditional rendering of Gallery or Detail
 
   //<div onClick={props.(true)}></div>
 
+  const handleClick = (event) => {
+    props.updateSelectedBookId(props.id);
+    //make axios get request for the individual book info
+    axios.get('/detail', {params: {bookId: props.id}})
+    .then((book) => {
+      console.log('handle click - book', book.data[0]);
+      props.setBook(book.data[0]);
+    })
+    .then(() => {
+      props.setShowDetail(true);
+    })
+
+  }
+
   return (
     <div>
       <Container className={props.index}>
-      <Card style={{ width: '18rem' }}>
+      <Card onClick={handleClick} style={{ width: '18rem' }}>
       <Card.Img className={props.index} variant="top" src={props.image} />
       <Card.Body>
         <Card.Title className={props.index}>{props.title}</Card.Title>
