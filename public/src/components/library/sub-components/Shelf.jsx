@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Row from 'react-bootstrap/Row';
 import axios from 'axios';
-import BookCard from './BookCard.jsx'
+import BookCard from './BookCard.jsx';
 
 const Shelf = ({ fetchTrigger, libraryOwner }) => {
   const [library, setLibrary] = useState({data: []});
