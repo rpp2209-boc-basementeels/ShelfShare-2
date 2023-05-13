@@ -1,33 +1,45 @@
-// This is where the main profile page will be rendered by importing supporting components
-import React from 'react';
-// import EditInfoModal from '/components/EditInfoModal.jsx';
+import React, { useEffect, useState } from 'react';
 import Information from './components/Information.jsx';
 import ReviewList from './components/ReviewList.jsx';
+import axios from 'axios';
 
 const ProfilePage = (props) => {
     // props.user is the data about the current user passed down from App.jsx
-    // render ReviewList with necessary data from ALL reviews for this user
-    var exampleReviewData = [{
-        body: 'This book was very informative on eels and I would suggest that you read it if you like eels.',
-        title: 'The Book of Eels',
-        date: 'May 4, 2023',
-        image: 'https://static01.nyt.com/images/2020/05/26/books/22EELBOOK/22EELBOOK-superJumbo.jpg?quality=75&auto=webp',
-        username: 'iloveeels1234'
-    }];
 
-    var exampleProfileData = [{
-        "first_name": "Kevin",
-        "last_name": "Hoang",
-        "photo": "https://lh3.googleusercontent.com/a/AGNmyxbKSB-E9sl8llXqjsc04GfTzVm9fN8CgXHl_mv7=s96-c",
-        "email": "knhoangre@gmail.com",
-        "gender": "male",
-        "age": 100,
-        "username": "kevinduh"
-    }];
+    const [userReviews, setUserReviews] = useState([]);
+    const [userInfo, setUserInfo] = useState({
+        address: '',
+        age: '',
+        email: '',
+        first_name: '',
+        last_name: '',
+        gender: '',
+        is_library: false,
+        photo_url: ''});
+
+    useEffect(() => {
+        // Below will work when authentication works
+        axios.get(`/reviews/${props.user.username}`)
+          .then((reviewData) => {
+            setUserReviews(reviewData.data);
+          })
+          .catch((error) => {
+            console.log("There was an error while trying to retrieve the user's reviews", error);
+          })
+          .then(() => {
+            return axios.get('/personalInformation/maddiesime');
+          })
+          .then((infoData) => {
+            setUserInfo(infoData.data[0]);
+          })
+          .catch((error) => {
+            console.log("There was an error while trying to retrieve the user's personal information", error);
+          })
+    }, []);
 
     return (
         <div>
-            <Information info={exampleProfileData}/>
+            <Information info={userInfo}/>
             <div style={{"display": "flex", "alignItems": "flex-start", "justifyContent": "center"}}>
                 <div style={{"textAlign": "center", "position": "relative", "width": "30vw", "minWidth": "max-content"}}>
                     <hr></hr>
@@ -35,7 +47,7 @@ const ProfilePage = (props) => {
             </div>
             <h3 style={{"marginTop": "5vh", "marginBottom": "5vh", "textAlign": "center", "fontFamily": "Helvetica"}}>My Reviews</h3>
             <div>
-                <ReviewList reviews={exampleReviewData}/>
+                <ReviewList reviews={userReviews}/>
             </div>
         </div>
     )
