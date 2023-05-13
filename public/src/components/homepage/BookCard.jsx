@@ -8,10 +8,17 @@ const BookCard = (props) => {
 
   //<div onClick={props.(true)}></div>
 
+  const handleClick = (event) => {
+    props.updateSelectedBookId(props.id);
+    //make axios get request for the individual book info
+    //THEN
+    //-> props.setShowDetail(true);
+  }
+
   return (
     <div>
       <Container className={props.index}>
-      <Card style={{ width: '18rem' }}>
+      <Card onClick={handleClick} style={{ width: '18rem' }}>
       <Card.Img className={props.index} variant="top" src={props.image} />
       <Card.Body>
         <Card.Title className={props.index}>{props.title}</Card.Title>
