@@ -40,6 +40,30 @@ const App = () => {
   // When "back" button is clicked on this profile page, state resets to an empty string
   const [usernameThatWasClicked, setUsernameThatWasClicked] = useState('');
 
+  ////////////////////////////////////////////
+  const [loan, setLoan] = useState([]);
+  const [borrow, setBorrow] = useState([]);
+  const [pend, setPend] = useState([]);
+
+  let testUser = 7;
+
+  let fetcher = () => {
+    axios.get(`orders/${testUser}`)
+    .then(data => {
+      setLoan(data.data.loaned);
+      setBorrow(data.data.borrowed);
+      setPend(data.data.pending);
+      console.log(loan)
+    })
+    .catch(err => console.log('err in orders', err));
+}
+
+  useEffect(() => {
+    fetcher();
+  }, [])
+  console.log(pend)
+  ///////////////////////////////////////////
+
   useEffect(() => {
     axios.get('http://localhost:3000/trending')
     .then((books) => {

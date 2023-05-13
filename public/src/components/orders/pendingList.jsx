@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 var PendingList = (props) => {
 
   let books = props.pending;
-  console.log(books)
+  console.log('pending', books)
 
   useEffect(() => {
     PendingList;
@@ -23,7 +23,7 @@ var PendingList = (props) => {
               <tr>
                 <th>Title</th>
                 <th>Author</th>
-                <th>Return Date</th>
+                <th>Type</th>
               </tr>
             </thead>
             {books.map(book => (
