@@ -85,8 +85,15 @@ app.get('/reviews/:username', (req, res) => {
 
 // GET user's personal information
 app.get('/personalInformation/:username', (req, res) => {
+  var username = req.params.username;
   // direct request to backend repository
- 
+  axios.get(`http://localhost:8080/personalInformation/${username}`)
+    .then((data) => {
+      res.status(200).send(data.data);
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+    })
 });
 
 // POST to update user's personal information
