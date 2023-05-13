@@ -195,6 +195,56 @@ app.get('/orders/:id', (req, res) => {
 //   });
 // });
 
+// Library Routes
+
+app.get('/:user/library', (req, res) => {
+  axios.get(`${process.env.API_URL}/${req.params.user}/library`)
+  .then((results) => {
+    console.log('got here');
+    res.status(200).send(results);
+  })
+  .catch((error) => {
+    console.log(error);
+    res.status(500).send();
+  })
+});
+
+app.post('/:user/library', (req, res) => {
+  return axios.post(`${process.env.API_URL}/${req.params.user}/library`, scanResults[i], {
+    headers: {'Content-Type': 'application/json'}
+  })
+  .then(() => {
+    res.status(200).send();
+  })
+  .catch((error) => {
+    console.log(error);
+    res.status(500).send();
+  })
+});
+
+app.get('/:user/borrowed', (req, res) => {
+  return axios.get(`${process.env.API_URL}/${req.params.user}/borrowed`)
+  .then((results) => {
+    res.status(200).send(results);
+  })
+  .catch((error) => {
+    console.log(error);
+    res.status(500).send();
+  })
+});
+
+app.get('/:user/lent', (req, res) => {
+  return axios.get(`${process.env.API_URL}/${req.params.user}/lent`)
+  .then((results) => {
+    res.status(200).send(results);
+  })
+  .catch((error) => {
+    console.log(error);
+    res.status(500).send();
+  })
+});
+
+
 // app.get('/asdf', (req, res) => {
 //   res.sendFile(path.join(__dirname, '../public/dist/index.html'));
 // })
