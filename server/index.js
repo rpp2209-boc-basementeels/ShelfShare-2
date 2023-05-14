@@ -65,7 +65,7 @@ app.get('/published', (req, res) => {
 //GET details for selected books
 app.get('/detail', (req, res) => {
   let bookId = req.query.bookId;
-  axios.get(process.env.API_URL + '/detail', {params: {bookId: bookId}})
+  axios.get(process.env.API_URL + '/detail', { params: { bookId: bookId } })
     .then((result) => {
       console.log(result.data);
       res.status(200).send(result.data);
@@ -127,8 +127,8 @@ app.get('/orders/:id', (req, res) => {
   console.log(url)
 
   axios.get(url)
-  .then(list => res.status(200).send(list.data))
-  .catch(err => res.sendStatus(404));
+    .then(list => res.status(200).send(list.data))
+    .catch(err => res.sendStatus(404));
 });
 
 
@@ -146,12 +146,26 @@ app.get(`/email`, (req, res) => {
     .catch((err) => res.status(500).send(err));
 });
 
-app.patch(`/updateSaltHash`, (req, res) => {
+app.get('/sessions', (req, res) => {
+  axios.get(`${process.env.API_URL}/sessions`, { params: req.cookies })
+    .then((data) => {
+      res.status(200).send(data.data)
+    })
+    .catch((err) => res.status(500).send(err));
+})
+
+app.delete('/sessions', (req, res) => {
+  axios.delete(`${process.env.API_URL}/sessions`, { data : req.cookies })
+    .then((data) => res.status(200).send(data.data))
+    .catch((err) => res.status(500).send(err));
+})
+
+app.put(`/updateHash`, (req, res) => {
   const sendInfo = {
     ...req.body,
     cookies: req.cookies,
   }
-  axios.patch(`${process.env.API_URL}/updateSaltHash`, sendInfo)
+  axios.put(`${process.env.API_URL}/updateHash`, sendInfo)
     .then((data) => res.status(200).send(data.data))
     .catch((err) => res.status(500).send(err));
 });
