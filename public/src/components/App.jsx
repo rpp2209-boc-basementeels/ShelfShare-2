@@ -42,7 +42,7 @@ const App = () => {
 
   // Need to log users into the app if the users exist
   useEffect(() => {
-    axios.get('http://localhost:3000/sessions')
+    axios.get('/sessions')
       .then((session) => {
         if (session.data[0]) {
           setUser(session.data[0]);

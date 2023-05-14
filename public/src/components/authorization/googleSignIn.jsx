@@ -18,12 +18,12 @@ const GoogleSignIn = (props) => {
     let email = { email: user.email };
 
     // check database for user based on email
-    axios.get(`http://localhost:3000/email`, { params: email })
+    axios.get(`/email`, { params: email })
       .then(data => {
         if (data.data.length === 0) { // if user does not exist
           setNextPage(true);
         } else { // user exists, but since authentication didn't work in the homepage, must update hash
-          axios.put(`http://localhost:3000/updateHash`, email)
+          axios.put(`/updateHash`, email)
             .then(() => {
               props.setClickedLogin(false);
               props.setUser(data.data[0]);

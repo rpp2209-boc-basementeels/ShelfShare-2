@@ -90,7 +90,7 @@ const AdditionalInformation = (props) => {
 
     } else {
 
-      axios.get(`http://localhost:3000/username`, { params: { username: username } })
+      axios.get(`/username`, { params: { username: username } })
         .then(data => {
           if (data.data.length === 0) { // username does not exist
             if (isLibrary === '') {
@@ -122,10 +122,10 @@ const AdditionalInformation = (props) => {
                 is_library: isLibrary === 'Yes' ? true : false,
               };
 
-              axios.post(`http://localhost:3000/newUser`, user)
+              axios.post(`/newUser`, user)
                 .then(data => {
                   props.setUser(user);
-                  axios.get(`http://localhost:3000/`)
+                  axios.get(`/`)
                     .then((data) => {
                       props.setClickedLogin(false);
                     })
