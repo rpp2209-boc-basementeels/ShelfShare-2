@@ -155,7 +155,7 @@ app.get('/sessions', (req, res) => {
 })
 
 app.delete('/sessions', (req, res) => {
-  axios.delete(`${process.env.API_URL}/sessions`, { data : req.cookies })
+  axios.delete(`${process.env.API_URL}/sessions`, { data: req.cookies })
     .then((data) => res.status(200).send(data.data))
     .catch((err) => res.status(500).send(err));
 })
@@ -171,13 +171,18 @@ app.put(`/updateHash`, (req, res) => {
 });
 
 app.post(`/newUser`, (req, res) => {
-  axios.post(`${process.env.API_URL}/newUser`, req.body)
+  const sendInfo = {
+    ...req.body,
+    cookies: req.cookies,
+  };
+  // console.log('newUser', sendInfo)
+  axios.post(`${process.env.API_URL}/newUser`, sendInfo)
     .then((data) => res.status(201).send(data.data))
     .catch((err) => res.status(501).send(err));
 });
 
 app.get(`/username`, (req, res) => {
-  axios.get(`${process.env.API_URL}/username`)
+  axios.get(`${process.env.API_URL}/username`, { params: req.query })
     .then((data) => res.status(200).send(data.data))
     .catch((err) => res.status(500).send(err));
 });
