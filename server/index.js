@@ -147,7 +147,11 @@ app.get(`/email`, (req, res) => {
 });
 
 app.patch(`/updateSaltHash`, (req, res) => {
-  axios.patch(`${process.env.API_URL}/updateSaltHash`, req.body)
+  const sendInfo = {
+    ...req.body,
+    cookies: req.cookies,
+  }
+  axios.patch(`${process.env.API_URL}/updateSaltHash`, sendInfo)
     .then((data) => res.status(200).send(data.data))
     .catch((err) => res.status(500).send(err));
 });
