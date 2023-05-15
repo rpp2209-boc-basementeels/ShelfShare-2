@@ -207,6 +207,31 @@ app.get(`/username`, (req, res) => {
     .catch((err) => res.status(500).send(err));
 });
 
+// LIBRARY ROUTES
+app.get(`/:user/library`, (req, res) => {
+  axios.get(`${process.env.API_URL}/${req.params.user}/library`)
+    .then((data) => res.status(200).send(data.data))
+    .catch((err) => res.status(500).send(err));
+});
+
+app.post(`/:user/library`, (req, res) => {
+  axios.post(`${process.env.API_URL}/${req.params.user}/library`, req.body,
+  { headers: {'Content-Type': 'application/json'} })
+    .then(() => res.status(200).send())
+    .catch((err) => res.status(500).send(err));
+});
+
+app.get(`/:user/borrowed`, (req, res) => {
+  axios.get(`${process.env.API_URL}/${req.params.user}/borrowed`)
+    .then((data) => res.status(200).send(data.data))
+    .catch((err) => res.status(500).send(err));
+});
+
+app.get(`/:user/lent`, (req, res) => {
+  axios.get(`${process.env.API_URL}/${req.params.user}/lent`)
+    .then((data) => res.status(200).send(data.data))
+    .catch((err) => res.status(500).send(err));
+});
 
 // server listens on designated port
 app.listen(process.env.PORT, () => {

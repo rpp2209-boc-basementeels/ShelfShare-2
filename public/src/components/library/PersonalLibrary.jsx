@@ -18,7 +18,7 @@ const PersonalLibrary = ({ loggedInUser, libraryOwner }) => {
 
   const saveResultsToLibrary = () => {
     return Promise.all(scanResults.map((b, i) => {
-      return axios.post(`/library/${loggedInUser}`, scanResults[i], {
+      return axios.post(`/${loggedInUser}/library`, scanResults[i], {
         headers: {'Content-Type': 'application/json'}
       });
     }))
