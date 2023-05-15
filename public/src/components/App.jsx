@@ -41,6 +41,7 @@ const App = () => {
   const [usernameThatWasClicked, setUsernameThatWasClicked] = useState('');
 
   ////////////////////////////////////////////
+  // setting the state for the Orders
   const [loan, setLoan] = useState([]);
   const [borrow, setBorrow] = useState([]);
   const [pend, setPend] = useState([]);
@@ -60,6 +61,11 @@ const App = () => {
   useEffect(() => {
     fetcher();
   }, [])
+
+  var pendingStyle = (array) => {
+    if (array.length > 0)  { return array.length }
+    else { return; }
+  }
   ///////////////////////////////////////////
 
   useEffect(() => {
@@ -96,7 +102,9 @@ const App = () => {
             <Button variant="outline-primary" onClick={() => {setSelectedPage('Profile')}}>My Profile</Button>
           </Col>
           <Col>
-            <Button variant="outline-primary" onClick={() => {setSelectedPage('Orders')}}>My Orders {pend.length}</Button>
+            <Button variant="outline-primary" onClick={() => {setSelectedPage('Orders')}}>
+            My Orders <span className=".badge-* badge-pill" style={{color:'red', border: 'black'}}>{pendingStyle(pend)}</span>
+            </Button>
           </Col>
           <Col>
             <Button variant="outline-primary" onClick={() => {setSelectedPage('Library')}}>My Library</Button>
