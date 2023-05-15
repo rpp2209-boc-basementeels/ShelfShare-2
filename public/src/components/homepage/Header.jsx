@@ -9,6 +9,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 
 const Header = (props) => {
@@ -18,6 +19,18 @@ const Header = (props) => {
   const handleChange = (e) => {
     console.log(event.target.value);
     setTerm(event.target.value);
+  }
+
+  const handleSubmit = (e) => {
+    //make an axios request to front end server
+    axios.get('/search', {params: {searchTerm: term}})
+    .then((books) => {
+      console.log(books);
+      // props.updateGalleryBooks(books.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
   }
 
   const handleLogout = () => {
@@ -75,6 +88,7 @@ const Header = (props) => {
 
           <Row className="justify-content-md-center">
             <Col xs={12} md={6}>
+              <Form onSubmit={handleSubmit}>
               <Form.Control
                 type="search"
                 onChange= {handleChange}
@@ -83,6 +97,8 @@ const Header = (props) => {
                 className="me-2"
                 aria-label="Search"
               />
+              <Button variant="primary" type="submit"> Submit </Button>
+              </Form>
             </Col>
           </Row>
 

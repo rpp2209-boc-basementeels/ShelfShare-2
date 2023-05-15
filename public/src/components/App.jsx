@@ -120,7 +120,7 @@ const App = () => {
           <Col>
             <Button variant="outline-primary" onClick={() => {setSelectedPage('Library')}}>My Library</Button>
           </Col>
-            <Header setShowDetail={setShowDetail} setClickedLogin={setClickedLogin} user={user} setUser={setUser}/>
+            <Header setShowDetail={setShowDetail} setClickedLogin={setClickedLogin} user={user} setUser={setUser} updateGalleryBooks={updateGalleryBooks}/>
           {selectedPage === 'Login' ? <GoogleSignIn setUser={setUser} setClickedLogin={setClickedLogin}/> : null}
           {selectedPage === 'Profile' ? <ProfilePage user={user}/> : null}
           {selectedPage === 'Library' ? <PersonalLibrary loggedInUser={'peckmc'} libraryOwner={'peckmc'}/> : null}
