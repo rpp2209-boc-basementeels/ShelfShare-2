@@ -103,7 +103,7 @@ const App = () => {
           </Col>
           <Col>
             <Button variant="outline-primary" onClick={() => {setSelectedPage('Orders')}}>
-            My Orders <span className=".badge-* badge-pill" style={{color:'red', border: 'black'}}>{pendingStyle(pend)}</span>
+            My Orders <span className=" badge .badge-* badge-dark  " style={{color:'red'}}>{pendingStyle(pend)}</span>
             </Button>
           </Col>
           <Col>
