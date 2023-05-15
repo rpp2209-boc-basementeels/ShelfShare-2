@@ -14,14 +14,19 @@ const BookCard = (props) => {
     //make axios get request for the individual book info
     axios.get('/detail', {params: {bookId: props.id}})
     .then((book) => {
-      console.log('handle click - book', book.data[0]);
-      props.setBook(book.data[0]);
+      //set authors state
+      //set book state
+      console.log('handle click - authors', book.data.authors);
+      props.setBook(book.data.books[0]);
+      props.setAuthors(book.data.authors);
     })
     .then(() => {
       props.setShowDetail(true);
     })
-
   }
+
+  //iterate over the authors array
+
 
   return (
     <div>
@@ -30,9 +35,8 @@ const BookCard = (props) => {
       <Card.Img className={props.index} variant="top" src={props.image} />
       <Card.Body>
         <Card.Title className={props.index}>{props.title}</Card.Title>
-        <Card.Subtitle className={props.index} className="mb-2 text-muted">by {props.author}</Card.Subtitle>
+        <Card.Subtitle className={props.index} className="mb-2 text-muted"></Card.Subtitle>
         <Card.Text className={props.index}>
-          {props.description}
         </Card.Text>
         <Button variant="primary">Borrow</Button>
       </Card.Body>

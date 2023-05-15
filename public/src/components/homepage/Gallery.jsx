@@ -13,6 +13,15 @@ const Gallery = (props) => {
   const handleClose = () => props.setShowDetail(false);
 
   const [book, setBook] = useState({});
+  const [authors, setAuthors] = useState([]);
+
+  let bookAuthors = '';
+  for (var i = 0; i < authors.length; i++) {
+    bookAuthors += authors[i].author;
+    if (i < authors.length - 1) {
+      bookAuthors += ', ';
+    }
+  }
 
   return (
     <div>
@@ -30,7 +39,7 @@ const Gallery = (props) => {
     <Modal.Body>
       <Col>
       <Row><img src={book.image_url} /></Row>
-      <Row className="justify-content-center">the author or authors</Row>
+      <Row className="justify-content-center">Author(s): {bookAuthors}</Row>
       <Row className="justify-content-center">Genre: {book.genre}</Row>
       </Col>
     </Modal.Body>
@@ -48,7 +57,7 @@ const Gallery = (props) => {
         <Row >
           {props.books.map((book, index) =>
             <Col xs={12} md={6} lg={4} xl={4} key={index} className={index}>
-            <BookCard setBook={setBook} id={book.book_id} books={props.books} updateSelectedBookId={props.updateSelectedBookId} setShowDetail={props.setShowDetail} title={book.title} author={book.author} image={book.image_url} description={"description placeholder"}/>
+            <BookCard authors={authors} setAuthors={setAuthors} setBook={setBook} id={book.book_id} books={props.books} updateSelectedBookId={props.updateSelectedBookId} setShowDetail={props.setShowDetail} title={book.title} author={book.author} image={book.image_url} description={"description placeholder"}/>
             </Col>
           )}
         </Row>
