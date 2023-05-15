@@ -5,10 +5,17 @@ import axios from 'axios';
 
 const ProfilePage = (props) => {
     // props.user is the data about the current user passed down from App.jsx
+    // Is not implemented by Kevin yet, so use below username as placeholder
+    var username = 'Kevin';
 
     const [userReviews, setUserReviews] = useState([]);
     const [userInfo, setUserInfo] = useState({
-        address: '',
+        line_1: '',
+        line_2: '',
+        city: '',
+        state: '',
+        postal: '',
+        country: '',
         age: '',
         email: '',
         first_name: '',
@@ -18,8 +25,7 @@ const ProfilePage = (props) => {
         photo_url: ''});
 
     useEffect(() => {
-        // Below will work when authentication works
-        axios.get(`/reviews/${props.user.username}`)
+        axios.get(`/reviews/${username}`)
           .then((reviewData) => {
             setUserReviews(reviewData.data);
           })
@@ -27,7 +33,7 @@ const ProfilePage = (props) => {
             console.log("There was an error while trying to retrieve the user's reviews", error);
           })
           .then(() => {
-            return axios.get('/personalInformation/maddiesime');
+            return axios.get(`/personalInformation/${username}`);
           })
           .then((infoData) => {
             setUserInfo(infoData.data[0]);
