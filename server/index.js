@@ -203,6 +203,7 @@ app.get(`/:user/library`, (req, res) => {
 app.post(`/:user/library`, (req, res) => {
   axios.post(`${process.env.API_URL}/${req.params.user}/library`, req.body,
   { headers: {'Content-Type': 'application/json'} })
+    .then(() => res.status(200).send())
     .catch((err) => res.status(500).send(err));
 });
 
