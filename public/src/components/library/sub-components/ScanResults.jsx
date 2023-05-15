@@ -60,7 +60,7 @@ const ScanResults = ({ results }) => {
   return (
     <>
       <p></p>
-      <h5>SCANNED BOOKS ({results.length})</h5>
+      <h5>SCANNED BOOKS ({filterResults(results).length})</h5>
       <ResultContainerTable results={results} />
     </>
   );
