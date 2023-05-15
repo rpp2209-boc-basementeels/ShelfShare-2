@@ -128,7 +128,10 @@ app.get('/orders/:id', (req, res) => {
 
   axios.get(url)
     .then(list => res.status(200).send(list.data))
-    .catch(err => res.sendStatus(404));
+    .catch((err) => {
+      console.log('orders error', err);
+      res.sendStatus(404)
+    });
 });
 
 
