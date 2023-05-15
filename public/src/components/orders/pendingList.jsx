@@ -6,7 +6,6 @@ import Button from 'react-bootstrap/Button';
 var PendingList = (props) => {
 
   let books = props.pending;
-  console.log('pending', books)
 
   useEffect(() => {
     PendingList;
