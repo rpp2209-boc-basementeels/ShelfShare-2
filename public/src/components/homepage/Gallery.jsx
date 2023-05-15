@@ -18,20 +18,21 @@ const Gallery = (props) => {
     <div>
 
     <Modal
+      size= "lg"
       show={props.showBookDetail}
       onHide={handleClose}
       backdrop="static"
       keyboard={false}
     >
     <Modal.Header closeButton>
-      <Modal.Title>Book Title: {book.title}</Modal.Title>
+      <Modal.Title>{book.title}</Modal.Title>
     </Modal.Header>
     <Modal.Body>
-      This is the Modal Body Text
-      It should contain a thumbnail of the book
-      the author or authors
-      genre
-      a book description
+      <Col>
+      <Row><img src={book.image_url} /></Row>
+      <Row className="justify-content-center">the author or authors</Row>
+      <Row className="justify-content-center">Genre: {book.genre}</Row>
+      </Col>
     </Modal.Body>
     <Modal.Footer>
     <Button variant="primary" onClick={handleClose}>
@@ -47,7 +48,7 @@ const Gallery = (props) => {
         <Row >
           {props.books.map((book, index) =>
             <Col xs={12} md={6} lg={4} xl={4} key={index} className={index}>
-            <BookCard setBook={setBook} id={book.book_id} books={props.books} updateSelectedBookId={props.updateSelectedBookId} setShowDetail={props.setShowDetail} title={book.title} author={book.author} image={book.image_url_large} description={"description placeholder"}/>
+            <BookCard setBook={setBook} id={book.book_id} books={props.books} updateSelectedBookId={props.updateSelectedBookId} setShowDetail={props.setShowDetail} title={book.title} author={book.author} image={book.image_url} description={"description placeholder"}/>
             </Col>
           )}
         </Row>
