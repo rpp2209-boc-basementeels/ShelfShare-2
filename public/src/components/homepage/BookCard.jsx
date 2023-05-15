@@ -22,6 +22,7 @@ const BookCard = (props) => {
     })
 
   }
+console.log('url', props.image);
 
   return (
     <div>
