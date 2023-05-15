@@ -15,7 +15,7 @@ const Header = (props) => {
   //conditional rendering of Gallery or Detail
 
   const handleLogout = () => {
-    axios.delete('http://localhost:3000/sessions')
+    axios.delete('/sessions')
       .then(() => props.setUser({}))
       .catch((err) => console.log(err))
   };
