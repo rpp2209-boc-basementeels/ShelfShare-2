@@ -52,7 +52,7 @@ const App = () => {
 
 
   useEffect(() => {
-    axios.get('http://localhost:3000/trending')
+    axios.get('/trending')
     .then((books) => {
       console.log(books.data);
       updateGalleryBooks(books.data);
