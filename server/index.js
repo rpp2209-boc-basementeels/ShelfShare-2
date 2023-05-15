@@ -89,7 +89,7 @@ app.get('/detail', (req, res) => {
     });
 });
 
-// PROFILE ROUTES
+// PROFILE ROUTES ****************************************
 
 // GET all reviews for a specific user
 app.get('/reviews/:username', (req, res) => {
@@ -115,17 +115,30 @@ app.get('/personalInformation/:username', (req, res) => {
     })
 });
 
+// GET user's public-facing information
+app.get('/public/:username', (req, res) => {
+  var username = req.params.username;
+  axios.get(`${process.env.API_URL}/public/${username}`) // not working here?
+    .then((data) => {
+      res.status(200).send(data.data);
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+    })
+});
+
 // POST to update user's personal information
 app.post('/personalInformation/:username', (req, res) => {
-  // direct request to backend repository
-
+  var username = req.params.username;
+    axios.post(`${process.env.API_URL}/personalInformation/${username}`, req.body)
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+    })
 });
 
-// GET user's public-facing information
-app.get('/publicPersonalInformation/:username', (req, res) => {
-  // direct request to backend repository
-
-});
 
 // GET all reviews for a specific book_id
 app.get('/bookReviews/:book_id', (req, res) => {
@@ -138,6 +151,8 @@ app.get('/bookReviews/:book_id', (req, res) => {
       res.status(400).send(error);
     })
 });
+
+// *********************************************************
 
 app.get('/orders/:id', (req, res) => {
   var uniqueId = req.params.id;
