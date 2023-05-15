@@ -24,8 +24,8 @@ describe("Renders Orders Take", function () {
   });
 
   test('renders here', () => {
-    render(<Orders/>);
-    expect(screen.getByText(/Loaned/)).toBeInTheDocument();
+    render(<Orders bookData={{loaned: [], borrowed: [], pending: []}}/>);
+    expect(screen.getByText(/Borrowed/)).toBeInTheDocument();
   });
 });
 

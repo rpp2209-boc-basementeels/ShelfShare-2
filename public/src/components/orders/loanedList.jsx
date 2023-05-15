@@ -13,19 +13,16 @@ var LoanedList = (props) => {
 
   var index = 0;
 
-  let loanedBoundary = (array) => {
-    if (array.length < 1) {
-      return (
-        <div>You currently have no books loaned</div>
-      )
-    } else {
-      return (
+  return (
+    <div>{
+      books.length > 0 ?
         <div>
           <table>
             <thead>
               <tr>
                 <th>Title</th>
                 <th>Author</th>
+                <th>Return Date</th>
               </tr>
             </thead>
             {books.map(book => (
@@ -33,11 +30,9 @@ var LoanedList = (props) => {
             ))}
           </table>
         </div>
-      )
-    }
-  }
-
-  return loanedBoundary(books);
+        :
+        <div>You currently have no books loaned</div>}</div>
+  )
 }
 
 

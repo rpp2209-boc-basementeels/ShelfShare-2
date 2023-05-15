@@ -80,10 +80,8 @@ app.get('/detail', (req, res) => {
 // GET all reviews for a specific user
 app.get('/reviews/:username', (req, res) => {
   var username = req.params.username;
-  // direct request to backend repository
   axios.get(`${process.env.API_URL}/reviews/${username}`)
     .then((data) => {
-      console.log('data here', data);
       res.status(200).send(data.data);
     })
     .catch((error) => {
@@ -94,7 +92,6 @@ app.get('/reviews/:username', (req, res) => {
 // GET user's personal information
 app.get('/personalInformation/:username', (req, res) => {
   var username = req.params.username;
-  // direct request to backend repository
   axios.get(`${process.env.API_URL}/personalInformation/${username}`)
     .then((data) => {
       res.status(200).send(data.data);
@@ -118,13 +115,19 @@ app.get('/publicPersonalInformation/:username', (req, res) => {
 
 // GET all reviews for a specific book_id
 app.get('/bookReviews/:book_id', (req, res) => {
-
+  var book_id = req.params.book_id;
+  axios.get(`${process.env.API_URL}/bookReviews/${book_id}`)
+    .then((data) => {
+      res.status(200).send(data.data);
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+    })
 });
 
 app.get('/orders/:id', (req, res) => {
   var uniqueId = req.params.id;
   let url = `${process.env.API_URL}/orders/${uniqueId}`;
-  console.log(url)
 
   axios.get(url)
     .then(list => res.status(200).send(list.data))

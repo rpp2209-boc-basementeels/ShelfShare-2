@@ -13,13 +13,9 @@ var BorrowedList = (props) => {
   }, [props])
 
   var index = 0;
-  let borrowedBoundary = (array) => {
-    if (array.length < 1) {
-      return (
-        <div>You currently have no books borrowed</div>
-      )
-    } else {
-      return (
+  return (
+    <div>{
+      books.length > 0 ?
         <div>
           <table>
             <thead>
@@ -34,11 +30,9 @@ var BorrowedList = (props) => {
             ))}
           </table>
         </div>
-      )
-    }
-  }
-
-  return borrowedBoundary(books);
+        :
+        <div>You currently have no books borrowed</div>}</div>
+  )
 }
 
 export default BorrowedList;
