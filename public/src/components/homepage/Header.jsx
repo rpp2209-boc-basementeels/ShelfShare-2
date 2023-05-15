@@ -9,10 +9,29 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 
 const Header = (props) => {
-  //conditional rendering of Gallery or Detail
+
+  const [term, setTerm] = useState('');
+
+  const handleChange = (e) => {
+    console.log(event.target.value);
+    setTerm(event.target.value);
+  }
+
+  const handleSubmit = (e) => {
+    //make an axios request to front end server
+    axios.get('/search', {params: {searchTerm: term}})
+    .then((books) => {
+      console.log(books);
+      // props.updateGalleryBooks(books.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
 
   const handleLogout = () => {
     axios.delete('/sessions')
@@ -69,12 +88,17 @@ const Header = (props) => {
 
           <Row className="justify-content-md-center">
             <Col xs={12} md={6}>
+              <Form onSubmit={handleSubmit}>
               <Form.Control
                 type="search"
+                onChange= {handleChange}
                 placeholder="Search by Author or Book Title"
+                value={term}
                 className="me-2"
                 aria-label="Search"
               />
+              <Button variant="primary" type="submit"> Submit </Button>
+              </Form>
             </Col>
           </Row>
 
