@@ -4,7 +4,6 @@ import Button from 'react-bootstrap/Button';
 import EditInfoModal from './EditInfoModal.jsx';
 
 const Information = (props) => {
-
     const [editButtonClicked, setEditButtonClicked] = useState(false);
 
     return (
@@ -21,7 +20,8 @@ const Information = (props) => {
                 <h6 style={{"color": "GrayText", "fontFamily": "Helvetica"}}>Email Address: {props.info.email}</h6>
                 <h6 style={{"color": "GrayText", "fontFamily": "Helvetica"}}>Age: {props.info.age}</h6>
                 <h6 style={{"color": "GrayText", "fontFamily": "Helvetica"}}>Gender: {props.info.gender}</h6>
-                <h6 style={{"color": "GrayText", "fontFamily": "Helvetica", "marginBottom": "5vh"}}>Address: {props.info.address}</h6>
+                {props.info.line_2 ? <h6 style={{"color": "GrayText", "fontFamily": "Helvetica", "marginBottom": "5vh"}}>Address: {props.info.line_1 + ' ' + props.info.line_2 + ' ' + props.info.city + ', ' + props.info.state + ' ' + props.info.postal + ', ' + props.info.country}</h6> :
+                <h6 style={{"color": "GrayText", "fontFamily": "Helvetica", "marginBottom": "5vh"}}>Address: {props.info.line_1 + ' ' + props.info.city + ', ' + props.info.state + ' ' + props.info.postal + ', ' + props.info.country}</h6>}
                 <Button style={{"position": "absolute", "top": 0, "right": 0}} variant="outline-primary" onClick={() => {setEditButtonClicked(!editButtonClicked)}}>Edit</Button>
             </div>
             </div>}

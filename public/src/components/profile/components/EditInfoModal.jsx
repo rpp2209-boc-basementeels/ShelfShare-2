@@ -66,13 +66,13 @@ const EditInfoModal = (props) => {
                     <Col>
                         <Form.Group>
                             <Form.Label>Address Line 1</Form.Label>
-                            <Form.Control type="input"></Form.Control>
+                            <Form.Control defaultValue={props.info.line_1} type="input"></Form.Control>
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group>
                             <Form.Label>Address Line 2</Form.Label>
-                            <Form.Control type="input"></Form.Control>
+                            <Form.Control defaultValue={props.info.line_2} type="input"></Form.Control>
                         </Form.Group>
                     </Col>
                 </Row>
@@ -80,13 +80,13 @@ const EditInfoModal = (props) => {
                     <Col>
                         <Form.Group>
                             <Form.Label>City</Form.Label>
-                            <Form.Control type="input"></Form.Control>
+                            <Form.Control defaultValue={props.info.city} type="input"></Form.Control>
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group>
                             <Form.Label>State</Form.Label>
-                            <Form.Control type="input"></Form.Control>
+                            <Form.Control defaultValue={props.info.state} type="input"></Form.Control>
                         </Form.Group>
                     </Col>
                 </Row>
@@ -94,13 +94,13 @@ const EditInfoModal = (props) => {
                     <Col>
                         <Form.Group>
                             <Form.Label>Postal Code</Form.Label>
-                            <Form.Control type="input"></Form.Control>
+                            <Form.Control defaultValue={props.info.postal} type="input"></Form.Control>
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group>
                             <Form.Label>Country</Form.Label>
-                            <Form.Control defaultValue="United States"></Form.Control>
+                            <Form.Control defaultValue={props.info.country} type="input"></Form.Control>
                         </Form.Group>
                     </Col>
                 </Row>

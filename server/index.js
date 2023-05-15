@@ -80,13 +80,8 @@ app.get('/detail', (req, res) => {
 // GET all reviews for a specific user
 app.get('/reviews/:username', (req, res) => {
   var username = req.params.username;
-  console.log('username', username);
-  // direct request to backend repository
-
-  // below is not working
   axios.get(`${process.env.API_URL}/reviews/${username}`)
     .then((data) => {
-      console.log('data', data);
       res.status(200).send(data.data);
     })
     .catch((error) => {
@@ -97,9 +92,9 @@ app.get('/reviews/:username', (req, res) => {
 // GET user's personal information
 app.get('/personalInformation/:username', (req, res) => {
   var username = req.params.username;
-  // direct request to backend repository
   axios.get(`${process.env.API_URL}/personalInformation/${username}`)
     .then((data) => {
+      console.log('data', data.data);
       res.status(200).send(data.data);
     })
     .catch((error) => {
