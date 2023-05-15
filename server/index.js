@@ -124,7 +124,6 @@ app.get('/bookReviews/:book_id', (req, res) => {
 app.get('/orders/:id', (req, res) => {
   var uniqueId = req.params.id;
   let url = `${process.env.API_URL}/orders/${uniqueId}`;
-  console.log(url)
 
   axios.get(url)
     .then(list => res.status(200).send(list.data))

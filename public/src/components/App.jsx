@@ -40,6 +40,34 @@ const App = () => {
   // When "back" button is clicked on this profile page, state resets to an empty string
   const [usernameThatWasClicked, setUsernameThatWasClicked] = useState('');
 
+  ////////////////////////////////////////////
+  // setting the state for the Orders
+  const [loan, setLoan] = useState([]);
+  const [borrow, setBorrow] = useState([]);
+  const [pend, setPend] = useState([]);
+
+  let testUser = 7;
+
+  let fetcher = () => {
+    axios.get(`orders/${testUser}`)
+    .then(data => {
+      setLoan(data.data.loaned);
+      setBorrow(data.data.borrowed);
+      setPend(data.data.pending);
+    })
+    .catch(err => console.log('err in orders', err));
+}
+
+  useEffect(() => {
+    fetcher();
+  }, [])
+
+  var pendingStyle = (array) => {
+    if (array.length > 0)  { return array.length }
+    else { return; }
+  }
+  ///////////////////////////////////////////
+
   // Need to log users into the app if the users exist
   useEffect(() => {
     axios.get('/sessions')
@@ -85,7 +113,9 @@ const App = () => {
             <Button variant="outline-primary" onClick={() => {setSelectedPage('Profile')}}>My Profile</Button>
           </Col>
           <Col>
-            <Button variant="outline-primary" onClick={() => {setSelectedPage('Orders')}}>My Orders </Button>
+            <Button variant="outline-primary" onClick={() => {setSelectedPage('Orders')}}>
+            My Orders <span className=" badge .badge-* badge-dark  " style={{color:'red'}}>{pendingStyle(pend)}</span>
+            </Button>
           </Col>
           <Col>
             <Button variant="outline-primary" onClick={() => {setSelectedPage('Library')}}>My Library</Button>
@@ -94,7 +124,7 @@ const App = () => {
           {selectedPage === 'Login' ? <GoogleSignIn setUser={setUser} setClickedLogin={setClickedLogin}/> : null}
           {selectedPage === 'Profile' ? <ProfilePage user={user}/> : null}
           {selectedPage === 'Library' ? <PersonalLibrary loggedInUser={'peckmc'} libraryOwner={'peckmc'}/> : null}
-          {selectedPage === 'Orders' ? <Orders user={user} page={selectedPage}/> : null}
+          {selectedPage === 'Orders' ? <Orders user={user} page={selectedPage} bookData={{loaned: loan, borrowed: borrow, pending: pend}}/> : null}
           {selectedPage === 'Home' ? <Gallery selectedBookId={selectedBookId} updateSelectedBookId={updateSelectedBookId} books={galleryBooks} showBookDetail={showBookDetail} setShowDetail={setShowDetail}/> : null}
           {/* <Footer /> */}
         </Row>
