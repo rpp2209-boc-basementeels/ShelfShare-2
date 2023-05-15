@@ -11,7 +11,7 @@ const Lent = ({ libraryOwner }) => {
     setIsLoading(true);
     async function fetch() {
       try {
-        const {data} = await axios.get(`http://localhost:8080/${libraryOwner}/lent`);
+        const {data} = await axios.get(`http://localhost:3000/${libraryOwner}/lent`);
         const out = data.reduce((a, v) => {
           if(a[v.title]) {
             a[v.title].author = [a[v.title].author, v.author].join(', ')
@@ -37,7 +37,7 @@ const Lent = ({ libraryOwner }) => {
         <p></p>
         <h5>LENT BOOKS ({lent.data.length})</h5>
         <hr />
-        <Row xs={1} md={2} className="g-5">
+        <Row xs={1} md={2}>
           {lent.data.map((b, i) => (
             <BookCard key={i} b={b} />
           ))}

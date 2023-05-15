@@ -11,7 +11,7 @@ const Shelf = ({ fetchTrigger, libraryOwner }) => {
     setIsLoading(true);
     async function fetch() {
       try {
-        const {data} = await axios.get(`http://localhost:8080/${libraryOwner}/library`);
+        const {data} = await axios.get(`http://localhost:3000/${libraryOwner}/library`);
         const out = data.reduce((a, v) => {
           if(a[v.title]) {
             a[v.title].author = [a[v.title].author, v.author].join(', ')
@@ -37,7 +37,7 @@ const Shelf = ({ fetchTrigger, libraryOwner }) => {
       <p></p>
       <h5>MY SHELF ({library.data.length})</h5>
       <hr />
-      <Row xs={1} md={2} className="g-5">
+      <Row xs={1} md={2}>
         {library.data.map((b, i) => (
           <BookCard key={i} b={b} />
         ))}
