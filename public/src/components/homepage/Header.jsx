@@ -9,9 +9,16 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
+import axios from 'axios';
 
 const Header = (props) => {
   //conditional rendering of Gallery or Detail
+
+  const handleLogout = () => {
+    axios.delete('/sessions')
+      .then(() => props.setUser({}))
+      .catch((err) => console.log(err))
+  };
 
   const userLogin = () => {
     const keys = Object.keys(props.user);
@@ -32,7 +39,7 @@ const Header = (props) => {
             <NavDropdown.Item href="#action/3.2">My Shelf</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.3">Orders</NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4" onClick={() => {props.setUser({})}}>Logout</NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.4" onClick={handleLogout}>Logout</NavDropdown.Item>
           </NavDropdown>
         </>
       )

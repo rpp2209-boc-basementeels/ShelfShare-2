@@ -40,6 +40,7 @@ const App = () => {
   // When "back" button is clicked on this profile page, state resets to an empty string
   const [usernameThatWasClicked, setUsernameThatWasClicked] = useState('');
 
+
   ////////////////////////////////////////////
   // setting the state for the Orders
   const [loan, setLoan] = useState([]);
@@ -68,8 +69,19 @@ const App = () => {
   }
   ///////////////////////////////////////////
 
+  // Need to log users into the app if the users exist
   useEffect(() => {
-    axios.get('http://localhost:3000/trending')
+    axios.get('/sessions')
+      .then((session) => {
+        if (session.data[0]) {
+          setUser(session.data[0]);
+        }
+      })
+  }, [])
+
+
+  useEffect(() => {
+    axios.get('/trending')
     .then((books) => {
       console.log(books.data);
       updateGalleryBooks(books.data);
