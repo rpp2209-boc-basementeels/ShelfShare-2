@@ -123,7 +123,7 @@ const App = () => {
             <Header setShowDetail={setShowDetail} setClickedLogin={setClickedLogin} user={user} setUser={setUser}/>
           {selectedPage === 'Login' ? <GoogleSignIn setUser={setUser} setClickedLogin={setClickedLogin}/> : null}
           {selectedPage === 'Profile' ? <ProfilePage user={user}/> : null}
-          {selectedPage === 'Library' ? <PersonalLibrary loggedInUser={'peckmc'} libraryOwner={'peckmc'}/> : null}
+          {selectedPage === 'Library' ? <PersonalLibrary loggedInUser={'Kevin'} libraryOwner={'Kevin'}/> : null}
           {selectedPage === 'Orders' ? <Orders user={user} page={selectedPage} bookData={{loaned: loan, borrowed: borrow, pending: pend}}/> : null}
           {selectedPage === 'Home' ? <Gallery selectedBookId={selectedBookId} updateSelectedBookId={updateSelectedBookId} books={galleryBooks} showBookDetail={showBookDetail} setShowDetail={setShowDetail}/> : null}
           {/* <Footer /> */}
