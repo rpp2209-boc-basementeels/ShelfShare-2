@@ -12,7 +12,13 @@ import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 
 const Header = (props) => {
-  //conditional rendering of Gallery or Detail
+
+  const [term, setTerm] = useState('');
+
+  const handleChange = (e) => {
+    console.log(event.target.value);
+    setTerm(event.target.value);
+  }
 
   const handleLogout = () => {
     axios.delete('/sessions')
@@ -71,7 +77,9 @@ const Header = (props) => {
             <Col xs={12} md={6}>
               <Form.Control
                 type="search"
+                onChange= {handleChange}
                 placeholder="Search by Author or Book Title"
+                value={term}
                 className="me-2"
                 aria-label="Search"
               />
