@@ -106,7 +106,7 @@ const EditInfoModal = (props) => {
                 </Row>
                 <Form.Text>We'll never share your address with anyone else.</Form.Text>
             </Form>
-            <Button style={{"marginTop": "2vh", "marginBottom": "5vh"}} variant="outline-primary" onClick={() => {props.closeButton(!props.buttonClicked)}}>Save My Information</Button>
+            <Button style={{"marginTop": "2vh", "marginBottom": "5vh"}} variant="outline-primary" onClick={() => {props.closeButton(!props.buttonClicked); alert('Your information has been saved!')}}>Save My Information</Button>
         </div>
     )
 };

@@ -80,10 +80,13 @@ app.get('/detail', (req, res) => {
 // GET all reviews for a specific user
 app.get('/reviews/:username', (req, res) => {
   var username = req.params.username;
+  console.log('username', username);
   // direct request to backend repository
+
+  // below is not working
   axios.get(`${process.env.API_URL}/reviews/${username}`)
     .then((data) => {
-      console.log('data here', data);
+      console.log('data', data);
       res.status(200).send(data.data);
     })
     .catch((error) => {
