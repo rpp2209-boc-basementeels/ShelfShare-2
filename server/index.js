@@ -65,7 +65,7 @@ app.get('/published', (req, res) => {
 //GET details for selected books
 app.get('/detail', (req, res) => {
   let bookId = req.query.bookId;
-  axios.get(process.env.API_URL + '/detail', {params: {bookId: bookId}})
+  axios.get(process.env.API_URL + '/detail', { params: { bookId: bookId } })
     .then((result) => {
       console.log(result.data);
       res.status(200).send(result.data);
@@ -126,101 +126,71 @@ app.get('/orders/:id', (req, res) => {
   let url = `${process.env.API_URL}/orders/${uniqueId}`;
 
   axios.get(url)
-  .then(list => res.status(200).send(list.data))
-  .catch(err => res.sendStatus(404));
+    .then(list => res.status(200).send(list.data))
+    .catch((err) => {
+      console.log('orders error', err);
+      res.sendStatus(404)
+    });
 });
 
 
 // Authorization
 // For the homepage
-// app.get('/getHash', (req, res) => {
-// });
+app.get(`/getHash`, (req, res) => {
+  axios.get(`${process.env.API_URL}/getHash`)
+    .then((data) => res.status(200).send(data.data))
+    .catch((err) => res.status(500).send(err));
+});
 
-// app.get('/email', (req, res) => {
-//   dbQuery.checkTable('users', req.query, (err, data) => {
-//     if (err) {
-//       res.status(500).send(err);
-//     } else {
-//       res.status(200).send(data);
-//     }
-//   })
-// });
+app.get(`/email`, (req, res) => {
+  axios.get(`${process.env.API_URL}/email`, { params: req.query })
+    .then((data) => res.status(200).send(data.data))
+    .catch((err) => res.status(500).send(err));
+});
 
-// app.patch('/updateSaltHash', (req, res) => {
-//   const salt = generator.generatorSalt(req.cookies.g_state);
-//   const hash = generator.generatorHash(req.cookies.g_state, salt);
-//   const whereObj = req.body;
-//   const setSaltObj = { salt: salt };
-//   const setHashObj = { hash: hash };
-//   dbQuery.updateTable('users', whereObj, setSaltObj, (err, data) => {
-//     if (err) {
-//       res.status(500).send('1');
-//     } else {
-//       dbQuery.getID('users', whereObj, (err, data) => {
-//         if (err) {
-//           res.status(500).send('2');
-//         } else {
-//           const result = {
-//             user_id: data[0].id
-//           };
-//           dbQuery.updateTable('sessions', result, setHashObj, (err, data) => {
-//             if (err) {
-//               res.status(500).send('3');
-//             } else {
-//               res.status(200).send('Salt and hash have been updated!')
-//             }
-//           })
-//         }
-//       })
-//     }
-//   })
-// });
+app.get('/sessions', (req, res) => {
+  axios.get(`${process.env.API_URL}/sessions`, { params: req.cookies })
+    .then((data) => {
+      res.status(200).send(data.data)
+    })
+    .catch((err) => res.status(500).send(err));
+})
 
-// app.post('/newUser', (req, res) => {
-//   const salt = generator.generatorSalt(req.cookies.g_state);
-//   const hash = generator.generatorHash(req.cookies.g_state, salt);
-//   const result = {
-//     ...req.body,
-//     salt: salt,
-//     // hash: hash,
-//   };
-//   dbQuery.addToTable('users', result, (err, data) => {
-//     if (err) {
-//       res.status(500).send(err);
-//     } else {
-//       dbQuery.getID('users', { email: req.body.email }, (err, data) => {
-//         const result2 = {
-//           user_id: data[0].id,
-//           hash: hash,
-//         };
-//         dbQuery.addToTable('sessions', result2, (err, data) => {
-//           if (err) {
-//             res.status(500).send(err);
-//           } else {
-//             // res.status(201).send('User information was added.');
-//             res.redirect(301, '/');
-//           }
-//         })
+app.delete('/sessions', (req, res) => {
+  axios.delete(`${process.env.API_URL}/sessions`, { data: req.cookies })
+    .then((data) => res.status(200).send(data.data))
+    .catch((err) => res.status(500).send(err));
+})
 
-//       })
-//     }
-//   });
-// });
+app.put(`/updateHash`, (req, res) => {
+  const sendInfo = {
+    ...req.body,
+    cookies: req.cookies,
+  }
+  axios.put(`${process.env.API_URL}/updateHash`, sendInfo)
+    .then((data) => res.status(200).send(data.data))
+    .catch((err) => res.status(500).send(err));
+});
 
-// app.get('/asdf', (req, res) => {
-//   res.sendFile(path.join(__dirname, '../public/dist/index.html'));
-// })
+app.post(`/newUser`, (req, res) => {
+  const sendInfo = {
+    ...req.body,
+    cookies: req.cookies,
+  };
+  // console.log('newUser', sendInfo)
+  axios.post(`${process.env.API_URL}/newUser`, sendInfo)
+    .then((data) => res.status(201).send(data.data))
+    .catch((err) => res.status(501).send(err));
+});
 
-// app.get('/username', (req, res) => {
-//   dbQuery.checkTable('users', req.query, (err, data) => {
-//     if (err) {
-//       res.status(500).send(err);
-//     } else {
-//       res.status(200).send(data);
-//     }
-//   })
-// });
+app.get(`/username`, (req, res) => {
+  axios.get(`${process.env.API_URL}/username`, { params: req.query })
+    .then((data) => res.status(200).send(data.data))
+    .catch((err) => res.status(500).send(err));
+});
 
+
+// server listens on designated port
 app.listen(process.env.PORT, () => {
   console.log(`App listening on port ${process.env.PORT}`)
 });
