@@ -89,7 +89,7 @@ app.get('/detail', (req, res) => {
     });
 });
 
-// PROFILE ROUTES
+// PROFILE ROUTES ****************************************
 
 // GET all reviews for a specific user
 app.get('/reviews/:username', (req, res) => {
@@ -117,8 +117,14 @@ app.get('/personalInformation/:username', (req, res) => {
 
 // POST to update user's personal information
 app.post('/personalInformation/:username', (req, res) => {
-  // direct request to backend repository
-
+  var username = req.params.username;
+    axios.post(`${process.env.API_URL}/personalInformation/${username}`, req.body)
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+    })
 });
 
 // GET user's public-facing information
@@ -138,6 +144,8 @@ app.get('/bookReviews/:book_id', (req, res) => {
       res.status(400).send(error);
     })
 });
+
+// *********************************************************
 
 app.get('/orders/:id', (req, res) => {
   var uniqueId = req.params.id;
