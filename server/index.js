@@ -190,6 +190,8 @@ app.get(`/username`, (req, res) => {
     .catch((err) => res.status(500).send(err));
 });
 
+
+// server listens on designated port
 app.listen(process.env.PORT, () => {
   console.log(`App listening on port ${process.env.PORT}`)
 });
