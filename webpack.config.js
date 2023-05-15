@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+  devtool: 'eval-cheap-source-map',
   entry: './public/src/index.js',
   output: {
     path: path.resolve(__dirname, 'public/dist'),

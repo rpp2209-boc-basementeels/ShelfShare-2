@@ -213,8 +213,7 @@ app.get('/orders/:id', (req, res) => {
 app.get('/:user/library', (req, res) => {
   axios.get(`${process.env.API_URL}/${req.params.user}/library`)
   .then((results) => {
-    console.log('got here');
-    res.status(200).send(results);
+    res.status(200).send(results.data);
   })
   .catch((error) => {
     console.log(error);
@@ -223,7 +222,8 @@ app.get('/:user/library', (req, res) => {
 });
 
 app.post('/:user/library', (req, res) => {
-  return axios.post(`${process.env.API_URL}/${req.params.user}/library`, scanResults[i], {
+  console.log('post data', req.body)
+  return axios.post(`${process.env.API_URL}/${req.params.user}/library`, req.body, {
     headers: {'Content-Type': 'application/json'}
   })
   .then(() => {
@@ -238,7 +238,7 @@ app.post('/:user/library', (req, res) => {
 app.get('/:user/borrowed', (req, res) => {
   return axios.get(`${process.env.API_URL}/${req.params.user}/borrowed`)
   .then((results) => {
-    res.status(200).send(results);
+    res.status(200).send(results.data);
   })
   .catch((error) => {
     console.log(error);
@@ -249,7 +249,7 @@ app.get('/:user/borrowed', (req, res) => {
 app.get('/:user/lent', (req, res) => {
   return axios.get(`${process.env.API_URL}/${req.params.user}/lent`)
   .then((results) => {
-    res.status(200).send(results);
+    res.status(200).send(results.data);
   })
   .catch((error) => {
     console.log(error);
