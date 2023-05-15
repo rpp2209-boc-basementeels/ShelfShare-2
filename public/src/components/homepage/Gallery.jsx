@@ -29,7 +29,7 @@ const Gallery = (props) => {
     </Modal.Header>
     <Modal.Body>
       <Col>
-      <Row><img src={book.image_url_med} /></Row>
+      <Row><img src={book.image_url} /></Row>
       <Row className="justify-content-center">the author or authors</Row>
       <Row className="justify-content-center">Genre: {book.genre}</Row>
       </Col>
