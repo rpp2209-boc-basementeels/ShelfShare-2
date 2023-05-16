@@ -20,9 +20,9 @@ var LoanedList = (props) => {
           <table>
             <thead>
               <tr>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Return Date</th>
+                <th className="p-2">Title</th>
+                <th className="p-2">Author</th>
+                <th className="p-2">Return Date</th>
               </tr>
             </thead>
             {books.map(book => (

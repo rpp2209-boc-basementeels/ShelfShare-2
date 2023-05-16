@@ -20,9 +20,9 @@ var PendingList = (props) => {
           <table>
             <thead>
               <tr>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Type</th>
+                <th className="p-2">Title</th>
+                <th className="p-2">Author</th>
+                <th className="p-2">Type</th>
               </tr>
             </thead>
             {books.map(book => (

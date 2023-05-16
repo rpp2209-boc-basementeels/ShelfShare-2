@@ -14,23 +14,31 @@ import axios from 'axios';
 
 const Header = (props) => {
 
-  const [term, setTerm] = useState('');
 
   const handleChange = (e) => {
     console.log(event.target.value);
-    setTerm(event.target.value);
+    props.setTerm(event.target.value);
   }
 
   const handleSubmit = (e) => {
-    //make an axios request to front end server
-    axios.get('/search', {params: {searchTerm: term}})
-    .then((books) => {
-      console.log(books.data);
-      // props.updateGalleryBooks(books.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+    e.preventDefault();
+    //created an array to hold the filtered books
+    let filtered = [];
+    //iterate over all books
+    for (var i = 0; i < props.allBooks.length; i++) {
+    //at each book...
+    let currentBook = props.allBooks[i];
+    let currentBookTitle = currentBook.title.toLowerCase();
+    let currentAuthor = currentBook.author.toLowerCase();
+    //if the title string or the author string contains the term
+    if (currentBookTitle.includes(props.term.toLowerCase())) {
+      filtered.push(currentBook);
+    }
+    if (currentAuthor.includes(props.term.toLowerCase())) {
+      filtered.push(currentBook);
+    }
+    }
+    props.updateGalleryBooks(filtered);
   }
 
   const handleLogout = () => {
@@ -93,7 +101,7 @@ const Header = (props) => {
                 type="search"
                 onChange= {handleChange}
                 placeholder="Search by Author or Book Title"
-                value={term}
+                value={props.term}
                 className="me-2"
                 aria-label="Search"
               />
