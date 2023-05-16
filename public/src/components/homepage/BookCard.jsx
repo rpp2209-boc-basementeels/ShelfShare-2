@@ -31,8 +31,8 @@ const BookCard = (props) => {
   return (
     <div>
       <Container className={props.index}>
-      <Card onClick={handleClick} style={{ width: '18rem' }}>
-      <Card.Img className={props.index} variant="top" src={props.image} />
+      <Card onClick={handleClick} style={{ width: '18rem', height: '20rem', margin: '1rem' }}>
+      <Card.Img className={props.index} variant="top" src={props.image} style={{ width: '12rem' }}/>
       <Card.Body>
         <Card.Title className={props.index}>{props.title}</Card.Title>
         <Card.Subtitle className={props.index} className="mb-2 text-muted"></Card.Subtitle>
