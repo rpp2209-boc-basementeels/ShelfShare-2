@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Stack from 'react-bootstrap/Stack';
-// import googleCSS from './googleAndDemo.css';
+import googleCSS from './googleAndDemo.css';
 
 const GoogleSignIn = (props) => {
   const [currentUser, setCurrentUser] = useState({}); // may want this on the homepage

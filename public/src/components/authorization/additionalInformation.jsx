@@ -120,6 +120,12 @@ const AdditionalInformation = (props) => {
                 age: age !== '' ? age : -1,
                 username: username.trim().toLowerCase(),
                 is_library: isLibrary === 'Yes' ? true : false,
+                line_1: address1,
+                line_2: address2,
+                city: city,
+                state: state,
+                postal: zipcode,
+                country: country,
               };
 
               axios.post(`/newUser`, user)
