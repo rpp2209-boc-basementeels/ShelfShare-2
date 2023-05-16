@@ -22,15 +22,22 @@ const Header = (props) => {
   }
 
   const handleSubmit = (e) => {
-    //make an axios request to front end server
-    axios.get('/search', {params: {searchTerm: term}})
-    .then((books) => {
-      console.log(books.data);
-      // props.updateGalleryBooks(books.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+    e.preventDefault();
+    //created an array to hold the filtered books
+    let filtered = [];
+    //iterate over all books
+    for (var i = 0; i < props.allBooks.length; i++) {
+    //at each book...
+    let currentBook = props.allBooks[i];
+    //if the title string or the author string contains the term
+    if (currentBook.title.includes(term)) {
+      filtered.push(currentBook);
+    }
+    if (currentBook.author.includes(term)) {
+      filtered.push(currentBook);
+    }
+    }
+    props.updateAllBooks(filtered);
   }
 
   const handleLogout = () => {
