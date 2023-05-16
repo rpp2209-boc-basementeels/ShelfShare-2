@@ -60,7 +60,7 @@ const PersonalLibrary = ({ user }) => {
   return (
     <Container>
       <Container style={{display: 'flex'}}>
-        <Image rounded src={user.photo} style={{paddingBottom: '3rem'}}></Image>
+        <Image rounded src={user.photo} style={{marginBottom: '3rem', height: '10rem'}}></Image>
         <ListGroup variant="flush" style={{paddingLeft: '0.75rem'}}>
           <ListGroup.Item>{user.first_name.toUpperCase() + ' ' + user.last_name.toUpperCase()}</ListGroup.Item>
           <ListGroup.Item>{user.isLibrary ? 'PUBLIC LIBRARY' : 'INDIVIDUAL'}</ListGroup.Item>

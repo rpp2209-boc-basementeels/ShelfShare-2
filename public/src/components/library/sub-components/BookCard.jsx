@@ -21,9 +21,8 @@ function BookCard({ b }) {
 
   return (
     <>
-      <Card border='light' style={{ width: '13.5rem', margin:'0.5rem' }}>
+      <Card border='light' style={{ width: '13.5rem', padding:'0.5rem' }}>
       <Card.Img
-        variant="top"
         src={image_url || require('./placeholder.png')}
         onError={addDefaultSrc}
         style={{ height: "100%" }}
