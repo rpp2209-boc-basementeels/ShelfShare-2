@@ -38,7 +38,7 @@ const App = () => {
   // is set up to receive these props of the same names (usernameThatWasClicked and setUsernameThatWasClicked)
   // and will update below, triggering a re-rendering of the clicked-on-user's public profile page, line 42
   // When "back" button is clicked on this profile page, state resets to an empty string
-  const [usernameThatWasClicked, setUsernameThatWasClicked] = useState('Melodie');
+  const [usernameThatWasClicked, setUsernameThatWasClicked] = useState('');
 
   ////////////////////////////////////////////
   // setting the state for the Orders
