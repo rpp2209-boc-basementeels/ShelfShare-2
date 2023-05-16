@@ -37,7 +37,7 @@ const Shelf = ({ fetchTrigger, libraryOwner }) => {
       <p></p>
       <h5>MY SHELF ({library.data.length})</h5>
       <hr />
-      <Row xs={1} md={2}>
+      <Row xs='auto'>
         {library.data.map((b, i) => (
           <BookCard key={i} b={b} />
         ))}

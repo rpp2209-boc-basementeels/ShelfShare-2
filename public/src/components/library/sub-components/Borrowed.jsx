@@ -37,7 +37,7 @@ const Borrowed = ({ libraryOwner }) => {
       <p></p>
       <h5>BORROWED BOOKS ({borrowed.data.length})</h5>
       <hr />
-      <Row xs={1} md={2}>
+      <Row xs='auto'>
         {borrowed.data.map((b, i) => (
           <BookCard key={i} b={b} />
         ))}

@@ -18,7 +18,7 @@ function BookCard({ b }) {
   }
 
   return (
-    <Card border='light' style={{ width: '14rem' }} data-toggle="tooltip" data-placement="top" title={tooltip}>
+    <Card border='light' style={{ width: '13.5rem', margin:'0.5rem' }} data-toggle="tooltip" data-placement="top" title={tooltip}>
       <Card.Img variant="top" src={image_url || require('./placeholder.png')} onError={addDefaultSrc} style={{ height: "14rem" }} className="align-items-center"/>
     </Card>
   );

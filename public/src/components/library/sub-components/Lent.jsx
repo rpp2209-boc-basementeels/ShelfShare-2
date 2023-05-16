@@ -37,7 +37,7 @@ const Lent = ({ libraryOwner }) => {
         <p></p>
         <h5>LENT BOOKS ({lent.data.length})</h5>
         <hr />
-        <Row xs={1} md={2}>
+        <Row xs='auto'>
           {lent.data.map((b, i) => (
             <BookCard key={i} b={b} />
           ))}
