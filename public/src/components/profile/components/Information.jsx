@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import EditInfoModal from './EditInfoModal.jsx';
+import { FcCheckmark } from "react-icons/fc";
 
 const Information = (props) => {
     const [editButtonClicked, setEditButtonClicked] = useState(false);
@@ -15,6 +16,7 @@ const Information = (props) => {
                 <Image style={{"borderRadius": "50%", "width": "10vw"}} src={props.info.photo_url}></Image>
                 <h4 style={{"marginTop": "2vh", "marginBottom": "0vh", "fontFamily": "Helvetica"}}>{props.info.first_name + " " + props.info.last_name}</h4>
                 <h6 style={{"fontFamily": "Helvetica"}}>@{props.info.username}</h6>
+                {props.isLibrary ? <div><FcCheckmark size='4em'/><p>Verified Library</p></div> : null}
                 <hr></hr>
                 <h3 style={{"marginTop": "5vh", "marginBottom": "5vh", "fontFamily": "Helvetica"}}>My Personal Information</h3>
                 <h6 style={{"color": "GrayText", "fontFamily": "Helvetica"}}>Email Address: {props.info.email}</h6>

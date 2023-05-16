@@ -7,6 +7,7 @@ const ProfilePage = (props) => {
     // props.user is the data about the current user passed down from App.jsx
     // Is not implemented by Kevin yet, so use below username as placeholder
     var username = 'Kevin';
+    console.log('props profilepage', props);
 
     const [userReviews, setUserReviews] = useState([]);
     const [userInfo, setUserInfo] = useState({
@@ -45,7 +46,7 @@ const ProfilePage = (props) => {
 
     return (
         <div>
-            <Information info={userInfo}/>
+            <Information info={userInfo} isLibrary={userInfo.isLibrary}/>
             <div style={{"display": "flex", "alignItems": "flex-start", "justifyContent": "center"}}>
                 <div style={{"textAlign": "center", "position": "relative", "width": "30vw", "minWidth": "max-content"}}>
                     <hr></hr>

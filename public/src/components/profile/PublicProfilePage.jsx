@@ -4,12 +4,14 @@ import axios from 'axios';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import Shelf from './components/Shelf.jsx';
+import { FcCheckmark } from "react-icons/fc";
 
 const PublicProfilePage = (props) => {
     const [userInfo, setUserInfo] = useState({
         first_name: '',
         last_name: '',
-        photo_url: ''
+        photo_url: '',
+        is_library: false
     });
     const [userReviews, setUserReviews] = useState([]);  
 
@@ -40,6 +42,7 @@ const PublicProfilePage = (props) => {
                     <Image style={{"borderRadius": "50%", "width": "10vw"}} src={userInfo.photo_url}></Image>
                     <h4 style={{"marginTop": "2vh", "marginBottom": "0vh", "fontFamily": "Helvetica"}}>{userInfo.first_name + ' ' + userInfo.last_name}</h4>
                     <h6 style={{"fontFamily": "Helvetica"}}>@{props.username}</h6>
+                    {userInfo.is_library ? <div><FcCheckmark size='4em'/><p>Verified Library</p></div> : null}
                     <hr></hr>
                 </div>
             </div>
