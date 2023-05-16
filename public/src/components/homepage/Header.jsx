@@ -28,11 +28,13 @@ const Header = (props) => {
     for (var i = 0; i < props.allBooks.length; i++) {
     //at each book...
     let currentBook = props.allBooks[i];
+    let currentBookTitle = currentBook.title.toLowerCase();
+    let currentAuthor = currentBook.author.toLowerCase();
     //if the title string or the author string contains the term
-    if (currentBook.title.includes(props.term)) {
+    if (currentBookTitle.includes(props.term.toLowerCase())) {
       filtered.push(currentBook);
     }
-    if (currentBook.author.includes(props.term)) {
+    if (currentAuthor.includes(props.term.toLowerCase())) {
       filtered.push(currentBook);
     }
     }
