@@ -11,7 +11,7 @@ const Borrowed = ({ libraryOwner }) => {
     setIsLoading(true);
     async function fetch() {
       try {
-        const {data} = await axios.get(`http://localhost:3000/${libraryOwner}/borrowed`);
+        const {data} = await axios.get(`/${libraryOwner}/borrowed`);
         const out = data.reduce((a, v) => {
           if(a[v.title]) {
             a[v.title].author = [a[v.title].author, v.author].join(', ')
