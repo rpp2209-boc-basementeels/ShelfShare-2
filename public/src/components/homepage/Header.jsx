@@ -11,10 +11,36 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
-import filter from './filterHelpers.js';
 
 const Header = (props) => {
 
+  const genrePubFilter = (option, parameterStr) => {
+    //create empty filtered array
+    let filtered = [];
+    //iterate over all the books
+    props.allBooks.forEach((book) => {
+      //if option is genre
+      if (option === 'genre') {
+        //if parameter matches genre
+        if (parameterStr === book.genre) {
+          //push book to filtered array
+          filtered.push(book);
+        }
+      }
+      //if option is pub date
+      if (option === 'pub') {
+        //parse pub year
+        let year = book.pub_date.slice(0, 4);
+        //if parameter matches pub year
+        if (parameterStr === year) {
+          //push book to filtered array
+          filtered.push(book);
+        }
+      }
+    });
+    //set gallery books
+    props.updateGalleryBooks(filtered);
+  };
 
   const handleChange = (e) => {
     console.log(event.target.value);
@@ -133,9 +159,8 @@ const Header = (props) => {
                         </NavDropdown.Item>
                       </NavDropdown>
                       <NavDropdown title="Genre" id="genre-dropdown">
-                        <NavDropdown.Item href="#action/3.1">Horror</NavDropdown.Item>
-                        <NavDropdown.Item onClick={() => { filter(props.allBooks, 'genre', 'Cooking', props.updateGalleryBooks)}}>Cooking</NavDropdown.Item>
-                        <NavDropdown.Item onClick={() => { filter(props.allBooks, 'genre', 'Autobiography', props.updateGalleryBooks)}}>Autobiography</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => { genrePubFilter('genre', 'Cooking')}}>Cooking</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => { genrePubFilter('genre', 'Autobiography')}}>Autobiography</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="#action/3.4">
                           Separated link
