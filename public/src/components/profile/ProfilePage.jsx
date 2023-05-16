@@ -45,7 +45,7 @@ const ProfilePage = (props) => {
 
     return (
         <div>
-            <Information info={userInfo}/>
+            <Information info={userInfo} isLibrary={userInfo.isLibrary}/>
             <div style={{"display": "flex", "alignItems": "flex-start", "justifyContent": "center"}}>
                 <div style={{"textAlign": "center", "position": "relative", "width": "30vw", "minWidth": "max-content"}}>
                     <hr></hr>

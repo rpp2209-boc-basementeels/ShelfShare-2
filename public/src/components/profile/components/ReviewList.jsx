@@ -1,5 +1,6 @@
 import React from 'react';
 import Review from './Review.jsx';
+import Container from 'react-bootstrap/Container'
 
 const ReviewList = (props) => {
 
@@ -10,9 +11,9 @@ const ReviewList = (props) => {
     });
 
     return (
-        <div style={{"display": "flex", "justifyContent": "center"}}>
+        <Container style={{"display": "flex", "justifyContent": "center"}}>
             {reviews}
-        </div>
+        </Container>
     )
 };
 

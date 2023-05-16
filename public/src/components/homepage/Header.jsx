@@ -25,7 +25,7 @@ const Header = (props) => {
     //make an axios request to front end server
     axios.get('/search', {params: {searchTerm: term}})
     .then((books) => {
-      console.log(books);
+      console.log(books.data);
       // props.updateGalleryBooks(books.data);
     })
     .catch((err) => {
