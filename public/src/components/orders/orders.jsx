@@ -31,7 +31,7 @@ var Orders = (props) => {
       <Accordion.Item eventKey="2">
         <Accordion.Header>Pending</Accordion.Header>
         <Accordion.Body>
-          <PendingList pending={bookData.pending}/>
+          <PendingList pending={bookData.pending} user={props.user}/>
         </Accordion.Body>
       </Accordion.Item>
     </Accordion>
