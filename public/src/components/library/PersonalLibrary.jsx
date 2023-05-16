@@ -68,13 +68,13 @@ const PersonalLibrary = ({ loggedInUser, libraryOwner }) => {
           {scanResults.length > 0 ? <Button onClick={saveResultsToLibrary}>SAVE TO SHELF</Button> : null}
         </Col>
       </Row>
-      <Row>
+      <Row style={{ display: "flex", justifyContent: "center"}}>
         <Shelf fetchTrigger={fetchTrigger} libraryOwner={libraryOwner}/>
       </Row>
-      <Row>
+      <Row style={{ display: "flex", justifyContent: "center"}}>
         {isUsersOwnLibrary ? <Borrowed libraryOwner={libraryOwner}/> : null}
       </Row>
-      <Row>
+      <Row style={{ display: "flex", justifyContent: "center"}}>
         {isUsersOwnLibrary ? <Lent libraryOwner={libraryOwner}/> : null}
       </Row>
     </Container>
