@@ -5,6 +5,7 @@ import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import Shelf from './components/Shelf.jsx';
 import { FcCheckmark } from "react-icons/fc";
+import Container from 'react-bootstrap/Container';
 
 const PublicProfilePage = (props) => {
     const [userInfo, setUserInfo] = useState({
@@ -35,26 +36,26 @@ const PublicProfilePage = (props) => {
     }, []);
 
     return (
-        <div>
-            <div style={{"display": "flex", "alignItems": "flex-start", "justifyContent": "center"}}>
-                <div style={{"textAlign": "center", "position": "relative", "width": "30vw", "minWidth": "max-content"}}>
+        <Container>
+            <Container style={{"display": "flex", "alignItems": "flex-start", "justifyContent": "center"}}>
+                <Container style={{"textAlign": "center", "position": "relative", "width": "30vw", "minWidth": "max-content"}}>
                     <Button style={{"position": "absolute", "top": 0, "left": "-10vw"}} variant="outline-primary" onClick={() => {props.set('')}}>Back</Button>
                     <Image style={{"borderRadius": "50%", "width": "10vw"}} src={userInfo.photo_url}></Image>
                     <h4 style={{"marginTop": "2vh", "marginBottom": "0vh", "fontFamily": "Helvetica"}}>{userInfo.first_name + ' ' + userInfo.last_name}</h4>
                     <h6 style={{"fontFamily": "Helvetica"}}>@{props.username}</h6>
-                    {userInfo.is_library ? <div><FcCheckmark size='4em'/><p>Verified Library</p></div> : null}
+                    {userInfo.is_library ? <Container><FcCheckmark size='4em'/><p>Verified Library</p></Container> : null}
                     <hr></hr>
-                </div>
-            </div>
+                </Container>
+            </Container>
             <h3 style={{"marginTop": "5vh", "marginBottom": "5vh", "textAlign": "center", "fontFamily": "Helvetica"}}>{userInfo.first_name + "'s"} Reviews</h3>
-            <div>
+            <Container>
                 <ReviewList reviews={userReviews}/>
-            </div>
+            </Container>
             <h3 style={{"marginTop": "5vh", "marginBottom": "5vh", "textAlign": "center", "fontFamily": "Helvetica"}}>{userInfo.first_name + "'s"} Shelf</h3>
-            <div style={{"display": "flex", "justifyContent": "center"}}>
+            <Container style={{"display": "flex", "justifyContent": "center"}}>
                 <Shelf libraryOwner={props.username}/>
-            </div>
-        </div>
+            </Container>
+        </Container>
     )
 };
 
