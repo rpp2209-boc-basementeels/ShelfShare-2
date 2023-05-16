@@ -166,6 +166,24 @@ app.get('/orders/:id', (req, res) => {
     });
 });
 
+app.patch('/pending/loan', (req, res) => {
+  let url = `${process.env.API_URL}/pending/loan`;
+  let user = req.body.user_id;
+  let book = req.body.book_id;
+  axios.patch(url, req.body)
+  .then(pass => res.sendStatus(200))
+  .catch(err => res.send(err).status(500))
+});
+
+app.patch('/pending/borrow', (req, res) => {
+  let url = `${process.env.API_URL}/pending/borrow`;
+  let user = req.body.user_id;
+  let book = req.body.book_id;
+  axios.patch(url, req.body)
+  .then(pass => res.sendStatus(200))
+  .catch(err => res.send(err).status(500))
+});
+
 
 // Authorization
 // For the homepage
