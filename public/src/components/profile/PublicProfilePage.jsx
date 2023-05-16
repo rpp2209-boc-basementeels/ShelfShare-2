@@ -3,7 +3,7 @@ import ReviewList from './components/ReviewList.jsx';
 import axios from 'axios';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
-// import personal library component from Melodie
+import Shelf from './components/Shelf.jsx';
 
 const PublicProfilePage = (props) => {
     const [userInfo, setUserInfo] = useState({
@@ -11,7 +11,7 @@ const PublicProfilePage = (props) => {
         last_name: '',
         photo_url: ''
     });
-    const [userReviews, setUserReviews] = useState([]);    
+    const [userReviews, setUserReviews] = useState([]);  
 
     useEffect(() => {
         axios.get(`/reviews/${props.username}`)
@@ -25,7 +25,6 @@ const PublicProfilePage = (props) => {
             return axios.get(`/public/${props.username}`);
           })
           .then((infoData) => {
-            console.log('infoData', infoData);
             setUserInfo(infoData.data[0]);
           })
           .catch((error) => {
@@ -49,6 +48,9 @@ const PublicProfilePage = (props) => {
                 <ReviewList reviews={userReviews}/>
             </div>
             <h3 style={{"marginTop": "5vh", "marginBottom": "5vh", "textAlign": "center", "fontFamily": "Helvetica"}}>{userInfo.first_name + "'s"} Shelf</h3>
+            <div style={{"display": "flex", "justifyContent": "center"}}>
+                <Shelf libraryOwner={props.username}/>
+            </div>
         </div>
     )
 };
