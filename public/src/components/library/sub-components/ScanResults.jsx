@@ -1,23 +1,23 @@
 import React from 'react';
 import { Container, Table } from 'react-bootstrap';
 
-function filterResults (results) {
-  let filteredResults = [];
-  for (var i = 0; i < results.length; ++i) {
-    if (i === 0) {
-      filteredResults.push(results[i]);
-      continue;
-    }
+// function filterResults (results) {
+//   let filteredResults = [];
+//   for (var i = 0; i < results.length; ++i) {
+//     if (i === 0) {
+//       filteredResults.push(results[i]);
+//       continue;
+//     }
 
-    if (results[i].ISBN !== results[i - 1].ISBN) {
-      filteredResults.push(results[i]);
-    }
-  }
-  return filteredResults;
-}
+//     if (results[i].ISBN !== results[i - 1].ISBN) {
+//       filteredResults.push(results[i]);
+//     }
+//   }
+//   return filteredResults;
+// }
 
 const ResultContainerTable = ({results}) => {
-  const result = filterResults(results);
+  // const result = filterResults(results);
   return (
     <Table striped bordered>
       <thead>
@@ -31,7 +31,7 @@ const ResultContainerTable = ({results}) => {
       </thead>
       <tbody>
       {
-        result.map((book, i) => {
+        results.map((book, i) => {
           return (
             <tr key={i + 1}>
               <td>{i + 1}</td>
@@ -60,7 +60,7 @@ const ScanResults = ({ results }) => {
   return (
     <>
       <p></p>
-      <h5>SCANNED BOOKS ({filterResults(results).length})</h5>
+      <h5>SCANNED BOOKS ({results.length})</h5>
       <ResultContainerTable results={results} />
     </>
   );

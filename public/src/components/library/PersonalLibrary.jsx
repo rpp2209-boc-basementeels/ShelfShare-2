@@ -3,8 +3,6 @@ import axios from 'axios';
 import { Button, Container, Row, Col, Card }  from 'react-bootstrap';
 import GenreFilter from './helper functions/GenreFilter.jsx';
 import DateParser from './helper functions/DateParser.jsx';
-import NavigationBar from './sub-components/NavigationBar.jsx';
-import BookPopup from './sub-components/BookPopup.jsx';
 import ProfileType from './sub-components/ProfileType.jsx';
 import ScanButton from './sub-components/ScanButton.jsx';
 import Shelf from './sub-components/Shelf.jsx';
@@ -15,6 +13,7 @@ const PersonalLibrary = ({ loggedInUser, libraryOwner }) => {
   const [isUsersOwnLibrary, setisUsersOwnLibrary] = useState(loggedInUser === libraryOwner);
   const [fetchTrigger, setFetchTrigger] = useState(1);
   const [scanResults, setScanResults] = useState([]);
+  const [lastResult, setLastResult] = useState({});
 
   const saveResultsToLibrary = () => {
     return Promise.all(scanResults.map((b, i) => {
@@ -32,28 +31,31 @@ const PersonalLibrary = ({ loggedInUser, libraryOwner }) => {
   }
 
   const onNewScanResult = async (isbn) => {
-    axios.get(`https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&jscmd=data&format=json`)
-    .then((bookInfo) => {
-      const isbnString = `ISBN:${isbn}`;
-      const bookData = bookInfo.data[isbnString];
-      const authors = bookData.authors.map((author) => {
-        return author.name;
-      });
-      const bookPostData = {
-        authors: authors,
-        title: bookData.title,
-        genre: GenreFilter(bookData.subjects),
-        pub_date: DateParser(bookData.publish_date),
-        ISBN: parseInt(isbn)
-      };
-      if (Object.hasOwn(bookData, 'cover')) {
-        bookPostData.image_url = bookData.cover.small;
-      }
-      setScanResults(prev => [...prev, bookPostData]);
-    })
-    .catch((error) => {
-      console.log('Error getting book info: ', error);
-    })
+    if (isbn !== lastResult) {
+      axios.get(`https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&jscmd=data&format=json`)
+      .then((bookInfo) => {
+        const isbnString = `ISBN:${isbn}`;
+        const bookData = bookInfo.data[isbnString];
+        const authors = bookData.authors.map((author) => {
+          return author.name;
+        });
+        const bookPostData = {
+          authors: authors,
+          title: bookData.title,
+          genre: GenreFilter(bookData.subjects),
+          pub_date: DateParser(bookData.publish_date),
+          ISBN: parseInt(isbn)
+        };
+        if (Object.hasOwn(bookData, 'cover')) {
+          bookPostData.image_url = bookData.cover.small;
+        }
+        setLastResult(isbn);
+        setScanResults(prev => [...prev, bookPostData]);
+      })
+      .catch((error) => {
+        console.log('Error getting book info: ', error);
+      })
+    }
   };
 
   return (
@@ -66,13 +68,13 @@ const PersonalLibrary = ({ loggedInUser, libraryOwner }) => {
           {scanResults.length > 0 ? <Button onClick={saveResultsToLibrary}>SAVE TO SHELF</Button> : null}
         </Col>
       </Row>
-      <Row>
+      <Row style={{ display: "flex", justifyContent: "center"}}>
         <Shelf fetchTrigger={fetchTrigger} libraryOwner={libraryOwner}/>
       </Row>
-      <Row>
+      <Row style={{ display: "flex", justifyContent: "center"}}>
         {isUsersOwnLibrary ? <Borrowed libraryOwner={libraryOwner}/> : null}
       </Row>
-      <Row>
+      <Row style={{ display: "flex", justifyContent: "center"}}>
         {isUsersOwnLibrary ? <Lent libraryOwner={libraryOwner}/> : null}
       </Row>
     </Container>
