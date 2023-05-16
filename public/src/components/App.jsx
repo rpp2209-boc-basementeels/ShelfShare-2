@@ -32,13 +32,14 @@ const App = () => {
   const [user, setUser] = useState({});
   const [showBookDetail, setShowDetail] = useState(false);
   const [galleryBooks, updateGalleryBooks] = useState(Data);
+  const [allBooks, updateAllBooks] = useState(Data);
   const [selectedBookId, updateSelectedBookId] = useState(null);
   // Pass both usernameThatWasClicked and setUsernameThatWasClicked down as props through homepage components,
   // to the individual reviews for a book (use Review component in profile/components/Review.jsx). This component
   // is set up to receive these props of the same names (usernameThatWasClicked and setUsernameThatWasClicked)
   // and will update below, triggering a re-rendering of the clicked-on-user's public profile page, line 42
   // When "back" button is clicked on this profile page, state resets to an empty string
-  const [usernameThatWasClicked, setUsernameThatWasClicked] = useState('Melodie');
+  const [usernameThatWasClicked, setUsernameThatWasClicked] = useState('');
 
   ////////////////////////////////////////////
   // setting the state for the Orders
@@ -83,7 +84,7 @@ const App = () => {
     axios.get('/trending')
     .then((books) => {
       console.log(books.data);
-      updateGalleryBooks(books.data);
+      updateAllBooks(books.data);
     })
     .catch((err) => {
       console.log(err);
@@ -120,12 +121,12 @@ const App = () => {
           <Col>
             <Button variant="outline-primary" onClick={() => {setSelectedPage('Library')}}>My Library</Button>
           </Col>
-            <Header setShowDetail={setShowDetail} setClickedLogin={setClickedLogin} user={user} setUser={setUser} updateGalleryBooks={updateGalleryBooks}/>
+            <Header setShowDetail={setShowDetail} setClickedLogin={setClickedLogin} user={user} setUser={setUser} updateAllBooks={updateAllBooks} allBooks={allBooks}/>
           {selectedPage === 'Login' ? <GoogleSignIn setUser={setUser} setClickedLogin={setClickedLogin}/> : null}
           {selectedPage === 'Profile' ? <ProfilePage user={user}/> : null}
           {selectedPage === 'Library' ? <PersonalLibrary loggedInUser={'Kevin'} libraryOwner={'Kevin'}/> : null}
           {selectedPage === 'Orders' ? <Orders user={7} page={selectedPage} bookData={{loaned: loan, borrowed: borrow, pending: pend}}/> : null}
-          {selectedPage === 'Home' ? <Gallery selectedBookId={selectedBookId} updateSelectedBookId={updateSelectedBookId} books={galleryBooks} showBookDetail={showBookDetail} setShowDetail={setShowDetail}/> : null}
+          {selectedPage === 'Home' ? <Gallery selectedBookId={selectedBookId} updateSelectedBookId={updateSelectedBookId} books={allBooks} showBookDetail={showBookDetail} setShowDetail={setShowDetail}/> : null}
           {/* <Footer /> */}
         </Row>
       </Container>

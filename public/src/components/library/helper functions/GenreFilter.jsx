@@ -15,13 +15,17 @@ const GenreFilter = (subjectArray) => {
     'Religion': 0,
     'Mystery': 0
   };
-  // return the first valid, matching genre
-  for (let i = 0; i < subjectArray.length; i++) {
-    if (validGenres.hasOwnProperty(subjectArray[i].name)) {
-      return subjectArray[i].name;
+
+  if (subjectArray !== undefined) {
+    for (let i = 0; i < subjectArray.length; i++) {
+      if (validGenres.hasOwnProperty(subjectArray[i].name)) {
+        return subjectArray[i].name;
+      }
     }
+    return 'N/A';
+  } else {
+    return 'N/A';
   }
-  return '';
 };
 
 export default GenreFilter;

@@ -8,9 +8,9 @@ const Review = (props) => {
     var date = moment(props.review.review_date).local().format('M-D-YYYY');
 
     return (
-        <Card style={{"width": "50vw", "borderWidth": "1px"}}>
+        <Card style={{"width": "50rem", "borderWidth": "1px"}}>
             <Row>
-                <Card.Img style={{"height": "13vh", "width": "7vw"}} variant="top" src={props.review.image_url}></Card.Img>
+                <Card.Img style={{"height": "10rem", "width": "7rem"}} variant="top" src={props.review.image_url}></Card.Img>
                 <Col>
                     <Card.Title>{props.review.title}</Card.Title>
                     <Card.Text style={{"cursor": "pointer"}} onClick={() => {
