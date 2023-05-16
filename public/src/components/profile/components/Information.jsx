@@ -3,6 +3,7 @@ import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import EditInfoModal from './EditInfoModal.jsx';
 import { FcCheckmark } from "react-icons/fc";
+import ListGroup from 'react-bootstrap/ListGroup'; // maybe use this for responsive text sizing
 
 const Information = (props) => {
     const [editButtonClicked, setEditButtonClicked] = useState(false);

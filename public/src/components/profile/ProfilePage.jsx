@@ -7,7 +7,6 @@ const ProfilePage = (props) => {
     // props.user is the data about the current user passed down from App.jsx
     // Is not implemented by Kevin yet, so use below username as placeholder
     var username = 'Kevin';
-    console.log('props profilepage', props);
 
     const [userReviews, setUserReviews] = useState([]);
     const [userInfo, setUserInfo] = useState({
