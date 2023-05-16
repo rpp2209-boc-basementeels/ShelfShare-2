@@ -14,11 +14,10 @@ import axios from 'axios';
 
 const Header = (props) => {
 
-  const [term, setTerm] = useState('');
 
   const handleChange = (e) => {
     console.log(event.target.value);
-    setTerm(event.target.value);
+    props.setTerm(event.target.value);
   }
 
   const handleSubmit = (e) => {
@@ -30,14 +29,14 @@ const Header = (props) => {
     //at each book...
     let currentBook = props.allBooks[i];
     //if the title string or the author string contains the term
-    if (currentBook.title.includes(term)) {
+    if (currentBook.title.includes(props.term)) {
       filtered.push(currentBook);
     }
-    if (currentBook.author.includes(term)) {
+    if (currentBook.author.includes(props.term)) {
       filtered.push(currentBook);
     }
     }
-    props.updateAllBooks(filtered);
+    props.updateGalleryBooks(filtered);
   }
 
   const handleLogout = () => {
@@ -100,7 +99,7 @@ const Header = (props) => {
                 type="search"
                 onChange= {handleChange}
                 placeholder="Search by Author or Book Title"
-                value={term}
+                value={props.term}
                 className="me-2"
                 aria-label="Search"
               />
