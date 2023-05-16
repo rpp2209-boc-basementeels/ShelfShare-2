@@ -19,6 +19,9 @@ const createConfig = (props) => {
     if (props.disableFlip !== undefined) {
         config.disableFlip = props.disableFlip;
     }
+    if (props.rememberLastUsedCamera === false) {
+        config.rememberLastUsedCamera = props.rememberLastUsedCamera;
+    }
     return config;
 };
 
