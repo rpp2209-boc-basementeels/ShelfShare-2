@@ -27,8 +27,7 @@ const App = () => {
     email: 'knhoangre@gmail.com',
     gender: 'male',
     age: '100',
-    username: 'kevinduh',
-    isLibrary: false
+    username: 'kevinduh'
 });
   // const [user, setUser] = useState({});
   const [showBookDetail, setShowDetail] = useState(false);

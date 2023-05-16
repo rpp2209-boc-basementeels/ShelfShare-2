@@ -59,9 +59,9 @@ const PersonalLibrary = ({ user }) => {
 
   return (
     <Container>
-      <Container style={{display: 'flex'}}>
-        <Image rounded src={user.photo} style={{marginBottom: '3rem', height: '10rem'}}></Image>
-        <ListGroup variant="flush" style={{paddingLeft: '0.75rem'}}>
+      <Container className="p-0" style={{display: 'flex'}}>
+        <Image rounded src={user.photo || require('./sub-components/placeholder.png')} style={{marginBottom: '3rem', height: '10rem'}}></Image>
+        <ListGroup variant="flush" style={{marginTop: '2.5rem', marginLeft: '0.75rem'}}>
           <ListGroup.Item>{user.first_name.toUpperCase() + ' ' + user.last_name.toUpperCase()}</ListGroup.Item>
           <ListGroup.Item>{user.isLibrary ? 'PUBLIC LIBRARY' : 'INDIVIDUAL'}</ListGroup.Item>
         </ListGroup>
