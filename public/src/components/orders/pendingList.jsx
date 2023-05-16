@@ -26,7 +26,7 @@ var PendingList = (props) => {
               </tr>
             </thead>
             {books.map(book => (
-              <PendingSingle data={book} key={index += 1} />
+              <PendingSingle data={book} key={index += 1} user={props.user}/>
             ))}
           </table>
         </div>
