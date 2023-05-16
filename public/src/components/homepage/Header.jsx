@@ -21,7 +21,7 @@ const Header = (props) => {
     props.setTerm(event.target.value);
   }
 
-  const handleSubmit = (e) => {
+  const handleSearch = (e) => {
     e.preventDefault();
     //created an array to hold the filtered books
     let filtered = [];
@@ -97,7 +97,7 @@ const Header = (props) => {
 
           <Row className="justify-content-md-center">
             <Col xs={12} md={6}>
-              <Form onSubmit={handleSubmit}>
+              <Form onSubmit={handleSearch}>
               <Form.Control
                 type="search"
                 onChange= {handleChange}
@@ -134,7 +134,7 @@ const Header = (props) => {
                       </NavDropdown>
                       <NavDropdown title="Genre" id="genre-dropdown">
                         <NavDropdown.Item href="#action/3.1">Horror</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">Mystery</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => { filter(props.allBooks, 'genre', 'Cooking', props.updateGalleryBooks)}}>Cooking</NavDropdown.Item>
                         <NavDropdown.Item onClick={() => { filter(props.allBooks, 'genre', 'Autobiography', props.updateGalleryBooks)}}>Autobiography</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="#action/3.4">
