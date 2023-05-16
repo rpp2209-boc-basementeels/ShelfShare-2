@@ -11,6 +11,7 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import filter from './filterHelpers.js';
 
 const Header = (props) => {
 
@@ -118,13 +119,14 @@ const Header = (props) => {
                   <Navbar.Collapse id="homepage-navbar">
                     <Nav className="me-auto">
                       <Navbar.Text href="#home">Explore By:</Navbar.Text>
-                      <Nav.Link onClick={() => { props.setShowDetail(false) }} href="#link">Trending</Nav.Link>
+                      <Nav.Link onClick={() => { props.setShowDetail(false) }}>Trending</Nav.Link>
                       <NavDropdown title="Publication Date" id="pub-date-dropdown">
-                        <NavDropdown.Item href="#action/3.1">1800-1900</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">
+                        <NavDropdown.Item onClick={() => { console.log('1800') }}>1800-1900</NavDropdown.Item>
+                        <NavDropdown.Item>
                           1901-2000
                         </NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">2000-2020</NavDropdown.Item>
+                        <NavDropdown.Item>2000-2010</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => { filter( ) }}>2010-2023</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="#action/3.4">
                           Separated link
@@ -133,7 +135,7 @@ const Header = (props) => {
                       <NavDropdown title="Genre" id="genre-dropdown">
                         <NavDropdown.Item href="#action/3.1">Horror</NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.2">Mystery</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">Romance</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => { filter(props.allBooks, 'genre', 'Autobiography', props.updateGalleryBooks)}}>Autobiography</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="#action/3.4">
                           Separated link
