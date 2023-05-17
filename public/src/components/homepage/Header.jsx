@@ -24,8 +24,7 @@ const Header = (props) => {
       }
       if (option === 'pub') {
         //parse year
-        let year = book.pub_date.slice(0, 4);
-        //convert year string into integer
+        let year = parseInt(book.pub_date.slice(0, 4));
         //if book year is between start and end years
         if (year >= startYr && year <= endYr) {
           filtered.push(book);
@@ -141,7 +140,7 @@ const Header = (props) => {
                           1901-2000
                         </NavDropdown.Item>
                         <NavDropdown.Item>2000-2010</NavDropdown.Item>
-                        <NavDropdown.Item onClick={() => { filter( ) }}>2010-2023</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => { genrePubFilter('pub', null, '2010', '2023') }}>2010-2023</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="#action/3.4">
                           Separated link
