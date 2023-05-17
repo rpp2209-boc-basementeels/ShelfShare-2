@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Button, Container, Row, Col, Card }  from 'react-bootstrap';
+import { Button, Container, Row, Col, Card, Image, ListGroup }  from 'react-bootstrap';
 import GenreFilter from './helper functions/GenreFilter.jsx';
 import DateParser from './helper functions/DateParser.jsx';
 import ProfileType from './sub-components/ProfileType.jsx';
@@ -9,8 +9,7 @@ import Shelf from './sub-components/Shelf.jsx';
 import Borrowed from './sub-components/Borrowed.jsx';
 import Lent from './sub-components/Lent.jsx';
 
-const PersonalLibrary = ({ loggedInUser, libraryOwner }) => {
-  const [isUsersOwnLibrary, setisUsersOwnLibrary] = useState(loggedInUser === libraryOwner);
+const PersonalLibrary = ({ user }) => {
   const [fetchTrigger, setFetchTrigger] = useState(1);
   const [scanResults, setScanResults] = useState([]);
   const [lastResult, setLastResult] = useState({});
@@ -58,10 +57,21 @@ const PersonalLibrary = ({ loggedInUser, libraryOwner }) => {
     }
   };
 
+  function addDefaultSrc(e) {
+    e.target.src = 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png';
+  }
+
   return (
     <Container>
+      <Container className="p-0" style={{display: 'flex'}}>
+        <Image rounded src={user.photo} style={{marginBottom: '3rem', height: '10rem'}} onError={addDefaultSrc}></Image>
+        <ListGroup variant="flush" style={{marginTop: '2.5rem', marginLeft: '0.75rem'}}>
+          <ListGroup.Item>{user.first_name.toUpperCase() + ' ' + user.last_name.toUpperCase()}</ListGroup.Item>
+          <ListGroup.Item>{user.is_Library ? 'PUBLIC LIBRARY' : 'INDIVIDUAL'}</ListGroup.Item>
+        </ListGroup>
+      </Container>
       <Row>
-        {isUsersOwnLibrary ? <ScanButton onNewScanResult={onNewScanResult} scanResults={scanResults} setScanResults={setScanResults}/> : null}
+        <ScanButton onNewScanResult={onNewScanResult} scanResults={scanResults} setScanResults={setScanResults}/>
       </Row>
       <Row>
         <Col style={{ display: "flex", justifyContent: "center"}}>
@@ -69,13 +79,13 @@ const PersonalLibrary = ({ loggedInUser, libraryOwner }) => {
         </Col>
       </Row>
       <Row style={{ display: "flex", justifyContent: "center"}}>
-        <Shelf fetchTrigger={fetchTrigger} libraryOwner={libraryOwner}/>
+        <Shelf fetchTrigger={fetchTrigger} user={user}/>
       </Row>
       <Row style={{ display: "flex", justifyContent: "center"}}>
-        {isUsersOwnLibrary ? <Borrowed libraryOwner={libraryOwner}/> : null}
+        <Borrowed user={user}/>
       </Row>
       <Row style={{ display: "flex", justifyContent: "center"}}>
-        {isUsersOwnLibrary ? <Lent libraryOwner={libraryOwner}/> : null}
+        <Lent user={user}/>
       </Row>
     </Container>
   );

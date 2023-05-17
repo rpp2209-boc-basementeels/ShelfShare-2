@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row';
 import axios from 'axios';
 import BookCard from './BookCard.jsx';
 
-const Borrowed = ({ libraryOwner }) => {
+const Borrowed = ({ user }) => {
   const [borrowed, setBorrowed] = useState({data: []});
   const [isLoading, setIsLoading] = useState(false);
 
@@ -11,7 +11,7 @@ const Borrowed = ({ libraryOwner }) => {
     setIsLoading(true);
     async function fetch() {
       try {
-        const {data} = await axios.get(`/${libraryOwner}/borrowed`);
+        const {data} = await axios.get(`/${user.username}/borrowed`);
         const out = data.reduce((a, v) => {
           if(a[v.title]) {
             a[v.title].author = [a[v.title].author, v.author].join(', ')

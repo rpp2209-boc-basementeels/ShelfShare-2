@@ -20,15 +20,23 @@ const App = () => {
 
   const [selectedPage, setSelectedPage] = useState('Home');
   const [clickedLogin, setClickedLogin] = useState(false);
-//   const [user, setUser] = useState({
-//     first_name: 'Kevin',
-//     last_name: 'Hoang',
-//     photo: `https://lh3.googleusercontent.com/a/AGNmyxbKSB-E9sl8llXqjsc04GfTzVm9fN8CgXHl_mv7=s96-c`,
-//     email: 'knhoangre@gmail.com',
-//     gender: 'male',
-//     age: '100',
-//     username: 'kevinduh'
-// });
+  // const [user, setUser] = useState({
+  //   user_id: 12,
+  //   first_name: 'Kevin',
+  //   last_name: 'Hoang',
+  //   photo: `https://lh3.googleusercontent.com/a/AGNmyxbKSB-E9sl8llXqjsc04GfTzVm9fN8CgXHl_mv7=s96-c`,
+  //   email: 'knhoangre@gmail.com',
+  //   gender: 'male',
+  //   age: '100',
+  //   username: 'kevinduh',
+  //   is_library: false,
+  //   line_1: "1800 Nowhere St",
+  //   line_2: "",
+  //   city: "Your Town",
+  //   state: "My State",
+  //   postal: "13245",
+  //   country: "United States"
+  // });
   const [user, setUser] = useState({});
   const [showBookDetail, setShowDetail] = useState(false);
   const [galleryBooks, updateGalleryBooks] = useState(null);
@@ -125,7 +133,7 @@ const App = () => {
             <Header term={term} setTerm={setTerm} updateGalleryBooks={updateGalleryBooks} setShowDetail={setShowDetail} setClickedLogin={setClickedLogin} user={user} setUser={setUser} updateAllBooks={updateAllBooks} allBooks={allBooks}/>
           {selectedPage === 'Login' ? <GoogleSignIn setUser={setUser} setClickedLogin={setClickedLogin}/> : null}
           {selectedPage === 'Profile' ? <ProfilePage user={user}/> : null}
-          {selectedPage === 'Library' ? <PersonalLibrary loggedInUser={'Kevin'} libraryOwner={'Kevin'}/> : null}
+          {selectedPage === 'Library' ? <PersonalLibrary user={user}/> : null}
           {selectedPage === 'Orders' ? <Orders user={7} page={selectedPage} bookData={{loaned: loan, borrowed: borrow, pending: pend}}/> : null}
           {selectedPage === 'Home' ? <Gallery selectedBookId={selectedBookId} updateSelectedBookId={updateSelectedBookId} books={galleryBooks === null ? allBooks : galleryBooks} updateGalleryBooks={updateGalleryBooks} showBookDetail={showBookDetail} setShowDetail={setShowDetail}/> : null}
           {/* <Footer /> */}
