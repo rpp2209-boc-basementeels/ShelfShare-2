@@ -26,7 +26,7 @@ var PendingList = (props) => {
               </tr>
             </thead>
             {books.map(book => (
-              <PendingSingle data={book} key={index += 1} user={props.user}/>
+              <PendingSingle data={book} key={index += 1} user={props.user} state={props.state}/>
             ))}
           </table>
         </div>
@@ -36,31 +36,3 @@ var PendingList = (props) => {
 }
 
 export default PendingList;
-
-/*
-
-
-
-  return (
-    <div>{
-      books.length > 0 ?
-        <div>
-          <table>
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Return Date</th>
-              </tr>
-            </thead>
-            {books.map(book => (
-              <PendingSingle data={book} key={index += 1} />
-            ))}
-          </table>
-        </div>
-        :
-        <div>You currently have no orders pending/div>}</div>
-  )
-
-
-*/

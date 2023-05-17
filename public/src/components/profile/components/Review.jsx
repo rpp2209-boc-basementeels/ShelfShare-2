@@ -19,7 +19,7 @@ const Review = (props) => {
                         }
                     }}>Posted by: @{props.review.username}</Card.Text>
                     <Card.Text style={{"padding": "0"}}>{props.review.body}</Card.Text>
-                    <Card.Subtitle style={{"position": "absolute", "top": 0, "right": 0, "paddingTop": "2vh", "paddingRight": "1vw"}}>{date}</Card.Subtitle>
+                    <Card.Subtitle style={{"position": "absolute", "top": 0, "right": 0, "paddingTop": "2vh", "paddingRight": "1vw", "minWidth": "max-content"}}>{date}</Card.Subtitle>
                 </Col>
             </Row>
         </Card>
