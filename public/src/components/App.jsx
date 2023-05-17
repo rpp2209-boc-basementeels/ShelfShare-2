@@ -18,6 +18,7 @@ import axios from 'axios';
 
 const App = () => {
 
+
   const [selectedPage, setSelectedPage] = useState('Home');
   const [clickedLogin, setClickedLogin] = useState(false);
   // const [user, setUser] = useState({
@@ -92,7 +93,7 @@ const App = () => {
   useEffect(() => {
     axios.get('/trending')
     .then((books) => {
-      console.log(books.data);
+      console.log('user', user);
       updateAllBooks(books.data);
     })
     .catch((err) => {

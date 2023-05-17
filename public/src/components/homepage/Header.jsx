@@ -14,31 +14,23 @@ import axios from 'axios';
 
 const Header = (props) => {
 
-  const genrePubFilter = (option, parameterStr) => {
-    //create empty filtered array
+  const genrePubFilter = (option, genre, startYr, endYr) => {
     let filtered = [];
-    //iterate over all the books
     props.allBooks.forEach((book) => {
-      //if option is genre
       if (option === 'genre') {
-        //if parameter matches genre
-        if (parameterStr === book.genre) {
-          //push book to filtered array
+        if (genre === book.genre) {
           filtered.push(book);
         }
       }
-      //if option is pub date
       if (option === 'pub') {
-        //parse pub year
-        let year = book.pub_date.slice(0, 4);
-        //if parameter matches pub year
-        if (parameterStr === year) {
-          //push book to filtered array
+        //parse year
+        let year = parseInt(book.pub_date.slice(0, 4));
+        //if book year is between start and end years
+        if (year >= startYr && year <= endYr) {
           filtered.push(book);
         }
       }
     });
-    //set gallery books
     props.updateGalleryBooks(filtered);
   };
 
@@ -49,21 +41,17 @@ const Header = (props) => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    //created an array to hold the filtered books
     let filtered = [];
-    //iterate over all books
     for (var i = 0; i < props.allBooks.length; i++) {
-    //at each book...
-    let currentBook = props.allBooks[i];
-    let currentBookTitle = currentBook.title.toLowerCase();
-    let currentAuthor = currentBook.author.toLowerCase();
-    //if the title string or the author string contains the term
-    if (currentBookTitle.includes(props.term.toLowerCase())) {
-      filtered.push(currentBook);
-    }
-    if (currentAuthor.includes(props.term.toLowerCase())) {
-      filtered.push(currentBook);
-    }
+      let currentBook = props.allBooks[i];
+      let currentBookTitle = currentBook.title.toLowerCase();
+      let currentAuthor = currentBook.author.toLowerCase();
+      if (currentBookTitle.includes(props.term.toLowerCase())) {
+        filtered.push(currentBook);
+      }
+      if (currentAuthor.includes(props.term.toLowerCase())) {
+        filtered.push(currentBook);
+      }
     }
     props.updateGalleryBooks(filtered);
   }
@@ -152,7 +140,7 @@ const Header = (props) => {
                           1901-2000
                         </NavDropdown.Item>
                         <NavDropdown.Item>2000-2010</NavDropdown.Item>
-                        <NavDropdown.Item onClick={() => { filter( ) }}>2010-2023</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => { genrePubFilter('pub', null, '2010', '2023') }}>2010-2023</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="#action/3.4">
                           Separated link

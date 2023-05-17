@@ -266,7 +266,27 @@ app.get(`/:user/lent`, (req, res) => {
     .catch((err) => res.status(500).send(err));
 });
 
+// USAGE RECORDS ROUTE
+app.post(`/usage`, (req, res) => {
+
+  const records = {
+    isbn: req.body.isbn,
+    genre: req.body.genre,
+    date: new Date()
+  }
+
+  axios.post(`${process.env.API_URL}/usage/records`, records)
+    .then((result) => {
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.log('ERROR posting record', err);
+      res.sendStatus(500);
+    })
+})
+
 // server listens on designated port
 app.listen(process.env.PORT, () => {
   console.log(`App listening on port ${process.env.PORT}`)
 });
+
