@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import BookCard from './BookCard.jsx';
@@ -11,6 +11,14 @@ import Modal from 'react-bootstrap/Modal';
 const Gallery = (props) => {
 
   const handleClose = () => props.setShowDetail(false);
+
+  const handleBorrowClick = (e) => {
+    console.log('click');
+    axios.post('/usage', {
+      isbn: book.isbn,
+      genre: book.genre
+    });
+  }
 
   const [book, setBook] = useState({});
   const [authors, setAuthors] = useState([]);
@@ -44,7 +52,7 @@ const Gallery = (props) => {
       </Col>
     </Modal.Body>
     <Modal.Footer>
-    <Button variant="primary" onClick={handleClose}>
+    <Button onClick={handleBorrowClick} variant="primary">
         Request to Borrow
       </Button>
       <Button variant="secondary" onClick={handleClose}>
