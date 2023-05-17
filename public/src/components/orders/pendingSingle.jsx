@@ -1,10 +1,20 @@
-import React, { useEffect} from "react";
+import React, { useEffect, useState } from "react";
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 
 var PendingSingle = (props) => {
+  // const [modal, setModal] = useState(false)
+  // let close = () => setModal(false);
+
   var type = props.data.type;
   let book_id = props.data.details[0].book_id;
+
+  // let confirm = () => {
+  //   return (
+  //     <Confirmation />
+  //   )
+  // }
+
 
   let pendingClick = (input) => {
     if (input === 'Loaned') {
@@ -17,8 +27,13 @@ var PendingSingle = (props) => {
     }
   }
 
+  useEffect(() => {
+    PendingSingle;
+  }, [props])
+
+
   return (
-    <tbody>
+      <tbody>
       <tr>
         <td className="p-2">{props.data.details[0].title}</td>
         <td className="p-2">{props.data.details[0].author}</td>
@@ -27,7 +42,9 @@ var PendingSingle = (props) => {
           e.preventDefault();
           pendingClick(type);
           alert('Order Confirmed!')
-          window.location.reload(false);
+          props.state(true)
+          // confirm();
+          // window.location.reload(false);
         }}>Confirm</Button></td>
       </tr>
     </tbody>

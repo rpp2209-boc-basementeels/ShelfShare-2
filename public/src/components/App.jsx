@@ -56,16 +56,16 @@ const App = () => {
   const [borrow, setBorrow] = useState([]);
   const [pend, setPend] = useState([]);
 
-  let testUser = 7;
-
   let fetcher = () => {
-    axios.get(`orders/${testUser}`)
+    // if (user.user_id !== undefined || user.user_id > 0) {
+    axios.get(`orders/${7}`)
     .then(data => {
       setLoan(data.data.loaned);
       setBorrow(data.data.borrowed);
       setPend(data.data.pending);
     })
     .catch(err => console.log('err in orders', err));
+  // }
 }
 
   useEffect(() => {
@@ -74,8 +74,10 @@ const App = () => {
 
   var pendingStyle = (array) => {
     if (array.length > 0)  { return array.length }
-    else { return; }
+    else { return ; }
   }
+
+  console.log('user', user.user_id)
   ///////////////////////////////////////////
 
   // Need to log users into the app if the users exist
