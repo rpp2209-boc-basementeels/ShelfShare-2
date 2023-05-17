@@ -11,7 +11,7 @@ const Information = (props) => {
     return (
         <div>
             {editButtonClicked ? <div style={{"display": "flex", "justifyContent": "center"}}>
-                <EditInfoModal info={props.info} closeButton={setEditButtonClicked} buttonClicked={editButtonClicked}/>
+                <EditInfoModal info={props.info} closeButton={setEditButtonClicked} buttonClicked={editButtonClicked} setUser={props.setUser}/>
             </div> : <div style={{"display": "flex", "alignItems": "flex-start", "justifyContent": "center"}}>
             <div style={{"textAlign": "center", "position": "relative", "width": "30vw", "minWidth": "max-content"}}>
                 <Image style={{"borderRadius": "50%", "width": "10rem"}} referrerPolicy="no-referrer" src={props.info.photo}></Image>

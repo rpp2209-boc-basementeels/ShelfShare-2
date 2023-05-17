@@ -27,9 +27,9 @@ const App = () => {
     last_name: 'Hoang',
     photo: `https://lh3.googleusercontent.com/a/AGNmyxbKSB-E9sl8llXqjsc04GfTzVm9fN8CgXHl_mv7=s96-c`,
     email: 'knhoangre@gmail.com',
-    gender: 'male',
+    gender: 'non-binary',
     age: '100',
-    username: 'kevinduh',
+    username: 'Kevin',
     is_library: false,
     line_1: "1800 Nowhere St",
     line_2: "",
@@ -133,7 +133,7 @@ const App = () => {
           </Col>
             <Header term={term} setTerm={setTerm} updateGalleryBooks={updateGalleryBooks} setShowDetail={setShowDetail} setClickedLogin={setClickedLogin} user={user} setUser={setUser} updateAllBooks={updateAllBooks} allBooks={allBooks}/>
           {selectedPage === 'Login' ? <GoogleSignIn setUser={setUser} setClickedLogin={setClickedLogin}/> : null}
-          {selectedPage === 'Profile' ? <ProfilePage user={user}/> : null}
+          {selectedPage === 'Profile' ? <ProfilePage user={user} setUser={setUser}/> : null}
           {selectedPage === 'Library' ? <PersonalLibrary user={user}/> : null}
           {selectedPage === 'Orders' ? <Orders user={7} page={selectedPage} bookData={{loaned: loan, borrowed: borrow, pending: pend}}/> : null}
           {selectedPage === 'Home' ? <Gallery selectedBookId={selectedBookId} updateSelectedBookId={updateSelectedBookId} books={galleryBooks === null ? allBooks : galleryBooks} updateGalleryBooks={updateGalleryBooks} showBookDetail={showBookDetail} setShowDetail={setShowDetail}/> : null}
