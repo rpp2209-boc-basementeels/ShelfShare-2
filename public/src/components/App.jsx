@@ -76,8 +76,6 @@ const App = () => {
     if (array.length > 0)  { return array.length }
     else { return ; }
   }
-
-  console.log('user', user.user_id)
   ///////////////////////////////////////////
 
   // Need to log users into the app if the users exist

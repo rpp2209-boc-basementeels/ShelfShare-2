@@ -3,13 +3,12 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
-import test from './test.jpeg';
 
 var Confirmation = () => {
   return (
 
     <Card style={{ width: '18rem' }}>
-    <Card.Img variant="top" src={require('./test.jpeg')}/>
+    <Card.Img variant="top" src="https://st3.depositphotos.com/1392007/16560/i/600/depositphotos_165602958-stock-photo-hummingbird-and-a-fruit-blossom.jpg"/>
     <Card.Body>
       <Card.Title>Shipping Confirmed!</Card.Title>
 

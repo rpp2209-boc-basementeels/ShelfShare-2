@@ -9,12 +9,6 @@ var PendingSingle = (props) => {
   var type = props.data.type;
   let book_id = props.data.details[0].book_id;
 
-  // let confirm = () => {
-  //   return (
-  //     <Confirmation />
-  //   )
-  // }
-
 
   let pendingClick = (input) => {
     if (input === 'Loaned') {
@@ -43,8 +37,6 @@ var PendingSingle = (props) => {
           pendingClick(type);
           alert('Order Confirmed!')
           props.state(true)
-          // confirm();
-          // window.location.reload(false);
         }}>Confirm</Button></td>
       </tr>
     </tbody>
