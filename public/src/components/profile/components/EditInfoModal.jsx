@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
@@ -7,12 +7,15 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import axios from 'axios';
 
 const EditInfoModal = (props) => {
+    console.log(props, 'these be the props');
     // need to implement uploading photo file from local computer
     const [firstName, setFirstName] = useState(props.info.first_name);
     const [lastName, setLastName] = useState(props.info.last_name);
     const [email, setEmail] = useState(props.info.email);
     const [age, setAge] = useState(props.info.age);
+
     const [gender, setGender] = useState(props.info.gender);
+    const [otherGender, setOtherGender] = useState(null);
 
     const [line1, setLine1] = useState(props.info.line_1);
     const [line2, setLine2] = useState(props.info.line_2);
@@ -25,15 +28,22 @@ const EditInfoModal = (props) => {
         if (firstName === '' || lastName === '' || email === '' || age === '' || gender === '' || line1 === '' || city === '' || state === '' || postal === '' || country === '') {
             alert('Please complete each field before saving');
         } else {
-            props.closeButton(!props.buttonClicked);
             alert('Your information has been saved!')
+            
+            var genderChoice;
+
+            if (otherGender !== null) {
+                genderChoice = otherGender;
+            } else {
+                genderChoice = gender;
+            }
 
             axios.post(`/personalInformation/${props.info.username}`, {
                 firstName,
                 lastName,
                 email,
                 age,
-                gender,
+                genderChoice,
                 line1,
                 line2,
                 city,
@@ -44,6 +54,24 @@ const EditInfoModal = (props) => {
             .catch((error) => {
                 console.log('There was an error updating personal information :(', error);
             })
+            props.setUser({
+                user_id: props.info.user_id,
+                username: props.info.username,
+                is_library: props.info.is_library,
+                photo: props.info.photo,
+                first_name: firstName,
+                last_name: lastName,
+                email,
+                age,
+                gender: genderChoice,
+                line_1: line1,
+                line_2: line2,
+                city,
+                state,
+                postal,
+                country
+            });
+            props.closeButton(!props.buttonClicked);
         }
     };
 
@@ -82,10 +110,10 @@ const EditInfoModal = (props) => {
                         <Form.Group>
                             <Form.Label style={{"marginTop": "2vh"}}>Gender</Form.Label>
                             <Form.Select onChange={(e) => {setGender(e.target.value)}}>
-                                {gender == 'male' ? <option>Male</option> : null}
-                                {gender == 'female' ? <option>Female</option> : null}
-                                {gender == 'other' ? <option>Other</option> : null}
-                                {gender == 'undisclosed' ? <option>Undisclosed</option> : null}
+                                {gender === 'Male' ? <option>Male</option> : null}
+                                {gender === 'Female' ? <option>Female</option> : null}
+                                {gender === 'Undisclosed' ? <option>Undisclosed</option> : null}
+                                {gender !== 'Male' || gender !== 'Female' || gender !== 'Other' || gender !== 'Undisclosed' ? <option>{gender}</option> : null}
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                                 <option value="Other">Other</option>
@@ -94,6 +122,12 @@ const EditInfoModal = (props) => {
                             <Form.Text>We'll never share your gender with anyone else.</Form.Text>
                         </Form.Group>
                     </Col>
+                    {gender === 'Other' ? <Col>
+                        <Form.Group>
+                            <Form.Label style={{"marginTop": "2vh"}}>Please self identify</Form.Label>
+                            <Form.Control placeholder={'Enter Gender'} onChange={(e) => {setOtherGender(e.target.value)}}></Form.Control>
+                        </Form.Group>
+                    </Col>: null}
                 </Row>
             </Form>
             <h3 style={{"textAlign": "center", "marginTop": "2vh"}}>Edit Address</h3>
