@@ -17,7 +17,11 @@ const Gallery = (props) => {
     axios.post('/usage', {
       isbn: book.isbn,
       genre: book.genre
-    });
+    })
+    .then(() => {
+      props.setShowDetail(false);
+      alert(`Your request to borrow ${book.title} has been submitted. Please visit your orders page to manage requests.`);
+    })
   }
 
   const [book, setBook] = useState({});

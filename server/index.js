@@ -268,7 +268,6 @@ app.get(`/:user/lent`, (req, res) => {
 
 // USAGE RECORDS ROUTE
 app.post(`/usage`, (req, res) => {
-  console.log(req);
 
   const records = {
     isbn: req.body.isbn,
@@ -277,7 +276,7 @@ app.post(`/usage`, (req, res) => {
   }
 
   axios.post(`${process.env.API_URL}/usage/records`, records)
-    .then((res) => {
+    .then((result) => {
       res.sendStatus(201);
     })
     .catch((err) => {
