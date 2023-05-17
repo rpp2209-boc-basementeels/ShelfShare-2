@@ -13,7 +13,6 @@ const Gallery = (props) => {
   const handleClose = () => props.setShowDetail(false);
 
   const handleBorrowClick = (e) => {
-    console.log('click');
     axios.post('/usage', {
       isbn: book.isbn,
       genre: book.genre
@@ -34,6 +33,17 @@ const Gallery = (props) => {
       bookAuthors += ', ';
     }
   }
+
+    let gallery = (props.books.map((book, index) =>
+            <Col xs={12} md={6} lg={4} xl={4} key={index} className={index}>
+            <BookCard authors={authors} setAuthors={setAuthors} setBook={setBook} id={book.book_id} books={props.books} updateSelectedBookId={props.updateSelectedBookId} setShowDetail={props.setShowDetail} title={book.title} author={book.author} image={book.image_url} description={"description placeholder"}/>
+            </Col>
+          ));
+
+    if (gallery.length === 0) {
+      gallery = <div> Sorry, No Matching Titles!</div>
+    }
+
 
   return (
     <div>
@@ -66,12 +76,9 @@ const Gallery = (props) => {
     </Modal>
 
       <Container>
+
         <Row >
-          {props.books.map((book, index) =>
-            <Col xs={12} md={6} lg={4} xl={4} key={index} className={index}>
-            <BookCard authors={authors} setAuthors={setAuthors} setBook={setBook} id={book.book_id} books={props.books} updateSelectedBookId={props.updateSelectedBookId} setShowDetail={props.setShowDetail} title={book.title} author={book.author} image={book.image_url} description={"description placeholder"}/>
-            </Col>
-          )}
+          {gallery}
         </Row>
       </Container>
     </div>

@@ -25,7 +25,6 @@ const Header = (props) => {
       if (option === 'pub') {
         //parse year
         let year = parseInt(book.pub_date.slice(0, 4));
-        //if book year is between start and end years
         if (year >= startYr && year <= endYr) {
           filtered.push(book);
         }
@@ -35,7 +34,6 @@ const Header = (props) => {
   };
 
   const handleChange = (e) => {
-    console.log(event.target.value);
     props.setTerm(event.target.value);
   }
 
@@ -135,16 +133,15 @@ const Header = (props) => {
                       <Navbar.Text href="#home">Explore By:</Navbar.Text>
                       <Nav.Link onClick={() => { props.setShowDetail(false) }}>Trending</Nav.Link>
                       <NavDropdown title="Publication Date" id="pub-date-dropdown">
-                        <NavDropdown.Item onClick={() => { console.log('1800') }}>1800-1900</NavDropdown.Item>
-                        <NavDropdown.Item>
-                          1901-2000
-                        </NavDropdown.Item>
-                        <NavDropdown.Item>2000-2010</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => { genrePubFilter('pub', null, '1800', '1900') }}>1800-1900</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => { genrePubFilter('pub', null, '1901', '1950') }}>1901-1950 </NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => { genrePubFilter('pub', null, '1951', '1970') }}>1951-1970 </NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => { genrePubFilter('pub', null, '1971', '1980') }}>1971-1980 </NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => { genrePubFilter('pub', null, '1981', '1990') }}>1981-1990 </NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => { genrePubFilter('pub', null, '1991', '2000') }}>1991-2000 </NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => { genrePubFilter('pub', null, '2001', '2010') }}>2000-2010 </NavDropdown.Item>
                         <NavDropdown.Item onClick={() => { genrePubFilter('pub', null, '2010', '2023') }}>2010-2023</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">
-                          Separated link
-                        </NavDropdown.Item>
+
                       </NavDropdown>
                       <NavDropdown title="Genre" id="genre-dropdown">
                         <NavDropdown.Item onClick={() => { genrePubFilter('genre', 'Cooking')}}>Cooking</NavDropdown.Item>
