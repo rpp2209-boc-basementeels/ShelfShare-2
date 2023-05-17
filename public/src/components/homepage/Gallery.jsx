@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import BookCard from './BookCard.jsx';
@@ -12,6 +12,17 @@ const Gallery = (props) => {
 
   const handleClose = () => props.setShowDetail(false);
 
+  const handleBorrowClick = (e) => {
+    axios.post('/usage', {
+      isbn: book.isbn,
+      genre: book.genre
+    })
+    .then(() => {
+      props.setShowDetail(false);
+      alert(`Your request to borrow ${book.title} has been submitted. Please visit your orders page to manage requests.`);
+    })
+  }
+
   const [book, setBook] = useState({});
   const [authors, setAuthors] = useState([]);
 
@@ -22,6 +33,17 @@ const Gallery = (props) => {
       bookAuthors += ', ';
     }
   }
+
+    let gallery = (props.books.map((book, index) =>
+            <Col xs={12} md={6} lg={4} xl={4} key={index} className={index}>
+            <BookCard authors={authors} setAuthors={setAuthors} setBook={setBook} id={book.book_id} books={props.books} updateSelectedBookId={props.updateSelectedBookId} setShowDetail={props.setShowDetail} title={book.title} author={book.author} image={book.image_url} description={"description placeholder"}/>
+            </Col>
+          ));
+
+    if (gallery.length === 0) {
+      gallery = <div> Sorry, No Matching Titles!</div>
+    }
+
 
   return (
     <div>
@@ -38,13 +60,13 @@ const Gallery = (props) => {
     </Modal.Header>
     <Modal.Body>
       <Col>
-      <Row><img src={book.image_url} /></Row>
+      <Row className="justify-content-center"><img src={book.image_url} style={{width: '35rem'}}/></Row>
       <Row className="justify-content-center">Author(s): {bookAuthors}</Row>
       <Row className="justify-content-center">Genre: {book.genre}</Row>
       </Col>
     </Modal.Body>
     <Modal.Footer>
-    <Button variant="primary" onClick={handleClose}>
+    <Button onClick={handleBorrowClick} variant="primary">
         Request to Borrow
       </Button>
       <Button variant="secondary" onClick={handleClose}>
@@ -54,12 +76,9 @@ const Gallery = (props) => {
     </Modal>
 
       <Container>
+
         <Row >
-          {props.books.map((book, index) =>
-            <Col xs={12} md={6} lg={4} xl={4} key={index} className={index}>
-            <BookCard authors={authors} setAuthors={setAuthors} setBook={setBook} id={book.book_id} books={props.books} updateSelectedBookId={props.updateSelectedBookId} setShowDetail={props.setShowDetail} title={book.title} author={book.author} image={book.image_url} description={"description placeholder"}/>
-            </Col>
-          )}
+          {gallery}
         </Row>
       </Container>
     </div>

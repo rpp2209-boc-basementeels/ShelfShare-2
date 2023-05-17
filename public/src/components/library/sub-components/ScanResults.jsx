@@ -17,7 +17,6 @@ function filterResults (results) {
 }
 
 const ResultContainerTable = ({results}) => {
-  const result = filterResults(results);
   return (
     <Table striped bordered>
       <thead>
@@ -31,7 +30,7 @@ const ResultContainerTable = ({results}) => {
       </thead>
       <tbody>
       {
-        result.map((book, i) => {
+        results.map((book, i) => {
           return (
             <tr key={i + 1}>
               <td>{i + 1}</td>
@@ -57,11 +56,12 @@ const ResultContainerTable = ({results}) => {
 };
 
 const ScanResults = ({ results }) => {
+  const filteredResults = filterResults(results);
   return (
     <>
       <p></p>
-      <h5>SCANNED BOOKS ({filterResults(results).length})</h5>
-      <ResultContainerTable results={results} />
+      <h5>SCANNED BOOKS ({filteredResults.length})</h5>
+      <ResultContainerTable results={filteredResults} />
     </>
   );
 };

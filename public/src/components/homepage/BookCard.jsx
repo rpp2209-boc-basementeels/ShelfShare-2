@@ -14,9 +14,6 @@ const BookCard = (props) => {
     //make axios get request for the individual book info
     axios.get('/detail', {params: {bookId: props.id}})
     .then((book) => {
-      //set authors state
-      //set book state
-      console.log('handle click - authors', book.data.authors);
       props.setBook(book.data.books[0]);
       props.setAuthors(book.data.authors);
     })
@@ -24,21 +21,19 @@ const BookCard = (props) => {
       props.setShowDetail(true);
     })
   }
-
   //iterate over the authors array
-
 
   return (
     <div>
       <Container className={props.index}>
-      <Card onClick={handleClick} style={{ width: '18rem' }}>
-      <Card.Img className={props.index} variant="top" src={props.image} />
+      <Card onClick={handleClick} style={{ width: '14rem', margin: '1rem' }}>
+      <Card.Img className="justify-content-center" variant="top" src={props.image} style={{ width: '12rem', height: 'auto', margin: '1rem' }}/>
       <Card.Body>
-        <Card.Title className={props.index}>{props.title}</Card.Title>
-        <Card.Subtitle className={props.index} className="mb-2 text-muted"></Card.Subtitle>
-        <Card.Text className={props.index}>
+        <Card.Title className="justify-content-center">{props.title}</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted"></Card.Subtitle>
+        <Card.Text >
         </Card.Text>
-        <Button variant="primary">Borrow</Button>
+        <Button className="justify-content-center" variant="primary">More Information</Button>
       </Card.Body>
       </Card>
       </Container>

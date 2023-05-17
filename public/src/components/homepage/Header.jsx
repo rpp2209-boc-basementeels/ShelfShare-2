@@ -14,23 +14,44 @@ import axios from 'axios';
 
 const Header = (props) => {
 
-  const [term, setTerm] = useState('');
+  const genrePubFilter = (option, genre, startYr, endYr) => {
+    let filtered = [];
+    props.allBooks.forEach((book) => {
+      if (option === 'genre') {
+        if (genre === book.genre) {
+          filtered.push(book);
+        }
+      }
+      if (option === 'pub') {
+        //parse year
+        let year = parseInt(book.pub_date.slice(0, 4));
+        if (year >= startYr && year <= endYr) {
+          filtered.push(book);
+        }
+      }
+    });
+    props.updateGalleryBooks(filtered);
+  };
 
   const handleChange = (e) => {
-    console.log(event.target.value);
-    setTerm(event.target.value);
+    props.setTerm(event.target.value);
   }
 
-  const handleSubmit = (e) => {
-    //make an axios request to front end server
-    axios.get('/search', { params: { searchTerm: term } })
-      .then((books) => {
-        console.log(books.data);
-        // props.updateGalleryBooks(books.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
+  const handleSearch = (e) => {
+    e.preventDefault();
+    let filtered = [];
+    for (var i = 0; i < props.allBooks.length; i++) {
+      let currentBook = props.allBooks[i];
+      let currentBookTitle = currentBook.title.toLowerCase();
+      let currentAuthor = currentBook.author.toLowerCase();
+      if (currentBookTitle.includes(props.term.toLowerCase())) {
+        filtered.push(currentBook);
+      }
+      if (currentAuthor.includes(props.term.toLowerCase())) {
+        filtered.push(currentBook);
+      }
+    }
+    props.updateGalleryBooks(filtered);
   }
 
   const handleLogout = () => {
@@ -89,16 +110,16 @@ const Header = (props) => {
 
           <Row className="justify-content-md-center">
             <Col xs={12} md={6}>
-              <Form onSubmit={handleSubmit}>
-                <Form.Control
-                  type="search"
-                  onChange={handleChange}
-                  placeholder="Search by Author or Book Title"
-                  value={term}
-                  className="me-2"
-                  aria-label="Search"
-                />
-                <Button variant="primary" type="submit"> Submit </Button>
+              <Form onSubmit={handleSearch}>
+              <Form.Control
+                type="search"
+                onChange= {handleChange}
+                placeholder="Search by Author or Book Title"
+                value={props.term}
+                className="me-2"
+                aria-label="Search"
+              />
+              <Button variant="primary" type="submit"> Submit </Button>
               </Form>
             </Col>
           </Row>
@@ -111,22 +132,21 @@ const Header = (props) => {
                   <Navbar.Collapse id="homepage-navbar">
                     <Nav className="me-auto">
                       <Navbar.Text href="#home">Explore By:</Navbar.Text>
-                      <Nav.Link onClick={() => { props.setShowDetail(false) }} href="#link">Trending</Nav.Link>
+                      <Nav.Link onClick={() => { props.setShowDetail(false) }}>Trending</Nav.Link>
                       <NavDropdown title="Publication Date" id="pub-date-dropdown">
-                        <NavDropdown.Item href="#action/3.1">1800-1900</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">
-                          1901-2000
-                        </NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">2000-2020</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">
-                          Separated link
-                        </NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => { genrePubFilter('pub', null, '1800', '1900') }}>1800-1900</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => { genrePubFilter('pub', null, '1901', '1950') }}>1901-1950 </NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => { genrePubFilter('pub', null, '1951', '1970') }}>1951-1970 </NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => { genrePubFilter('pub', null, '1971', '1980') }}>1971-1980 </NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => { genrePubFilter('pub', null, '1981', '1990') }}>1981-1990 </NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => { genrePubFilter('pub', null, '1991', '2000') }}>1991-2000 </NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => { genrePubFilter('pub', null, '2001', '2010') }}>2000-2010 </NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => { genrePubFilter('pub', null, '2010', '2023') }}>2010-2023</NavDropdown.Item>
+
                       </NavDropdown>
                       <NavDropdown title="Genre" id="genre-dropdown">
-                        <NavDropdown.Item href="#action/3.1">Horror</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">Mystery</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">Romance</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => { genrePubFilter('genre', 'Cooking')}}>Cooking</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => { genrePubFilter('genre', 'Autobiography')}}>Autobiography</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="#action/3.4">
                           Separated link

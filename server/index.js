@@ -57,7 +57,6 @@ app.get('/trending', (req, res) => {
 //GET searched
 app.get('/search', (req, res) => {
   let term = req.query.searchTerm;
-  console.log(term)
   axios.get(`${process.env.API_URL}/search`, { params: { term: term } })
     .then((result) => {
       console.log('search results', result.data);
@@ -83,7 +82,6 @@ app.get('/detail', (req, res) => {
   let bookId = req.query.bookId;
   axios.get(`${process.env.API_URL}/detail`, { params: { bookId: bookId } })
     .then((result) => {
-      console.log(result.data);
       res.status(200).send(result.data);
     })
     .catch((err) => {
@@ -166,6 +164,24 @@ app.get('/orders/:id', (req, res) => {
       console.log('orders error', err);
       res.sendStatus(404)
     });
+});
+
+app.patch('/pending/loan', (req, res) => {
+  let url = `${process.env.API_URL}/pending/loan`;
+  let user = req.body.user_id;
+  let book = req.body.book_id;
+  axios.patch(url, req.body)
+  .then(pass => res.sendStatus(200))
+  .catch(err => res.send(err).status(500))
+});
+
+app.patch('/pending/borrow', (req, res) => {
+  let url = `${process.env.API_URL}/pending/borrow`;
+  let user = req.body.user_id;
+  let book = req.body.book_id;
+  axios.patch(url, req.body)
+  .then(pass => res.sendStatus(200))
+  .catch(err => res.send(err).status(500))
 });
 
 
@@ -281,7 +297,27 @@ app.get(`/:user/lent`, (req, res) => {
     .catch((err) => res.status(500).send(err));
 });
 
+// USAGE RECORDS ROUTE
+app.post(`/usage`, (req, res) => {
+
+  const records = {
+    isbn: req.body.isbn,
+    genre: req.body.genre,
+    date: new Date()
+  }
+
+  axios.post(`${process.env.API_URL}/usage/records`, records)
+    .then((result) => {
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.log('ERROR posting record', err);
+      res.sendStatus(500);
+    })
+})
+
 // server listens on designated port
 app.listen(process.env.PORT, () => {
   console.log(`App listening on port ${process.env.PORT}`)
 });
+

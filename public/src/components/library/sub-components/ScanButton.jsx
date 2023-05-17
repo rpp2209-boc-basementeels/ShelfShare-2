@@ -9,7 +9,7 @@ const ScanButton = ({ onNewScanResult, scanResults, setScanResults}) => {
         <Html5QrcodePlugin
           fps={50}
           qrbox={250}
-          disableFlip={false}
+          rememberLastUsedCamera={false}
           qrCodeSuccessCallback={onNewScanResult}
         />
         {scanResults.length > 0 ? <ScanResults results={scanResults} /> : null}
