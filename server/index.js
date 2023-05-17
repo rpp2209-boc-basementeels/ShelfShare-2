@@ -55,7 +55,6 @@ app.get('/trending', (req, res) => {
 //GET searched
 app.get('/search', (req, res) => {
   let term = req.query.searchTerm;
-  console.log(term)
   axios.get(`${process.env.API_URL}/search`, { params: { term: term } })
   .then((result) => {
     console.log('search results', result.data);
@@ -81,7 +80,6 @@ app.get('/detail', (req, res) => {
   let bookId = req.query.bookId;
   axios.get(`${process.env.API_URL}/detail`, { params: { bookId: bookId } })
     .then((result) => {
-      console.log(result.data);
       res.status(200).send(result.data);
     })
     .catch((err) => {
