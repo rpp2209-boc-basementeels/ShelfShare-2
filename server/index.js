@@ -3,12 +3,14 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const path = require('path');
-const cookieParser = require('cookie-parser');
+// const cookieParser = require('cookie-parser');
 //const addToLibrary = require('../database/addToLibrary.js');
 const generator = require('./generatorSaltHash');
 const pg = require('pg');
 //const dbQuery = require('../database/dbQuery');
 const axios = require('axios');
+const { v4: uuidv4 } = require('uuid');
+
 
 
 app.use(express.static(path.join(__dirname, "./public/dist")));
@@ -56,13 +58,13 @@ app.get('/trending', (req, res) => {
 app.get('/search', (req, res) => {
   let term = req.query.searchTerm;
   axios.get(`${process.env.API_URL}/search`, { params: { term: term } })
-  .then((result) => {
-    console.log('search results', result.data);
-    res.status(200).send(result.data);
-  })
-  .catch((err) => {
-    console.log(err);
-  })
+    .then((result) => {
+      console.log('search results', result.data);
+      res.status(200).send(result.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
 });
 
 //GET all from selected genre
@@ -128,7 +130,7 @@ app.get('/public/:username', (req, res) => {
 // POST to update user's personal information
 app.post('/personalInformation/:username', (req, res) => {
   var username = req.params.username;
-    axios.post(`${process.env.API_URL}/personalInformation/${username}`, req.body)
+  axios.post(`${process.env.API_URL}/personalInformation/${username}`, req.body)
     .then(() => {
       res.sendStatus(201);
     })
@@ -185,6 +187,17 @@ app.patch('/pending/borrow', (req, res) => {
 
 // Authorization
 // For the homepage
+const checkSessionUUID = (uuid) => {
+  axios.get(`${process.env.API_URL}/sessions`, { params: { hash: uuid } })
+    .then(data => {
+      if (data[0]) { // session exist for a user
+        return true;
+      } else { // session does not exist for a user
+        return false;
+      }
+    })
+};
+
 app.get(`/getHash`, (req, res) => {
   axios.get(`${process.env.API_URL}/getHash`)
     .then((data) => res.status(200).send(data.data))
@@ -198,7 +211,7 @@ app.get(`/email`, (req, res) => {
 });
 
 app.get('/sessions', (req, res) => {
-  axios.get(`${process.env.API_URL}/sessions`, { params: req.cookies })
+  axios.get(`${process.env.API_URL}/sessions`, { params: req.query })
     .then((data) => {
       res.status(200).send(data.data)
     })
@@ -206,29 +219,49 @@ app.get('/sessions', (req, res) => {
 })
 
 app.delete('/sessions', (req, res) => {
-  axios.delete(`${process.env.API_URL}/sessions`, { data: req.cookies })
+  axios.delete(`${process.env.API_URL}/sessions`, { data: req.body })
     .then((data) => res.status(200).send(data.data))
     .catch((err) => res.status(500).send(err));
 })
 
-app.put(`/updateHash`, (req, res) => {
+app.put(`/updateSession`, (req, res) => {
+  var uuid;
+  while (true) { // check database to see if uuid exist
+    uuid = uuidv4();
+    var sessionExist = checkSessionUUID(uuid);
+    if (!sessionExist) {
+      break;
+    }
+  }
   const sendInfo = {
     ...req.body,
-    cookies: req.cookies,
-  }
-  axios.put(`${process.env.API_URL}/updateHash`, sendInfo)
-    .then((data) => res.status(200).send(data.data))
+    hash: uuid,
+  };
+  axios.put(`${process.env.API_URL}/updateSession`, sendInfo)
+    .then((data) => {
+      data.data[0].hash = uuid;
+      res.status(200).send(data.data)
+    })
     .catch((err) => res.status(500).send(err));
 });
 
 app.post(`/newUser`, (req, res) => {
+  var uuid;
+  while (true) { // check database to see if uuid exist
+    uuid = uuidv4();
+    var sessionExist = checkSessionUUID(uuid);
+    if (!sessionExist) {
+      break;
+    }
+  }
   const sendInfo = {
     ...req.body,
-    cookies: req.cookies,
+    hash: uuid,
   };
-  // console.log('newUser', sendInfo)
   axios.post(`${process.env.API_URL}/newUser`, sendInfo)
-    .then((data) => res.status(201).send(data.data))
+    .then((data) => {
+      res.status(201).send(sendInfo)
+    })
     .catch((err) => res.status(501).send(err));
 });
 
@@ -247,7 +280,7 @@ app.get(`/:user/library`, (req, res) => {
 
 app.post(`/:user/library`, (req, res) => {
   axios.post(`${process.env.API_URL}/${req.params.user}/library`, req.body,
-  { headers: {'Content-Type': 'application/json'} })
+    { headers: { 'Content-Type': 'application/json' } })
     .then(() => res.status(200).send())
     .catch((err) => res.status(500).send(err));
 });

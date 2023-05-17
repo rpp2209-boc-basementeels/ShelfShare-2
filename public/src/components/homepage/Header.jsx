@@ -55,7 +55,8 @@ const Header = (props) => {
   }
 
   const handleLogout = () => {
-    axios.delete('/sessions')
+    const hash = localStorage.getItem('shelfshare_cookie');
+    axios.delete('/sessions', { data: { hash: hash } })
       .then(() => props.setUser({}))
       .catch((err) => console.log(err))
   };
@@ -90,9 +91,9 @@ const Header = (props) => {
     <div>
 
       <Card className="my-5">
-      <Card.Img src="https://img.freepik.com/free-vector/modern-flowing-blue-wave-banner-background_1035-19862.jpg?w=1800&t=st=1683126398~exp=1683126998~hmac=32efcf4c46fe227b2b642e100b726273a18835340b836765feb001fa7a2cdb4e" alt="Card image"/>
-      <Card.ImgOverlay>
-        <Card.Title onClick={() => {props.setShowDetail(false)}} className="justify-content-md-center">ShelfShare</Card.Title>
+        <Card.Img src="https://img.freepik.com/free-vector/modern-flowing-blue-wave-banner-background_1035-19862.jpg?w=1800&t=st=1683126398~exp=1683126998~hmac=32efcf4c46fe227b2b642e100b726273a18835340b836765feb001fa7a2cdb4e" alt="Card image" />
+        <Card.ImgOverlay>
+          <Card.Title onClick={() => { props.setShowDetail(false) }} className="justify-content-md-center">ShelfShare</Card.Title>
 
           <Container>
             <Row className="justify-content-md-end">

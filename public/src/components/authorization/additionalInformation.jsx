@@ -130,12 +130,9 @@ const AdditionalInformation = (props) => {
 
               axios.post(`/newUser`, user)
                 .then(data => {
+                  localStorage.setItem('shelfshare_cookie', data.data.hash)
                   props.setUser(user);
-                  axios.get(`/`)
-                    .then((data) => {
-                      props.setClickedLogin(false);
-                    })
-                    .catch(() => { });
+                  props.setClickedLogin(false);
                 }) // then send back to homepage
                 .catch(err => console.log(err));
 

@@ -81,7 +81,8 @@ const App = () => {
 
   // Need to log users into the app if the users exist
   useEffect(() => {
-    axios.get('/sessions')
+    const hash = localStorage.getItem('shelfshare_cookie');
+    axios.get('/sessions', { params: { hash: hash } })
       .then((session) => {
         if (session.data[0]) {
           setUser(session.data[0]);
@@ -92,25 +93,25 @@ const App = () => {
 
   useEffect(() => {
     axios.get('/trending')
-    .then((books) => {
-      console.log('user', user);
-      updateAllBooks(books.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+      .then((books) => {
+        console.log(books.data);
+        updateGalleryBooks(books.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, [Gallery]);
 
   if (clickedLogin) {
     return (
       <div>
-        <GoogleSignIn setUser={setUser} setClickedLogin={setClickedLogin}/>
+        <GoogleSignIn setUser={setUser} setClickedLogin={setClickedLogin} />
       </div>
     )
   } else if (usernameThatWasClicked !== '') {
     return (
       <div>
-        <PublicProfilePage set={setUsernameThatWasClicked} username={usernameThatWasClicked}/>
+        <PublicProfilePage set={setUsernameThatWasClicked} username={usernameThatWasClicked} />
       </div>
     )
   } else {
@@ -121,15 +122,15 @@ const App = () => {
             <Button variant="outline-primary" onClick={() => {setSelectedPage('Home'); updateGalleryBooks(null); setTerm('');}}>Home</Button>
           </Col>
           <Col>
-            <Button variant="outline-primary" onClick={() => {setSelectedPage('Profile')}}>My Profile</Button>
+            <Button variant="outline-primary" onClick={() => { setSelectedPage('Profile') }}>My Profile</Button>
           </Col>
           <Col>
-            <Button variant="outline-primary" onClick={() => {setSelectedPage('Orders')}}>
-            My Orders <span className=" badge .badge-* badge-dark  " style={{color:'red'}}>{pendingStyle(pend)}</span>
+            <Button variant="outline-primary" onClick={() => { setSelectedPage('Orders') }}>
+              My Orders <span className=" badge .badge-* badge-dark  " style={{ color: 'red' }}>{pendingStyle(pend)}</span>
             </Button>
           </Col>
           <Col>
-            <Button variant="outline-primary" onClick={() => {setSelectedPage('Library')}}>My Library</Button>
+            <Button variant="outline-primary" onClick={() => { setSelectedPage('Library') }}>My Library</Button>
           </Col>
             <Header term={term} setTerm={setTerm} updateGalleryBooks={updateGalleryBooks} setShowDetail={setShowDetail} setClickedLogin={setClickedLogin} user={user} setUser={setUser} updateAllBooks={updateAllBooks} allBooks={allBooks}/>
           {selectedPage === 'Login' ? <GoogleSignIn setUser={setUser} setClickedLogin={setClickedLogin}/> : null}
