@@ -38,7 +38,7 @@ const Gallery = (props) => {
     </Modal.Header>
     <Modal.Body>
       <Col>
-      <Row><img src={book.image_url} /></Row>
+      <Row className="justify-content-center"><img src={book.image_url} style={{width: '35rem'}}/></Row>
       <Row className="justify-content-center">Author(s): {bookAuthors}</Row>
       <Row className="justify-content-center">Genre: {book.genre}</Row>
       </Col>

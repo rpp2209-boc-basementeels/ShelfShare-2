@@ -14,13 +14,40 @@ import axios from 'axios';
 
 const Header = (props) => {
 
+  const genrePubFilter = (option, parameterStr) => {
+    //create empty filtered array
+    let filtered = [];
+    //iterate over all the books
+    props.allBooks.forEach((book) => {
+      //if option is genre
+      if (option === 'genre') {
+        //if parameter matches genre
+        if (parameterStr === book.genre) {
+          //push book to filtered array
+          filtered.push(book);
+        }
+      }
+      //if option is pub date
+      if (option === 'pub') {
+        //parse pub year
+        let year = book.pub_date.slice(0, 4);
+        //if parameter matches pub year
+        if (parameterStr === year) {
+          //push book to filtered array
+          filtered.push(book);
+        }
+      }
+    });
+    //set gallery books
+    props.updateGalleryBooks(filtered);
+  };
 
   const handleChange = (e) => {
     console.log(event.target.value);
     props.setTerm(event.target.value);
   }
 
-  const handleSubmit = (e) => {
+  const handleSearch = (e) => {
     e.preventDefault();
     //created an array to hold the filtered books
     let filtered = [];
@@ -96,7 +123,7 @@ const Header = (props) => {
 
           <Row className="justify-content-md-center">
             <Col xs={12} md={6}>
-              <Form onSubmit={handleSubmit}>
+              <Form onSubmit={handleSearch}>
               <Form.Control
                 type="search"
                 onChange= {handleChange}
@@ -118,22 +145,22 @@ const Header = (props) => {
                   <Navbar.Collapse id="homepage-navbar">
                     <Nav className="me-auto">
                       <Navbar.Text href="#home">Explore By:</Navbar.Text>
-                      <Nav.Link onClick={() => { props.setShowDetail(false) }} href="#link">Trending</Nav.Link>
+                      <Nav.Link onClick={() => { props.setShowDetail(false) }}>Trending</Nav.Link>
                       <NavDropdown title="Publication Date" id="pub-date-dropdown">
-                        <NavDropdown.Item href="#action/3.1">1800-1900</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">
+                        <NavDropdown.Item onClick={() => { console.log('1800') }}>1800-1900</NavDropdown.Item>
+                        <NavDropdown.Item>
                           1901-2000
                         </NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">2000-2020</NavDropdown.Item>
+                        <NavDropdown.Item>2000-2010</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => { filter( ) }}>2010-2023</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="#action/3.4">
                           Separated link
                         </NavDropdown.Item>
                       </NavDropdown>
                       <NavDropdown title="Genre" id="genre-dropdown">
-                        <NavDropdown.Item href="#action/3.1">Horror</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">Mystery</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">Romance</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => { genrePubFilter('genre', 'Cooking')}}>Cooking</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => { genrePubFilter('genre', 'Autobiography')}}>Autobiography</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="#action/3.4">
                           Separated link
