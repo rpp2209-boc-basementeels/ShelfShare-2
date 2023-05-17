@@ -20,15 +20,23 @@ const App = () => {
 
   const [selectedPage, setSelectedPage] = useState('Home');
   const [clickedLogin, setClickedLogin] = useState(false);
-//   const [user, setUser] = useState({
-//     first_name: 'Kevin',
-//     last_name: 'Hoang',
-//     photo: `https://lh3.googleusercontent.com/a/AGNmyxbKSB-E9sl8llXqjsc04GfTzVm9fN8CgXHl_mv7=s96-c`,
-//     email: 'knhoangre@gmail.com',
-//     gender: 'male',
-//     age: '100',
-//     username: 'kevinduh'
-// });
+  // const [user, setUser] = useState({
+  //   user_id: 12
+  //   first_name: 'Kevin',
+  //   last_name: 'Hoang',
+  //   photo: `https://lh3.googleusercontent.com/a/AGNmyxbKSB-E9sl8llXqjsc04GfTzVm9fN8CgXHl_mv7=s96-c`,
+  //   email: 'knhoangre@gmail.com',
+  //   gender: 'male',
+  //   age: '100',
+  //   username: 'kevinduh'
+  //   is_library: false,
+  //   line_1: "1800 Nowhere St",
+  //   line_2: "",
+  //   city: "Your Town",
+  //   state: "My State",
+  //   postal: "13245",
+  //   country: "United States"
+  // });
   const [user, setUser] = useState({});
   const [showBookDetail, setShowDetail] = useState(false);
   const [galleryBooks, updateGalleryBooks] = useState(Data);
@@ -50,27 +58,28 @@ const App = () => {
 
   let fetcher = () => {
     axios.get(`orders/${testUser}`)
-    .then(data => {
-      setLoan(data.data.loaned);
-      setBorrow(data.data.borrowed);
-      setPend(data.data.pending);
-    })
-    .catch(err => console.log('err in orders', err));
-}
+      .then(data => {
+        setLoan(data.data.loaned);
+        setBorrow(data.data.borrowed);
+        setPend(data.data.pending);
+      })
+      .catch(err => console.log('err in orders', err));
+  }
 
   useEffect(() => {
     fetcher();
   }, [])
 
   var pendingStyle = (array) => {
-    if (array.length > 0)  { return array.length }
+    if (array.length > 0) { return array.length }
     else { return; }
   }
   ///////////////////////////////////////////
 
   // Need to log users into the app if the users exist
   useEffect(() => {
-    axios.get('/sessions')
+    const hash = localStorage.getItem('shelfshare_cookie');
+    axios.get('/sessions', { params: { hash: hash } })
       .then((session) => {
         if (session.data[0]) {
           setUser(session.data[0]);
@@ -81,25 +90,25 @@ const App = () => {
 
   useEffect(() => {
     axios.get('/trending')
-    .then((books) => {
-      console.log(books.data);
-      updateGalleryBooks(books.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+      .then((books) => {
+        console.log(books.data);
+        updateGalleryBooks(books.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, [Gallery]);
 
   if (clickedLogin) {
     return (
       <div>
-        <GoogleSignIn setUser={setUser} setClickedLogin={setClickedLogin}/>
+        <GoogleSignIn setUser={setUser} setClickedLogin={setClickedLogin} />
       </div>
     )
   } else if (usernameThatWasClicked !== '') {
     return (
       <div>
-        <PublicProfilePage set={setUsernameThatWasClicked} username={usernameThatWasClicked}/>
+        <PublicProfilePage set={setUsernameThatWasClicked} username={usernameThatWasClicked} />
       </div>
     )
   } else {
@@ -107,25 +116,25 @@ const App = () => {
       <Container>
         <Row>
           <Col>
-            <Button variant="outline-primary" onClick={() => {setSelectedPage('Home')}}>Home</Button>
+            <Button variant="outline-primary" onClick={() => { setSelectedPage('Home') }}>Home</Button>
           </Col>
           <Col>
-            <Button variant="outline-primary" onClick={() => {setSelectedPage('Profile')}}>My Profile</Button>
+            <Button variant="outline-primary" onClick={() => { setSelectedPage('Profile') }}>My Profile</Button>
           </Col>
           <Col>
-            <Button variant="outline-primary" onClick={() => {setSelectedPage('Orders')}}>
-            My Orders <span className=" badge .badge-* badge-dark  " style={{color:'red'}}>{pendingStyle(pend)}</span>
+            <Button variant="outline-primary" onClick={() => { setSelectedPage('Orders') }}>
+              My Orders <span className=" badge .badge-* badge-dark  " style={{ color: 'red' }}>{pendingStyle(pend)}</span>
             </Button>
           </Col>
           <Col>
-            <Button variant="outline-primary" onClick={() => {setSelectedPage('Library')}}>My Library</Button>
+            <Button variant="outline-primary" onClick={() => { setSelectedPage('Library') }}>My Library</Button>
           </Col>
-            <Header setShowDetail={setShowDetail} setClickedLogin={setClickedLogin} user={user} setUser={setUser} updateGalleryBooks={updateGalleryBooks}/>
-          {selectedPage === 'Login' ? <GoogleSignIn setUser={setUser} setClickedLogin={setClickedLogin}/> : null}
-          {selectedPage === 'Profile' ? <ProfilePage user={user}/> : null}
-          {selectedPage === 'Library' ? <PersonalLibrary loggedInUser={'Kevin'} libraryOwner={'Kevin'}/> : null}
-          {selectedPage === 'Orders' ? <Orders user={user} page={selectedPage} bookData={{loaned: loan, borrowed: borrow, pending: pend}}/> : null}
-          {selectedPage === 'Home' ? <Gallery selectedBookId={selectedBookId} updateSelectedBookId={updateSelectedBookId} books={galleryBooks} showBookDetail={showBookDetail} setShowDetail={setShowDetail}/> : null}
+          <Header setShowDetail={setShowDetail} setClickedLogin={setClickedLogin} user={user} setUser={setUser} updateGalleryBooks={updateGalleryBooks} />
+          {selectedPage === 'Login' ? <GoogleSignIn setUser={setUser} setClickedLogin={setClickedLogin} /> : null}
+          {selectedPage === 'Profile' ? <ProfilePage user={user} /> : null}
+          {selectedPage === 'Library' ? <PersonalLibrary loggedInUser={'Kevin'} libraryOwner={'Kevin'} /> : null}
+          {selectedPage === 'Orders' ? <Orders user={user} page={selectedPage} bookData={{ loaned: loan, borrowed: borrow, pending: pend }} /> : null}
+          {selectedPage === 'Home' ? <Gallery selectedBookId={selectedBookId} updateSelectedBookId={updateSelectedBookId} books={galleryBooks} showBookDetail={showBookDetail} setShowDetail={setShowDetail} /> : null}
           {/* <Footer /> */}
         </Row>
       </Container>

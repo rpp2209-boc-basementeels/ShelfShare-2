@@ -23,10 +23,12 @@ const GoogleSignIn = (props) => {
         if (data.data.length === 0) { // if user does not exist
           setNextPage(true);
         } else { // user exists, but since authentication didn't work in the homepage, must update hash
-          axios.put(`/updateHash`, email)
-            .then(() => {
+          axios.put(`/updateSession`, email)
+            .then((data) => {
               props.setClickedLogin(false);
               props.setUser(data.data[0]);
+              localStorage.setItem('shelfshare_cookie', data.data[0].hash)
+
             })
             .catch(() => { });
         }
