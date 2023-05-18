@@ -46,7 +46,7 @@ const PersonalLibrary = ({ user }) => {
           ISBN: parseInt(isbn)
         };
         if (Object.hasOwn(bookData, 'cover')) {
-          bookPostData.image_url = bookData.cover.small;
+          bookPostData.image_url = bookData.cover.large;
         }
         setLastResult(isbn);
         setScanResults(prev => [...prev, bookPostData]);
