@@ -132,7 +132,7 @@ const App = () => {
           {Object.hasOwn(user, 'username') ? <Col>
             <Button variant="outline-primary" onClick={() => { setSelectedPage('Library') }}>My Library</Button>
           </Col> : null}
-            <Header term={term} setTerm={setTerm} updateGalleryBooks={updateGalleryBooks} setShowDetail={setShowDetail} setClickedLogin={setClickedLogin} user={user} setUser={setUser} updateAllBooks={updateAllBooks} allBooks={allBooks}/>
+            <Header setPage={setSelectedPage} term={term} setTerm={setTerm} updateGalleryBooks={updateGalleryBooks} setShowDetail={setShowDetail} setClickedLogin={setClickedLogin} user={user} setUser={setUser} updateAllBooks={updateAllBooks} allBooks={allBooks}/>
           {selectedPage === 'Login' ? <GoogleSignIn setUser={setUser} setClickedLogin={setClickedLogin}/> : null}
           {selectedPage === 'Profile' ? <ProfilePage user={user} setUser={setUser}/> : null}
           {selectedPage === 'Library' ? <PersonalLibrary user={user}/> : null}

@@ -76,9 +76,9 @@ const Header = (props) => {
       return (
         <>
           <NavDropdown style={{background: 'white'}} title={`Hi ${props.user.first_name}`} id="registered-user-menu-dropdown">
-            <NavDropdown.Item href="#action/3.1">My Profile</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">My Shelf</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Orders</NavDropdown.Item>
+            <NavDropdown.Item onClick={(e) => {props.setPage('Profile')}}>My Profile</NavDropdown.Item>
+            <NavDropdown.Item onClick={(e) => {props.setPage('Library')}}>My Library</NavDropdown.Item>
+            <NavDropdown.Item onClick={(e) => {props.setPage('Orders')}}>Orders</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item href="#action/3.4" onClick={handleLogout}>Logout</NavDropdown.Item>
           </NavDropdown>
