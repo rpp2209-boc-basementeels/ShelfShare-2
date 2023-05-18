@@ -34,7 +34,7 @@ const ResultContainerTable = ({results}) => {
           return (
             <tr key={i + 1}>
               <td>{i + 1}</td>
-              <td><img src={book.image_url}/></td>
+              <td><img src={(book.image_url.slice(0, -5)).concat('S.jpg')}/></td>
               <td>{book.title}</td>
               <td>
                 {book.authors.map((author, i) => {
