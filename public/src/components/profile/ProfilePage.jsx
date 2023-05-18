@@ -28,7 +28,7 @@ const ProfilePage = (props) => {
             </div>
             <h3 style={{"marginTop": "5vh", "marginBottom": "5vh", "textAlign": "center", "fontFamily": "Helvetica"}}>My Reviews</h3>
             <div>
-                {userReviews.length === 0 ? <h5 style={{"textAlign": "center"}}>You haven't left any reviews</h5> : <ReviewList reviews={userReviews}/>}
+                {userReviews.length === 0 ? <h6 style={{"textAlign": "center"}}>You haven't left any reviews yet</h6> : <ReviewList reviews={userReviews}/>}
             </div>
         </div>
     )
