@@ -6,6 +6,7 @@ import React from 'react';
 import { render, screen, getByText } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Header from './Header.jsx';
+import Gallery from './Gallery.jsx';
 
 
 describe("Example tests", function () {
@@ -14,14 +15,18 @@ describe("Example tests", function () {
   });
 });
 
-// describe("Renders the Header", function () {
+describe("Renders the Header", function () {
 
-//   // test("Orders is a function", () => {
-//   //   expect(typeof Orders).toBe('function')
-//   // });
+  test('Renders the Header', () => {
+    render(<Header term={'raw'} user={{}} allBooks={[]}/>);
+    expect(screen.getByText(/ShelfShare/)).toBeInTheDocument();
+  });
+});
 
-//   test('renders here', () => {
-//     render(<Header/>);
-//     expect(screen.getByText(/Header/)).toBeInTheDocument();
-//   });
-// });
+describe("Renders the Header", function () {
+
+  test('Displays `no matching titles` message when there are not books to display', () => {
+    render(<Gallery books={[]}/>);
+    expect(screen.getByText(/Sorry, No Matching Titles!/)).toBeInTheDocument();
+  });
+});

@@ -138,7 +138,7 @@ const App = () => {
           {selectedPage === 'Library' ? <PersonalLibrary user={user}/> : null}
           {selectedPage === 'Orders' ? <Orders user={7} page={selectedPage} bookData={{loaned: loan, borrowed: borrow, pending: pend}}/> : null}
           {selectedPage === 'Home' ? <Gallery selectedBookId={selectedBookId} updateSelectedBookId={updateSelectedBookId} books={galleryBooks === null ? allBooks : galleryBooks} updateGalleryBooks={updateGalleryBooks} showBookDetail={showBookDetail} setShowDetail={setShowDetail}/> : null}
-          {/* <Footer /> */}
+          <Footer />
         </Row>
       </Container>
     )
