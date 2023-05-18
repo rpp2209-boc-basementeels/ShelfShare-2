@@ -137,11 +137,9 @@ app.post('/personalInformation/:username', (req, res) => {
 
 
 // GET all reviews for a specific book_id
-app.get('/bookReviews', (req, res) => {
-  console.log('GET books reviews listener hit');
-  var book_id = req.query.book_id;
-  console.log('front end server', book_id)
-  axios.get(`${process.env.API_URL}/bookReviews`, {params: {book_id: book_id}})
+app.get('/bookReviews/:book_id', (req, res) => {
+  var book_id = req.params.book_id;
+  axios.get(`${process.env.API_URL}/bookReviews/${book_id}`)
     .then((data) => {
       res.status(200).send(data.data);
     })
