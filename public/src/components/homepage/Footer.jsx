@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <div>
 
-      <div className="container-md border">This is the Footer Component</div>
+      <div className="container-md border">ShelfShare is an open source Colibri Labs book sharing application created by the Basement Eels</div>
 
     </div>
 
