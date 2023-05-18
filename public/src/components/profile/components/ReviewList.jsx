@@ -6,7 +6,7 @@ const ReviewList = (props) => {
 
     var reviews = props.reviews.map((review, index) => {
         return (
-            <Review review={review} key={index}/>
+            <Review usernameThatWasClicked={props.usernameThatWasClicked} setUsernameThatWasClicked={props.setUsernameThatWasClicked} review={review} key={index}/>
         )
     });
 

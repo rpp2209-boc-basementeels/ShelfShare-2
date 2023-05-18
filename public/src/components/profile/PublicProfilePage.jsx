@@ -47,11 +47,14 @@ const PublicProfilePage = (props) => {
                     <hr></hr>
                 </Container>
             </Container>
-            <h3 style={{"marginTop": "5vh", "marginBottom": "5vh", "textAlign": "center", "fontFamily": "Helvetica"}}>{userInfo.first_name + "'s"} Reviews</h3>
+            <h3 style={{"marginTop": "3vh", "marginBottom": "5vh", "textAlign": "center", "fontFamily": "Helvetica", "textDecoration": "underline"}}>{userInfo.first_name + "'s"} Reviews</h3>
             <Container>
                 {userReviews.length === 0 ? <h6 style={{"textAlign": "center"}}>{userInfo.first_name} hasn't left any reviews yet</h6> : <ReviewList reviews={userReviews}/>}
             </Container>
-            <h3 style={{"marginTop": "5vh", "marginBottom": "5vh", "textAlign": "center", "fontFamily": "Helvetica"}}>{userInfo.first_name + "'s"} Shelf</h3>
+            <Container style={{"textAlign": "center", "position": "relative", "width": "30vw", "minWidth": "max-content", "marginTop": "7vh"}}>
+                <hr></hr>  
+            </Container>
+            <h3 style={{"marginTop": "5vh", "marginBottom": "5vh", "textAlign": "center", "fontFamily": "Helvetica", "textDecoration": "underline"}}>{userInfo.first_name + "'s"} Shelf</h3>
             <Container style={{"display": "flex", "justifyContent": "center"}}>
                 <Shelf libraryOwner={props.username}/>
             </Container>

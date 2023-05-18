@@ -67,7 +67,7 @@ const Gallery = (props) => {
       <Row className="justify-content-center">Genre: {book.genre}</Row>
       </Col>
       <Col>
-      <ReviewList reviews={bookReviews}/>
+      <ReviewList usernameThatWasClicked={props.usernameThatWasClicked} setUsernameThatWasClicked={props.setUsernameThatWasClicked} reviews={bookReviews}/>
       </Col>
     </Modal.Body>
     <Modal.Footer>
