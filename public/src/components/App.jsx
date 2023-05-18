@@ -58,25 +58,25 @@ const App = () => {
   const [pend, setPend] = useState([]);
 
   let fetcher = () => {
-    // if (user.user_id !== undefined || user.user_id > 0) {
-    axios.get(`orders/${7}`)
+    if (user.user_id !== undefined || user.user_id > 0) {
+    axios.get(`orders/${user.user_id}`)
     .then(data => {
       setLoan(data.data.loaned);
       setBorrow(data.data.borrowed);
       setPend(data.data.pending);
     })
     .catch(err => console.log('err in orders', err));
-  // }
+  }
 }
 
   useEffect(() => {
     fetcher();
   }, [])
 
-  // var pendingStyle = (array) => {
-  //   if (array.length > 0)  { return array.length }
-  //   else { return ; }
-  // }
+  var pendingStyle = (array) => {
+    if (array.length > 0)  { return array.length }
+    else { return ; }
+  }
   ///////////////////////////////////////////
 
   // Need to log users into the app if the users exist
@@ -124,11 +124,11 @@ const App = () => {
           <Col>
             <Button variant="outline-primary" onClick={() => { setSelectedPage('Profile') }}>My Profile</Button>
           </Col>
-          {/* <Col>
+          <Col>
             <Button variant="outline-primary" onClick={() => { setSelectedPage('Orders') }}>
               My Orders <span className=" badge .badge-* badge-dark  " style={{ color: 'red' }}>{pendingStyle(pend)}</span>
             </Button>
-          </Col> */}
+          </Col>
           <Col>
             <Button variant="outline-primary" onClick={() => { setSelectedPage('Library') }}>My Library</Button>
           </Col>
