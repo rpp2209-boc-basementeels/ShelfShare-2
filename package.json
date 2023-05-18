@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --verbose --watch --coverage",
+    "test": "jest --verbose --coverage",
     "build": "webpack",
     "start": "nodemon ./server/index.js",
     "client-dev": "webpack --watch",
