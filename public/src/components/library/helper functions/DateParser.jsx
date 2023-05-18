@@ -16,6 +16,8 @@ const DateParser = (dateString) => {
     addZero(month + 1) +
     '-' +
     addZero(day);
+
+  console.log('formatted', formatted)
   return formatted;
 };
 
