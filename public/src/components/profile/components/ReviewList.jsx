@@ -10,6 +10,11 @@ const ReviewList = (props) => {
         )
     });
 
+    // if (props.reviews.length === 0) {
+    //     gallery = <div> Sorry, No Reviews</div>
+    //   }
+
+    // console.log('empty reviews', props.reviews)
     return (
         <Container style={{"display": "flex", "justifyContent": "center"}}>
             {reviews}
