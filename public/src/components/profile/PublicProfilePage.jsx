@@ -37,9 +37,9 @@ const PublicProfilePage = (props) => {
 
     return (
         <Container>
-            <Container style={{"display": "flex", "alignItems": "flex-start", "justifyContent": "center"}}>
-                <Container style={{"textAlign": "center", "position": "relative", "width": "30vw", "minWidth": "max-content"}}>
-                    <Button style={{"position": "absolute", "top": 0, "left": "-10vw"}} variant="outline-primary" onClick={() => {props.set('')}}>Back</Button>
+            <Container style={{"display": "flex", "alignItems": "flex-start", "justifyContent": "center", "marginTop": "5vh"}}>
+                <Container style={{"textAlign": "center", "position": "relative", "width": "30vw"}}>
+                    <Button style={{"position": "absolute", "top": 0, "left": "-10vw"}} variant="outline-primary" onClick={() => {props.set(''); props.setShowDetail(false)}}>Back to Homepage</Button>
                     <Image style={{"borderRadius": "50%", "width": "10vw"}} src={userInfo.photo_url}></Image>
                     <h4 style={{"marginTop": "2vh", "marginBottom": "0vh", "fontFamily": "Helvetica"}}>{userInfo.first_name + ' ' + userInfo.last_name}</h4>
                     <h6 style={{"fontFamily": "Helvetica"}}>@{props.username}</h6>

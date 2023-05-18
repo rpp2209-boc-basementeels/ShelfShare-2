@@ -8,6 +8,7 @@ import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Modal from 'react-bootstrap/Modal';
 import ReviewList from '../profile/components/ReviewList.jsx';
+import ReviewForm from '../profile/components/ReviewForm.jsx';
 
 const Gallery = (props) => {
 
@@ -27,6 +28,8 @@ const Gallery = (props) => {
   const [book, setBook] = useState({});
   const [authors, setAuthors] = useState([]);
   const [bookReviews, setBookReviews] = useState([]);
+  const [showReviewForm, setShowReviewForm] = useState(false);
+  
 
   let bookAuthors = '';
   for (var i = 0; i < authors.length; i++) {
@@ -67,17 +70,23 @@ const Gallery = (props) => {
       <Row className="justify-content-center">Genre: {book.genre}</Row>
       </Col>
       <Col>
-      <ReviewList usernameThatWasClicked={props.usernameThatWasClicked} setUsernameThatWasClicked={props.setUsernameThatWasClicked} reviews={bookReviews}/>
+      <ReviewList onModal={true} usernameThatWasClicked={props.usernameThatWasClicked} setUsernameThatWasClicked={props.setUsernameThatWasClicked} reviews={bookReviews}/>
       </Col>
     </Modal.Body>
-    <Modal.Footer>
-    <Button onClick={handleBorrowClick} variant="primary">
+    {showReviewForm ? <Container style={{"display": "flex", "justifyContent": "center", "alignItems": "center"}}>
+        <ReviewForm book={book} username={props.username} close={setShowReviewForm}/>
+      </Container> : <Modal.Footer>
+      <Button onClick={() => {setShowReviewForm(true)}}>
+        Leave a Review
+      </Button>
+      <Button onClick={handleBorrowClick} variant="primary">
         Request to Borrow
       </Button>
       <Button variant="secondary" onClick={handleClose}>
         Back to Gallery
       </Button>
-    </Modal.Footer>
+    </Modal.Footer>}
+    
     </Modal>
 
       <Container>

@@ -4,7 +4,6 @@ import ReviewList from './components/ReviewList.jsx';
 import axios from 'axios';
 
 const ProfilePage = (props) => {
-    // props.user is the data about the current user passed down from App.jsx
 
     const [userReviews, setUserReviews] = useState([]);
 

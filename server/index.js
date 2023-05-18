@@ -148,6 +148,17 @@ app.get('/bookReviews/:book_id', (req, res) => {
     })
 });
 
+app.post('/reviews/:book_id', (req, res) => {
+  var book_id = req.params.book_id;  
+  axios.post(`${process.env.API_URL}/review/${book_id}`, req.body)
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+    })
+});
+
 // *********************************************************
 
 app.get('/orders/:id', (req, res) => {
