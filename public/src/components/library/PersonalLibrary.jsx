@@ -57,14 +57,12 @@ const PersonalLibrary = ({ user }) => {
     }
   };
 
-  function addDefaultSrc(e) {
-    e.target.src = 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png';
-  }
+  const default_image = 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png';
 
   return (
     <Container>
       <Container className="p-0" style={{display: 'flex'}}>
-        <Image rounded src={user.photo} style={{marginBottom: '3rem', height: '10rem'}} onError={addDefaultSrc}></Image>
+        <Image rounded src={default_image} style={{marginBottom: '3rem', height: '10rem'}}></Image>
         <ListGroup variant="flush" style={{marginTop: '2.5rem', marginLeft: '0.75rem'}}>
           <ListGroup.Item>{user.first_name.toUpperCase() + ' ' + user.last_name.toUpperCase()}</ListGroup.Item>
           <ListGroup.Item>{user.is_Library ? 'PUBLIC LIBRARY' : 'INDIVIDUAL'}</ListGroup.Item>

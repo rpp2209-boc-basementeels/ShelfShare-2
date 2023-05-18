@@ -37,7 +37,7 @@ const Shelf = ({ fetchTrigger, user }) => {
       <p></p>
       <h5>MY SHELF ({library.data.length})</h5>
       <hr />
-      <Row xs='auto'>
+      <Row xs='auto' className="align-items-center">
         {library.data.map((b, i) => (
           <BookCard key={i} b={b} />
         ))}
