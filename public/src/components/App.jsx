@@ -129,9 +129,9 @@ const App = () => {
               My Orders <span className=" badge .badge-* badge-dark  " style={{ color: 'red' }}>{pendingStyle(pend)}</span>
             </Button>
           </Col>
-          <Col>
+          {Object.hasOwn(user, 'username') ? <Col>
             <Button variant="outline-primary" onClick={() => { setSelectedPage('Library') }}>My Library</Button>
-          </Col>
+          </Col> : null}
             <Header term={term} setTerm={setTerm} updateGalleryBooks={updateGalleryBooks} setShowDetail={setShowDetail} setClickedLogin={setClickedLogin} user={user} setUser={setUser} updateAllBooks={updateAllBooks} allBooks={allBooks}/>
           {selectedPage === 'Login' ? <GoogleSignIn setUser={setUser} setClickedLogin={setClickedLogin}/> : null}
           {selectedPage === 'Profile' ? <ProfilePage user={user} setUser={setUser}/> : null}
