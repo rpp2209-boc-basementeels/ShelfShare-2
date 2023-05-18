@@ -7,6 +7,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Modal from 'react-bootstrap/Modal';
+import ReviewList from '../profile/components/ReviewList.jsx';
 
 const Gallery = (props) => {
 
@@ -25,6 +26,7 @@ const Gallery = (props) => {
 
   const [book, setBook] = useState({});
   const [authors, setAuthors] = useState([]);
+  const [bookReviews, setBookReviews] = useState([]);
 
   let bookAuthors = '';
   for (var i = 0; i < authors.length; i++) {
@@ -36,7 +38,7 @@ const Gallery = (props) => {
 
     let gallery = (props.books.map((book, index) =>
             <Col xs={12} md={6} lg={4} xl={4} key={index} className={index}>
-            <BookCard authors={authors} setAuthors={setAuthors} setBook={setBook} id={book.book_id} books={props.books} updateSelectedBookId={props.updateSelectedBookId} setShowDetail={props.setShowDetail} title={book.title} author={book.author} image={book.image_url} description={"description placeholder"}/>
+            <BookCard setBookReviews={setBookReviews} authors={authors} setAuthors={setAuthors} setBook={setBook} id={book.book_id} books={props.books} selectedBookId={props.selectedBookId} updateSelectedBookId={props.updateSelectedBookId} setShowDetail={props.setShowDetail} title={book.title} author={book.author} image={book.image_url} description={"description placeholder"}/>
             </Col>
           ));
 
@@ -63,6 +65,9 @@ const Gallery = (props) => {
       <Row className="justify-content-center"><img src={book.image_url} style={{width: '35rem'}}/></Row>
       <Row className="justify-content-center">Author(s): {bookAuthors}</Row>
       <Row className="justify-content-center">Genre: {book.genre}</Row>
+      </Col>
+      <Col>
+      <ReviewList reviews={bookReviews}/>
       </Col>
     </Modal.Body>
     <Modal.Footer>

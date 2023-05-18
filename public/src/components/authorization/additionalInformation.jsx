@@ -134,7 +134,7 @@ const AdditionalInformation = (props) => {
                   props.setUser(user);
                   props.setClickedLogin(false);
                 }) // then send back to homepage
-                .catch(err => console.log(err));
+                .catch(err => console.log('cant create user', err));
 
             }
           } else { // username exists, choose a different one

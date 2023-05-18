@@ -11,17 +11,31 @@ const BookCard = (props) => {
 
   const handleClick = (event) => {
     props.updateSelectedBookId(props.id);
-    //make axios get request for the individual book info
     axios.get('/detail', {params: {bookId: props.id}})
     .then((book) => {
       props.setBook(book.data.books[0]);
       props.setAuthors(book.data.authors);
     })
     .then(() => {
+      //request the reviews for the book
+      console.log('book id', props.id);
+      axios.get(`/bookReviews`, {params: {book_id: props.id}})
+        .then((results) => {
+          console.log('review results', results.data);
+        props.setBookReviews(results.data);
+      })
+      .catch((err) => {
+        console.log('book reviews error', err);
+      })
+    })
+    .then(() => {
       props.setShowDetail(true);
     })
+    .catch((err) => {
+      console.log(err);
+    })
   }
-  //iterate over the authors array
+
 
   return (
     <div>
