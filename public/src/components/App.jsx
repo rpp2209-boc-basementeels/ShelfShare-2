@@ -95,7 +95,7 @@ const App = () => {
     axios.get('/trending')
       .then((books) => {
         console.log(books.data);
-        updateGalleryBooks(books.data);
+        updateAllBooks(books.data);
       })
       .catch((err) => {
         console.log(err);
