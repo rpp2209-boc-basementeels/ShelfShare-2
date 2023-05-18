@@ -3,12 +3,9 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import InputGroup from 'react-bootstrap/InputGroup';
 import axios from 'axios';
 
 const EditInfoModal = (props) => {
-    console.log(props, 'these be the props');
-    // need to implement uploading photo file from local computer
     const [firstName, setFirstName] = useState(props.info.first_name);
     const [lastName, setLastName] = useState(props.info.last_name);
     const [email, setEmail] = useState(props.info.email);

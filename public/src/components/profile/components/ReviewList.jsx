@@ -6,18 +6,13 @@ const ReviewList = (props) => {
 
     var reviews = props.reviews.map((review, index) => {
         return (
-            <Review review={review} key={index}/>
+            <Review onModal={props.onModal} usernameThatWasClicked={props.usernameThatWasClicked} setUsernameThatWasClicked={props.setUsernameThatWasClicked} review={review} key={index}/>
         )
     });
 
-    // if (props.reviews.length === 0) {
-    //     gallery = <div> Sorry, No Reviews</div>
-    //   }
-
-    // console.log('empty reviews', props.reviews)
     return (
         <Container style={{"display": "flex", "justifyContent": "center"}}>
-            {reviews}
+            {props.onModal && props.reviews.length === 0 ? <h4 style={{"marginTop": "3vh"}}>This book doesn't have any reviews yet</h4> : <div>{reviews}</div>}
         </Container>
     )
 };

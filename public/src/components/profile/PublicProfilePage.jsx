@@ -37,9 +37,9 @@ const PublicProfilePage = (props) => {
 
     return (
         <Container>
-            <Container style={{"display": "flex", "alignItems": "flex-start", "justifyContent": "center"}}>
-                <Container style={{"textAlign": "center", "position": "relative", "width": "30vw", "minWidth": "max-content"}}>
-                    <Button style={{"position": "absolute", "top": 0, "left": "-10vw"}} variant="outline-primary" onClick={() => {props.set('')}}>Back</Button>
+            <Container style={{"display": "flex", "alignItems": "flex-start", "justifyContent": "center", "marginTop": "5vh"}}>
+                <Container style={{"textAlign": "center", "position": "relative", "width": "30vw"}}>
+                    <Button style={{"position": "absolute", "top": 0, "left": "-10vw"}} variant="outline-primary" onClick={() => {props.set(''); props.setShowDetail(false)}}>Back to Homepage</Button>
                     <Image style={{"borderRadius": "50%", "width": "10vw"}} src={userInfo.photo_url}></Image>
                     <h4 style={{"marginTop": "2vh", "marginBottom": "0vh", "fontFamily": "Helvetica"}}>{userInfo.first_name + ' ' + userInfo.last_name}</h4>
                     <h6 style={{"fontFamily": "Helvetica"}}>@{props.username}</h6>
@@ -47,11 +47,14 @@ const PublicProfilePage = (props) => {
                     <hr></hr>
                 </Container>
             </Container>
-            <h3 style={{"marginTop": "5vh", "marginBottom": "5vh", "textAlign": "center", "fontFamily": "Helvetica"}}>{userInfo.first_name + "'s"} Reviews</h3>
+            <h3 style={{"marginTop": "3vh", "marginBottom": "5vh", "textAlign": "center", "fontFamily": "Helvetica", "textDecoration": "underline"}}>{userInfo.first_name + "'s"} Reviews</h3>
             <Container>
                 {userReviews.length === 0 ? <h6 style={{"textAlign": "center"}}>{userInfo.first_name} hasn't left any reviews yet</h6> : <ReviewList reviews={userReviews}/>}
             </Container>
-            <h3 style={{"marginTop": "5vh", "marginBottom": "5vh", "textAlign": "center", "fontFamily": "Helvetica"}}>{userInfo.first_name + "'s"} Shelf</h3>
+            <Container style={{"textAlign": "center", "position": "relative", "width": "30vw", "minWidth": "max-content", "marginTop": "7vh"}}>
+                <hr></hr>  
+            </Container>
+            <h3 style={{"marginTop": "5vh", "marginBottom": "5vh", "textAlign": "center", "fontFamily": "Helvetica", "textDecoration": "underline"}}>{userInfo.first_name + "'s"} Shelf</h3>
             <Container style={{"display": "flex", "justifyContent": "center"}}>
                 <Shelf libraryOwner={props.username}/>
             </Container>
