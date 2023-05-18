@@ -19,7 +19,7 @@ const BookCard = (props) => {
     .then(() => {
       //request the reviews for the book
       console.log('book id', props.id);
-      axios.get(`/bookReviews`, {params: {book_id: props.id}})
+      axios.get(`/bookReviews/${props.id}`)
         .then((results) => {
           console.log('review results', results.data);
         props.setBookReviews(results.data);

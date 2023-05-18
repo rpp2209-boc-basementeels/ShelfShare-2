@@ -5,7 +5,6 @@ import axios from 'axios';
 
 const ProfilePage = (props) => {
     // props.user is the data about the current user passed down from App.jsx
-    // Is not implemented by Kevin yet, so use below username as placeholder
 
     const [userReviews, setUserReviews] = useState([]);
 
@@ -29,7 +28,7 @@ const ProfilePage = (props) => {
             </div>
             <h3 style={{"marginTop": "5vh", "marginBottom": "5vh", "textAlign": "center", "fontFamily": "Helvetica"}}>My Reviews</h3>
             <div>
-                <ReviewList reviews={userReviews}/>
+                {userReviews.length === 0 ? <h6 style={{"textAlign": "center"}}>You haven't left any reviews yet</h6> : <ReviewList reviews={userReviews}/>}
             </div>
         </div>
     )
