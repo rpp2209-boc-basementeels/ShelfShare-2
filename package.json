@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --verbose",
+    "test": "jest --verbose --watch --coverage",
     "build": "webpack",
     "start": "nodemon ./server/index.js",
     "client-dev": "webpack --watch",
@@ -24,6 +24,7 @@
     "jest-environment-jsdom": "^29.5.0",
     "jwt-decode": "^3.1.2",
     "moment": "^2.29.4",
+    "msw": "^1.2.1",
     "nodemon": "^2.0.22",
     "path": "^0.12.7",
     "pg": "^8.10.0",

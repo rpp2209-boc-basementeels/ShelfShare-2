@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Button, Container, Row, Col, Card, Image, ListGroup }  from 'react-bootstrap';
 import GenreFilter from './helper functions/GenreFilter.jsx';
 import DateParser from './helper functions/DateParser.jsx';
-import ProfileType from './sub-components/ProfileType.jsx';
 import ScanButton from './sub-components/ScanButton.jsx';
 import Shelf from './sub-components/Shelf.jsx';
 import Borrowed from './sub-components/Borrowed.jsx';
@@ -38,6 +37,7 @@ const PersonalLibrary = ({ user }) => {
         const authors = bookData.authors.map((author) => {
           return author.name;
         });
+        console.log('pub date', bookData.publish_date)
         const bookPostData = {
           authors: authors,
           title: bookData.title,

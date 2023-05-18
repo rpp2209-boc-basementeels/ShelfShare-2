@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1684378606966" clover="3.2.0">
+  <project timestamp="1684378606966" name="All files">
+    <metrics statements="83" coveredstatements="55" conditionals="18" coveredconditionals="6" methods="23" coveredmethods="12" elements="124" coveredelements="73" complexity="0" loc="83" ncloc="83" packages="4" files="8" classes="8"/>
+    <package name="helper functions">
+      <metrics statements="21" coveredstatements="19" conditionals="4" coveredconditionals="3" methods="3" coveredmethods="3"/>
+      <file name="DateParser.jsx" path="/home/mcpeck/hackreactor/ShelfShare-2/public/src/components/library/helper functions/DateParser.jsx">
+        <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+      </file>
+      <file name="GenreFilter.jsx" path="/home/mcpeck/hackreactor/ShelfShare-2/public/src/components/library/helper functions/GenreFilter.jsx">
+        <metrics statements="8" coveredstatements="6" conditionals="4" coveredconditionals="3" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="19" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="21" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="sub-components">
+      <metrics statements="56" coveredstatements="34" conditionals="14" coveredconditionals="3" methods="16" coveredmethods="9"/>
+      <file name="Borrowed.jsx" path="/home/mcpeck/hackreactor/ShelfShare-2/public/src/components/library/sub-components/Borrowed.jsx">
+        <metrics statements="18" coveredstatements="11" conditionals="4" coveredconditionals="1" methods="5" coveredmethods="3"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="33" count="2" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+      </file>
+      <file name="Lent.jsx" path="/home/mcpeck/hackreactor/ShelfShare-2/public/src/components/library/sub-components/Lent.jsx">
+        <metrics statements="18" coveredstatements="11" conditionals="4" coveredconditionals="1" methods="5" coveredmethods="3"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="33" count="2" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+      </file>
+      <file name="ScanButton.jsx" path="/home/mcpeck/hackreactor/ShelfShare-2/public/src/components/library/sub-components/ScanButton.jsx">
+        <metrics statements="2" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+      </file>
+      <file name="Shelf.jsx" path="/home/mcpeck/hackreactor/ShelfShare-2/public/src/components/library/sub-components/Shelf.jsx">
+        <metrics statements="18" coveredstatements="11" conditionals="4" coveredconditionals="1" methods="5" coveredmethods="3"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="33" count="2" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="tests">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="server.js" path="/home/mcpeck/hackreactor/ShelfShare-2/public/src/components/library/tests/server.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="tests.mocks">
+      <metrics statements="5" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+      <file name="handlers.js" path="/home/mcpeck/hackreactor/ShelfShare-2/public/src/components/library/tests/mocks/handlers.js">
+        <metrics statements="5" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
