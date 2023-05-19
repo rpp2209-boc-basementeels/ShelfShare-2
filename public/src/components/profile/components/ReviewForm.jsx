@@ -8,16 +8,17 @@ const ReviewForm = (props) => {
     const [body, setBody] = useState('');
 
     const handleSaveReview = () => {
-        props.setShowReviewForm(!props.showReviewForm);
         alert(`Thanks for reviewing ${props.book.title}!`)
-
         axios.post(`/reviews/${props.book.book_id}`, {
-            body,
+            body: body,
             review_date: new Date(),
             username: props.username,
-            book_id: props.book.book_id,
+            book_id: props.book.book_id
+        }).then((data) => {
+            props.setReviewPosted(!props.reviewPosted);
+            props.setShowReviewForm(!props.showReviewForm);
         }).catch((error) => {
-            console.log('There was an error posting the review', error);
+            console.log('There was an error updating state in the parent component (Gallery)', error);
         })
     };
 

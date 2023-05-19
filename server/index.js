@@ -38,7 +38,6 @@ app.get('/0f4328edd6df3f5cd6c6.png', (req, res) => {
 
 //GET all trending
 app.get('/trending', (req, res) => {
-  console.log('request made to /trending endpoint');
   //make a request to the back end server
   axios.get(`${process.env.API_URL}/trending`)
     .then((result) => {
@@ -55,7 +54,6 @@ app.get('/search', (req, res) => {
   let term = req.query.searchTerm;
   axios.get(`${process.env.API_URL}/search`, { params: { term: term } })
     .then((result) => {
-      console.log('search results', result.data);
       res.status(200).send(result.data);
     })
     .catch((err) => {
