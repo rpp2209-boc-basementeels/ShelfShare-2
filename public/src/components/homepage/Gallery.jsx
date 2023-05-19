@@ -17,7 +17,9 @@ const Gallery = (props) => {
   const handleBorrowClick = (e) => {
     axios.post('/usage', {
       isbn: book.isbn,
-      genre: book.genre
+      genre: book.genre,
+      age: props.user.age,
+      gender: props.user.gender
     })
     .then(() => {
       props.setShowDetail(false);
