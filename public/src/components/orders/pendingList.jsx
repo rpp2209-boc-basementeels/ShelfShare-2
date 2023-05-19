@@ -11,11 +11,15 @@ var PendingList = (props) => {
     PendingList;
   }, [props])
 
+  var flattener = () => (
+    Object.values(books).flat()
+  )
+
   var index = 0;
 
   return (
     <div>{
-      books.length > 0 ?
+      flattener().length > 0 ?
         <div>
           <table>
             <thead>
@@ -25,7 +29,7 @@ var PendingList = (props) => {
                 <th className="p-2">Type</th>
               </tr>
             </thead>
-            {books.map(book => (
+            {flattener().map(book => (
               <PendingSingle data={book} key={index += 1} user={props.user} state={props.state}/>
             ))}
           </table>

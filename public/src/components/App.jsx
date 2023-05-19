@@ -81,7 +81,7 @@ const App = () => {
     if (user.user_id !== undefined || user.user_id > 0) {
       axios.get(`orders/pending/${user.user_id}`)
         .then(data => {
-          setLoan(data.data);
+          setPend(data.data);
         })
         .catch(err => console.log('err in orders', err));
     }
@@ -91,7 +91,7 @@ const App = () => {
     fetchBorrow();
     fetchLoan();
     fetchPending();
-  }, [])
+  }, [user.user_id, selectedPage])
 
   var pendingStyle = (array) => {
     if (array.length > 0)  { return array.length }
