@@ -58,7 +58,7 @@ const App = () => {
   const [pend, setPend] = useState([]);
 
   let fetchBorrow = () => {
-    if (user.user_id !== undefined || user.user_id > 0) {
+    if (user.user_id !== undefined) {
     axios.get(`orders/borrowed/${user.user_id}`)
       .then(data => {
         setBorrow(data.data);
@@ -68,7 +68,7 @@ const App = () => {
 }
 
   let fetchLoan = () => {
-    if (user.user_id !== undefined || user.user_id > 0) {
+    if (user.user_id !== undefined) {
       axios.get(`orders/loaned/${user.user_id}`)
         .then(data => {
           setLoan(data.data);
@@ -78,7 +78,7 @@ const App = () => {
   }
 
   let fetchPending = () => {
-    if (user.user_id !== undefined || user.user_id > 0) {
+    if (user.user_id !== undefined) {
       axios.get(`orders/pending/${user.user_id}`)
         .then(data => {
           setPend(data.data);
@@ -91,7 +91,7 @@ const App = () => {
     fetchBorrow();
     fetchLoan();
     fetchPending();
-  }, [user.user_id, selectedPage, pend])
+  }, [user.user_id])
 
   ///////////////////////////////////////////
 
