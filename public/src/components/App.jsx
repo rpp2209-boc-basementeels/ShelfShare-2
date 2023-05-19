@@ -57,20 +57,40 @@ const App = () => {
   const [borrow, setBorrow] = useState([]);
   const [pend, setPend] = useState([]);
 
-  let fetcher = () => {
+  let fetchBorrow = () => {
     if (user.user_id !== undefined || user.user_id > 0) {
-    axios.get(`orders/${user.user_id}`)
-    .then(data => {
-      setLoan(data.data.loaned);
-      setBorrow(data.data.borrowed);
-      setPend(data.data.pending);
-    })
+    axios.get(`orders/borrowed/${user.user_id}`)
+      .then(data => {
+        setBorrow(data.data);
+      })
     .catch(err => console.log('err in orders', err));
   }
 }
 
+  let fetchLoan = () => {
+    if (user.user_id !== undefined || user.user_id > 0) {
+      axios.get(`orders/loaned/${user.user_id}`)
+        .then(data => {
+          setLoan(data.data);
+        })
+        .catch(err => console.log('err in orders', err));
+    }
+  }
+
+  let fetchPending = () => {
+    if (user.user_id !== undefined || user.user_id > 0) {
+      axios.get(`orders/pending/${user.user_id}`)
+        .then(data => {
+          setLoan(data.data);
+        })
+        .catch(err => console.log('err in orders', err));
+    }
+  }
+
   useEffect(() => {
-    fetcher();
+    fetchBorrow();
+    fetchLoan();
+    fetchPending();
   }, [])
 
   var pendingStyle = (array) => {

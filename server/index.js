@@ -160,17 +160,31 @@ app.post('/reviews/:book_id', (req, res) => {
 });
 
 // *********************************************************
-
-app.get('/orders/:id', (req, res) => {
+////////////////////////////////////////////////////////////////
+app.get('/orders/borrowed/:id', (req, res) => {
   var uniqueId = req.params.id;
-  let url = `${process.env.API_URL}/orders/${uniqueId}`;
+  let url = `${process.env.API_URL}/orders/borrowed/${uniqueId}`;
 
   axios.get(url)
     .then(list => res.status(200).send(list.data))
-    .catch((err) => {
-      console.log('orders error', err);
-      res.sendStatus(404)
-    });
+    .catch(err => res.send(err).status(404));
+});
+
+app.get('/orders/loaned/:id', (req, res) => {
+  var uniqueId = req.params.id;
+
+  let url = `${process.env.API_URL}/orders/loaned/${uniqueId}`;
+  axios.get(url)
+    .then(list => res.status(200).send(list.data))
+    .catch(err => res.send(err).status(404));
+});
+
+app.get('/orders/pending/:id', (req, res) => {
+  var uniqueId = req.params.id;
+  let url = `${process.env.API_URL}/orders/pending/${uniqueId}`;
+  axios.get(url)
+    .then(list => res.status(200).send(list.data))
+    .catch(err => res.send(err).status(404));
 });
 
 app.patch('/pending/loan', (req, res) => {
@@ -196,7 +210,7 @@ app.post('/borrow', (req, res) => {
   axios.post(url, req.body)
   .catch(err => res.send(err).status(500))
 })
-
+////////////////////////////////////////////////////////////////////////////////
 
 // Authorization
 // For the homepage
