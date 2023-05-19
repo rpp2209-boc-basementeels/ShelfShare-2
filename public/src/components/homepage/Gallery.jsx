@@ -13,9 +13,11 @@ import ReviewForm from '../profile/components/ReviewForm.jsx';
 const Gallery = (props) => {
 
   const handleClose = () => props.setShowDetail(false);
+
   // I'm inserting the  axios call for the borrowed book here
+  console.log(props)
   let borrowCall = (input) => {
-    axios.post('/borrow', {borrower_id: props.id, book_id: input.selectedBookId, username: input.username})
+    axios.post('/borrow', {borrower_id: input.id, book_id: input.selectedBookId, username: input.username})
       .catch(err => console.log('err', err))
   }
 
