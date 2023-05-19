@@ -91,12 +91,8 @@ const App = () => {
     fetchBorrow();
     fetchLoan();
     fetchPending();
-  }, [user.user_id, selectedPage])
+  }, [user.user_id, selectedPage, pend])
 
-  var pendingStyle = (array) => {
-    if (array.length > 0)  { return array.length }
-    else { return ; }
-  }
   ///////////////////////////////////////////
 
   // Need to log users into the app if the users exist
@@ -150,7 +146,7 @@ const App = () => {
           {Object.hasOwn(user, 'username') ? <Col>
             <Button variant="outline-primary" onClick={() => { setSelectedPage('Library') }}>My Library</Button>
           </Col> : null} */}
-            <Header setPage={setSelectedPage} term={term} setTerm={setTerm} updateGalleryBooks={updateGalleryBooks} setShowDetail={setShowDetail} setClickedLogin={setClickedLogin} user={user} setUser={setUser} updateAllBooks={updateAllBooks} allBooks={allBooks}/>
+            <Header setPage={setSelectedPage} term={term} setTerm={setTerm} updateGalleryBooks={updateGalleryBooks} setShowDetail={setShowDetail} setClickedLogin={setClickedLogin} user={user} setUser={setUser} updateAllBooks={updateAllBooks} allBooks={allBooks} notifications={pend}/>
           {selectedPage === 'Login' ? <GoogleSignIn setUser={setUser} setClickedLogin={setClickedLogin}/> : null}
           {selectedPage === 'Profile' ? <ProfilePage user={user} setUser={setUser}/> : null}
           {selectedPage === 'Library' ? <PersonalLibrary user={user}/> : null}
