@@ -91,7 +91,7 @@ const App = () => {
     fetchBorrow();
     fetchLoan();
     fetchPending();
-  }, [user.user_id, selectedPage])
+  }, [user.user_id, selectedPage, pend])
 
   ///////////////////////////////////////////
 
