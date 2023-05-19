@@ -316,6 +316,8 @@ app.post(`/usage`, (req, res) => {
   const records = {
     isbn: req.body.isbn,
     genre: req.body.genre,
+    age: req.body.age,
+    gender: req.body.gender,
     date: new Date()
   }
 

@@ -134,8 +134,8 @@ const App = () => {
           {selectedPage === 'Login' ? <GoogleSignIn setUser={setUser} setClickedLogin={setClickedLogin}/> : null}
           {selectedPage === 'Profile' ? <ProfilePage user={user} setUser={setUser}/> : null}
           {selectedPage === 'Library' ? <PersonalLibrary user={user}/> : null}
-          {selectedPage === 'Orders' ? <Orders user={7} page={selectedPage} bookData={{loaned: loan, borrowed: borrow, pending: pend}}/> : null}
-          {selectedPage === 'Home' ? <Gallery id={user.user_id} selectedBookId={selectedBookId} updateSelectedBookId={updateSelectedBookId} books={galleryBooks === null ? allBooks : galleryBooks} updateGalleryBooks={updateGalleryBooks} showBookDetail={showBookDetail} setShowDetail={setShowDetail}/> : null}
+          {selectedPage === 'Orders' ? <Orders user={user.user_id} page={selectedPage} bookData={{loaned: loan, borrowed: borrow, pending: pend}}/> : null}
+          {selectedPage === 'Home' ? <Gallery user={user} selectedBookId={selectedBookId} updateSelectedBookId={updateSelectedBookId} books={galleryBooks === null ? allBooks : galleryBooks} updateGalleryBooks={updateGalleryBooks} showBookDetail={showBookDetail} setShowDetail={setShowDetail}/> : null}
           <Footer />
         </Row>
       </Container>
