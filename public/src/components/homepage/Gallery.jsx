@@ -51,7 +51,7 @@ const Gallery = (props) => {
           ));
 
     if (gallery.length === 0) {
-      gallery = <div> Sorry, No Matching Titles!</div>
+      gallery = <div className='p-5'> Sorry, No Matching Titles!</div>
     }
 
 
