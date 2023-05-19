@@ -118,7 +118,7 @@ const App = () => {
     return (
       <Container>
         <Row>
-          <Col>
+          {/* <Col>
             <Button variant="outline-primary" onClick={() => {setSelectedPage('Home'); updateGalleryBooks(null); setTerm('');}}>Home</Button>
           </Col>
           <Col>
@@ -131,7 +131,7 @@ const App = () => {
           </Col>
           {Object.hasOwn(user, 'username') ? <Col>
             <Button variant="outline-primary" onClick={() => { setSelectedPage('Library') }}>My Library</Button>
-          </Col> : null}
+          </Col> : null} */}
             <Header setPage={setSelectedPage} term={term} setTerm={setTerm} updateGalleryBooks={updateGalleryBooks} setShowDetail={setShowDetail} setClickedLogin={setClickedLogin} user={user} setUser={setUser} updateAllBooks={updateAllBooks} allBooks={allBooks}/>
           {selectedPage === 'Login' ? <GoogleSignIn setUser={setUser} setClickedLogin={setClickedLogin}/> : null}
           {selectedPage === 'Profile' ? <ProfilePage user={user} setUser={setUser}/> : null}
