@@ -149,7 +149,7 @@ app.get('/bookReviews/:book_id', (req, res) => {
 });
 
 app.post('/reviews/:book_id', (req, res) => {
-  var book_id = req.params.book_id;  
+  var book_id = req.params.book_id;
   axios.post(`${process.env.API_URL}/review/${book_id}`, req.body)
     .then(() => {
       res.sendStatus(201);
@@ -190,6 +190,12 @@ app.patch('/pending/borrow', (req, res) => {
   .then(pass => res.sendStatus(200))
   .catch(err => res.send(err).status(500))
 });
+
+app.post('/borrow', (req, res) => {
+  let url = `${process.env.API_URL}/borrow`;
+  axios.post(url, req.body)
+  .catch(err => res.send(err).status(500))
+})
 
 
 // Authorization
