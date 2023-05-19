@@ -13,11 +13,6 @@ import ReviewForm from '../profile/components/ReviewForm.jsx';
 const Gallery = (props) => {
 
   const handleClose = () => props.setShowDetail(false);
-  // I'm inserting the  axios call for the borrowed book here
-  let borrowCall = (input) => {
-    axios.post('/borrow', {borrower_id: props.id, book_id: input.selectedBookId, username: input.username})
-      .catch(err => console.log('err', err))
-  }
 
   const handleBorrowClick = (e) => {
     axios.post('/usage', {
@@ -28,6 +23,11 @@ const Gallery = (props) => {
       props.setShowDetail(false);
       alert(`Your request to borrow ${book.title} has been submitted. Please visit your orders page to manage requests.`);
     })
+    .then(() => {
+      axios.post('/borrow', {borrower_id: props.id, book_id: props.selectedBookId})
+      .catch(err => console.log('error borrowing', err))
+    })
+    .catch(err => console.log(err))
   }
 
   const [book, setBook] = useState({});
@@ -84,7 +84,7 @@ const Gallery = (props) => {
       <Button onClick={() => {setShowReviewForm(true)}}>
         Leave a Review
       </Button>
-      <Button onClick={(e) => {handleBorrowClick; borrowCall(props)}} variant="primary">
+      <Button onClick={handleBorrowClick} variant="primary">
         Request to Borrow
       </Button>
       <Button variant="secondary" onClick={handleClose}>
