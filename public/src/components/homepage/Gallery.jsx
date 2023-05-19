@@ -27,6 +27,11 @@ const Gallery = (props) => {
     })
     .then(() => {
       axios.post('/borrow', {borrower_id: props.user.user_id, book_id: props.selectedBookId})
+      .then ((result) => {
+        if (result.data === 'There are no books available to borrow') {
+          alert ('This book is unavailable to borrow');
+        }
+      })
       .catch(err => console.log('error borrowing', err))
     })
     .catch(err => console.log(err))
