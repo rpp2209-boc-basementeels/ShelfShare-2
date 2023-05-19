@@ -66,7 +66,6 @@ const App = () => {
     .catch(err => console.log('err in orders', err));
   }
 }
-console.log(user.user_id)
 
   let fetchLoan = () => {
     if (user.user_id !== undefined || user.user_id > 0) {
@@ -92,7 +91,7 @@ console.log(user.user_id)
     fetchBorrow();
     fetchLoan();
     fetchPending();
-  }, [user.user_id])
+  }, [user.user_id, selectedPage])
 
   var pendingStyle = (array) => {
     if (array.length > 0)  { return array.length }
