@@ -30,12 +30,12 @@ const Gallery = (props) => {
       .then ((result) => {
         if (result.data === 'There are no books available to borrow') {
           alert ('This book is unavailable to borrow');
+          window.location.reload(false);
         }
       })
       .catch(err => console.log('error borrowing', err))
     })
     .catch(err => console.log(err))
-    .finally(() => window.location.reload(false))
   }
 
   const [book, setBook] = useState({});
