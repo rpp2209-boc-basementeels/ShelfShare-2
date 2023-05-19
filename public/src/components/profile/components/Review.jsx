@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 
 const Review = (props) => {
+    console.log('props', props);
 
     return (
         <Container style={{"margin": "1rem"}}>

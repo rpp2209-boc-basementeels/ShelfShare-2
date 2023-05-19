@@ -50,6 +50,7 @@ const App = () => {
   // and will update below, triggering a re-rendering of the clicked-on-user's public profile page, line 42
   // When "back" button is clicked on this profile page, state resets to an empty string
   const [usernameThatWasClicked, setUsernameThatWasClicked] = useState('');
+  console.log('usernameThatWasClicked', usernameThatWasClicked);
 
   ////////////////////////////////////////////
   // setting the state for the Orders
@@ -91,7 +92,7 @@ const App = () => {
     fetchBorrow();
     fetchLoan();
     fetchPending();
-  }, [user.user_id, selectedPage, pend])
+  }, [user.user_id])
 
   ///////////////////////////////////////////
 
@@ -151,7 +152,7 @@ const App = () => {
           {selectedPage === 'Profile' ? <ProfilePage user={user} setUser={setUser}/> : null}
           {selectedPage === 'Library' ? <PersonalLibrary user={user}/> : null}
           {selectedPage === 'Orders' ? <Orders user={user.user_id} page={selectedPage} bookData={{loaned: loan, borrowed: borrow, pending: pend}}/> : null}
-          {selectedPage === 'Home' ? <Gallery user={user} selectedBookId={selectedBookId} updateSelectedBookId={updateSelectedBookId} books={galleryBooks === null ? allBooks : galleryBooks} updateGalleryBooks={updateGalleryBooks} showBookDetail={showBookDetail} setShowDetail={setShowDetail}/> : null}
+          {selectedPage === 'Home' ? <Gallery usernameThatWasClicked={usernameThatWasClicked} setUsernameThatWasClicked={setUsernameThatWasClicked} user={user} selectedBookId={selectedBookId} updateSelectedBookId={updateSelectedBookId} books={galleryBooks === null ? allBooks : galleryBooks} updateGalleryBooks={updateGalleryBooks} showBookDetail={showBookDetail} setShowDetail={setShowDetail}/> : null}
           <Footer />
         </Row>
       </Container>
