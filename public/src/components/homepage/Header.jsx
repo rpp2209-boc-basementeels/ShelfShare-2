@@ -61,6 +61,23 @@ const Header = (props) => {
       .catch((err) => console.log(err))
   };
 
+  let notify = (data) => {
+    if (Array.isArray(data) && data.length === 0) { return '';}
+    else if (data === undefined) { return ''; }
+    else if (Object.values(data).flat().length > 0) { return Object.values(data).flat().length; }
+    else { return '';}
+  }
+
+  let toggle = () => {
+    if (notify(props.notifications) > 0) { return '❗️'}
+    else { return ''; }
+  }
+
+  useEffect(() => {
+    notify;
+    toggle;
+  }, [props])
+
   const userLogin = () => {
     const keys = Object.keys(props.user);
     if (keys.length === 0) {
@@ -75,10 +92,10 @@ const Header = (props) => {
     } else {
       return (
         <>
-          <NavDropdown style={{background: 'white', borderRadius: '5px', padding: '7px'}} title={`Hi ${props.user.first_name}`} id="registered-user-menu-dropdown">
+          <NavDropdown style={{background: 'white', borderRadius: '5px', padding: '7px'}} title={`Hi ${props.user.first_name} ${toggle()}`} id="registered-user-menu-dropdown">
             <NavDropdown.Item onClick={(e) => {props.setPage('Profile')}}>My Profile</NavDropdown.Item>
             <NavDropdown.Item onClick={(e) => {props.setPage('Library')}}>My Library</NavDropdown.Item>
-            <NavDropdown.Item onClick={(e) => {props.setPage('Orders')}}>Orders</NavDropdown.Item>
+            <NavDropdown.Item onClick={(e) => {props.setPage('Orders')}}>Orders <span className=" badge .badge-* badge-dark  " style={{ color: 'red' }}>{notify(props.notifications)}</span></NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
           </NavDropdown>
