@@ -208,6 +208,7 @@ app.patch('/pending/borrow', (req, res) => {
 app.post('/borrow', (req, res) => {
   let url = `${process.env.API_URL}/borrow`;
   axios.post(url, req.body)
+  .then(result => res.send(result.data).status(201))
   .catch(err => res.send(err).status(500))
 })
 ////////////////////////////////////////////////////////////////////////////////
