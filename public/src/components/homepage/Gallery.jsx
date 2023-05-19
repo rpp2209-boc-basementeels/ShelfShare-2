@@ -37,7 +37,7 @@ const Gallery = (props) => {
   }
 
     let gallery = (props.books.map((book, index) =>
-            <Col xs={12} md={6} lg={4} xl={4} key={index} className={index}>
+            <Col xs={12} md={6} lg={4} xl={3} key={index} className={index}>
             <BookCard setBookReviews={setBookReviews} authors={authors} setAuthors={setAuthors} setBook={setBook} id={book.book_id} books={props.books} selectedBookId={props.selectedBookId} updateSelectedBookId={props.updateSelectedBookId} setShowDetail={props.setShowDetail} title={book.title} author={book.author} image={book.image_url} description={"description placeholder"}/>
             </Col>
           ));

@@ -68,19 +68,19 @@ const Header = (props) => {
         <>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" >
-            <Nav.Link style={{background: 'white'}} onClick={() => { props.setClickedLogin(true) }}>Login</Nav.Link>
+            <Nav.Link style={{background: 'white', borderRadius: '5px', padding: '7px'}} onClick={() => { props.setClickedLogin(true) }}>Login</Nav.Link>
           </Navbar.Collapse>
         </>
       )
     } else {
       return (
         <>
-          <NavDropdown style={{background: 'white'}} title={`Hi ${props.user.first_name}`} id="registered-user-menu-dropdown">
+          <NavDropdown style={{background: 'white', borderRadius: '5px', padding: '7px'}} title={`Hi ${props.user.first_name}`} id="registered-user-menu-dropdown">
             <NavDropdown.Item onClick={(e) => {props.setPage('Profile')}}>My Profile</NavDropdown.Item>
             <NavDropdown.Item onClick={(e) => {props.setPage('Library')}}>My Library</NavDropdown.Item>
             <NavDropdown.Item onClick={(e) => {props.setPage('Orders')}}>Orders</NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4" onClick={handleLogout}>Logout</NavDropdown.Item>
+            <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
           </NavDropdown>
         </>
       )
@@ -107,36 +107,39 @@ const Header = (props) => {
 
           <Row>  <br></br> </Row>
 
-
+          <Container>
           <Row className="justify-content-center">
-            <Col xs={12} md={6}>
+            <Col xs={10} sm={10} m={10} lg={10}>
               <Form onSubmit={handleSearch}>
               <Form.Control
                 type="search"
                 onChange= {handleChange}
                 placeholder="Search by Author or Book Title"
                 value={props.term}
-                className="me-2"
                 aria-label="Search"
-              />
+                />
+                <Col xs={2} sm={2} m={2} lg={2}>
               <Button variant="secondary" type="submit"> Search </Button>
+                </Col>
               </Form>
             </Col>
-          </Row>
 
+
+          </Row>
+          </Container>
+
+        <Row><br></br></Row>
           <Row className="justify-content-center">
-            <Col xs={12} md={6}>
-              <Navbar style={{background: 'white'}}>
-                <Container>
+              <Navbar  style={{background: 'white', borderRadius: '10px'}}>
+                <Container className="justify-content-center">
                   <Navbar.Toggle aria-controls="basic-navbar-nav" />
                   <Navbar.Collapse id="homepage-navbar">
                     <Nav className="me-auto">
-                      <row>
-                      <Navbar.Text >Explore By:</Navbar.Text>
-                      </row>
 
-                      <Nav.Link onClick={() => { props.setShowDetail(false) }}>Trending</Nav.Link>
-                      <NavDropdown title="Publication Date" id="pub-date-dropdown" style={{background: 'white'}}>
+                        <Nav.Link style={{padding: '10px'}} onClick={() => { props.setShowDetail(false) }}>Home</Nav.Link>
+
+                        <Navbar.Text style={{padding: '10px'}}>Explore By:</Navbar.Text>
+                        <NavDropdown style={{padding: '20px'}} title="Publication Date" id="pub-date-dropdown" style={{background: 'white'}}>
                         <NavDropdown.Item onClick={() => { genrePubFilter('pub', null, '1800', '1900') }}>1800-1900</NavDropdown.Item>
                         <NavDropdown.Item onClick={() => { genrePubFilter('pub', null, '1901', '1950') }}>1901-1950 </NavDropdown.Item>
                         <NavDropdown.Item onClick={() => { genrePubFilter('pub', null, '1951', '1970') }}>1951-1970 </NavDropdown.Item>
@@ -145,19 +148,20 @@ const Header = (props) => {
                         <NavDropdown.Item onClick={() => { genrePubFilter('pub', null, '1991', '2000') }}>1991-2000 </NavDropdown.Item>
                         <NavDropdown.Item onClick={() => { genrePubFilter('pub', null, '2001', '2010') }}>2000-2010 </NavDropdown.Item>
                         <NavDropdown.Item onClick={() => { genrePubFilter('pub', null, '2010', '2023') }}>2010-2023</NavDropdown.Item>
-                      </NavDropdown>
+                       </NavDropdown>
 
-                      <NavDropdown title="Genre" id="genre-dropdown" style={{background: 'white'}}>
+                      <NavDropdown style={{padding: '20px'}} title="Genre" id="genre-dropdown" style={{background: 'white'}}>
                         <NavDropdown.Item onClick={() => { genrePubFilter('genre', 'Cooking')}}>Cooking</NavDropdown.Item>
                         <NavDropdown.Item onClick={() => { genrePubFilter('genre', 'Autobiography')}}>Autobiography</NavDropdown.Item>
                         <NavDropdown.Divider />
                       </NavDropdown>
 
+
                     </Nav>
                   </Navbar.Collapse>
                 </Container>
               </Navbar>
-            </Col>
+
           </Row>
         </Card.ImgOverlay>
       </Card>
