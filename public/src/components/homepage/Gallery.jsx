@@ -26,7 +26,7 @@ const Gallery = (props) => {
       alert(`Your request to borrow ${book.title} has been submitted. Please visit your orders page to manage requests.`);
     })
     .then(() => {
-      axios.post('/borrow', {borrower_id: props.id, book_id: props.selectedBookId})
+      axios.post('/borrow', {borrower_id: props.user.user_id, book_id: props.selectedBookId})
       .catch(err => console.log('error borrowing', err))
     })
     .catch(err => console.log(err))
