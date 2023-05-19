@@ -41,6 +41,20 @@ const Gallery = (props) => {
   const [authors, setAuthors] = useState([]);
   const [bookReviews, setBookReviews] = useState([]);
   const [showReviewForm, setShowReviewForm] = useState(false);
+  const [reviewPosted, setReviewPosted] = useState(false);
+
+  useEffect(() => {
+    if (reviewPosted === false) {
+      return;
+    }
+    axios.get(`/bookReviews/${book.book_id}`)
+      .then((data) => {
+        setBookReviews(data.data);
+        setReviewPosted(false);
+      }).catch((error) => {
+        console.log('There was an error getting the new reviews', error);
+      })
+  }, [reviewPosted])
 
 
   let bookAuthors = '';
@@ -60,7 +74,6 @@ const Gallery = (props) => {
     if (gallery.length === 0) {
       gallery = <div> Sorry, No Matching Titles!</div>
     }
-
 
   return (
     <div>
@@ -86,7 +99,7 @@ const Gallery = (props) => {
       </Col>
     </Modal.Body>
     {showReviewForm ? <Container style={{"display": "flex", "justifyContent": "center", "alignItems": "center"}}>
-        <ReviewForm book={book} username={props.username} setShowReviewForm={setShowReviewForm} showReviewForm={showReviewForm} />
+        <ReviewForm reviewPosted={reviewPosted} setReviewPosted={setReviewPosted} book={book} username={props.user.username} setShowReviewForm={setShowReviewForm} showReviewForm={showReviewForm} />
       </Container> : <Modal.Footer style={{"display": "flex", "justifyContent": "center"}}>
       <Button onClick={() => {setShowReviewForm(true)}}>
         Leave a Review
