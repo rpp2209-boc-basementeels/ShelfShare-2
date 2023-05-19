@@ -136,7 +136,7 @@ const Header = (props) => {
                   <Navbar.Collapse id="homepage-navbar">
                     <Nav className="me-auto">
 
-                        <Nav.Link style={{padding: '10px'}} onClick={() => { props.setShowDetail(false) }}>Home</Nav.Link>
+                        <Nav.Link style={{padding: '10px'}} onClick={() => { props.setShowDetail(false); props.setPage('Home'); props.updateGalleryBooks(null);}}>Home</Nav.Link>
 
                         <Navbar.Text style={{padding: '10px'}}>Explore By:</Navbar.Text>
                         <NavDropdown style={{padding: '20px'}} title="Publication Date" id="pub-date-dropdown" style={{background: 'white'}}>
