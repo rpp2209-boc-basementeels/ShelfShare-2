@@ -50,7 +50,6 @@ const App = () => {
   // and will update below, triggering a re-rendering of the clicked-on-user's public profile page, line 42
   // When "back" button is clicked on this profile page, state resets to an empty string
   const [usernameThatWasClicked, setUsernameThatWasClicked] = useState('');
-  console.log('usernameThatWasClicked', usernameThatWasClicked);
 
   ////////////////////////////////////////////
   // setting the state for the Orders
