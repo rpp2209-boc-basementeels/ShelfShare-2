@@ -35,6 +35,7 @@ const Gallery = (props) => {
       .catch(err => console.log('error borrowing', err))
     })
     .catch(err => console.log(err))
+    .finally(() => window.location.reload(false))
   }
 
   const [book, setBook] = useState({});
