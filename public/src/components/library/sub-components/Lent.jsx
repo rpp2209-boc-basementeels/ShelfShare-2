@@ -35,7 +35,7 @@ const Lent = ({ user }) => {
       {lent.data ?
       <>
         <p></p>
-        <h5>LENT BOOKS ({lent.data.length})</h5>
+        <h5>Lent Books ({lent.data.length})</h5>
         <hr />
         <Row xs='auto'>
           {lent.data.map((b, i) => (

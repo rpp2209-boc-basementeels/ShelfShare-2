@@ -5,7 +5,7 @@ import ScanResults from './ScanResults.jsx';
 const ScanButton = ({ onNewScanResult, scanResults, setScanResults}) => {
   return (
     <div>
-        <h5>SCAN BARCODES TO ADD BOOKS TO YOUR SHELF</h5>
+        <h5>Scan Barcodes to Add to Your Shelf</h5>
         <Html5QrcodePlugin
           fps={50}
           qrbox={250}

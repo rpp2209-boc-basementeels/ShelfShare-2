@@ -35,7 +35,7 @@ const Borrowed = ({ user }) => {
       {borrowed.data ?
       <>
       <p></p>
-      <h5>BORROWED BOOKS ({borrowed.data.length})</h5>
+      <h5>Borrowed Books ({borrowed.data.length})</h5>
       <hr />
       <Row xs='auto'>
         {borrowed.data.map((b, i) => (
