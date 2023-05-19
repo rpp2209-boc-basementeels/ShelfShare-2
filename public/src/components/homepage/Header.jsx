@@ -68,19 +68,19 @@ const Header = (props) => {
         <>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" >
-            <Nav.Link href="#link" onClick={() => { props.setClickedLogin(true) }}>Login</Nav.Link>
+            <Nav.Link style={{background: 'white', borderRadius: '5px', padding: '7px'}} onClick={() => { props.setClickedLogin(true) }}>Login</Nav.Link>
           </Navbar.Collapse>
         </>
       )
     } else {
       return (
         <>
-          <NavDropdown title={`Hi ${props.user.first_name}`} id="registered-user-menu-dropdown">
-            <NavDropdown.Item href="#action/3.1">My Profile</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">My Shelf</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Orders</NavDropdown.Item>
+          <NavDropdown style={{background: 'white', borderRadius: '5px', padding: '7px'}} title={`Hi ${props.user.first_name}`} id="registered-user-menu-dropdown">
+            <NavDropdown.Item onClick={(e) => {props.setPage('Profile')}}>My Profile</NavDropdown.Item>
+            <NavDropdown.Item onClick={(e) => {props.setPage('Library')}}>My Library</NavDropdown.Item>
+            <NavDropdown.Item onClick={(e) => {props.setPage('Orders')}}>Orders</NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4" onClick={handleLogout}>Logout</NavDropdown.Item>
+            <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
           </NavDropdown>
         </>
       )
@@ -91,12 +91,12 @@ const Header = (props) => {
     <div>
 
       <Card className="my-5">
-        <Card.Img src="https://img.freepik.com/free-vector/modern-flowing-blue-wave-banner-background_1035-19862.jpg?w=1800&t=st=1683126398~exp=1683126998~hmac=32efcf4c46fe227b2b642e100b726273a18835340b836765feb001fa7a2cdb4e" alt="Card image" />
+        <Card.Img src='https://images.squarespace-cdn.com/content/v1/5e948fcefbecac6e4404cc44/1587394208978-OTKRLPNLSZ2QVQD1WUNI/Bookshelf-Banner.jpg' alt="Card image" />
         <Card.ImgOverlay>
           <Card.Title onClick={() => { props.setShowDetail(false) }} className="justify-content-md-center">ShelfShare</Card.Title>
 
           <Container>
-            <Row className="justify-content-md-end">
+            <Row className="justify-content-end">
               <Col xs={3} md={3}>
                 <Navbar>
                   {userLogin()}
@@ -107,33 +107,39 @@ const Header = (props) => {
 
           <Row>  <br></br> </Row>
 
-
-          <Row className="justify-content-md-center">
-            <Col xs={12} md={6}>
+          <Container>
+          <Row className="justify-content-center">
+            <Col xs={10} sm={10} m={10} lg={10}>
               <Form onSubmit={handleSearch}>
               <Form.Control
                 type="search"
                 onChange= {handleChange}
                 placeholder="Search by Author or Book Title"
                 value={props.term}
-                className="me-2"
                 aria-label="Search"
-              />
-              <Button variant="primary" type="submit"> Submit </Button>
+                />
+                <Col xs={2} sm={2} m={2} lg={2}>
+              <Button variant="secondary" type="submit"> Search </Button>
+                </Col>
               </Form>
             </Col>
-          </Row>
 
-          <Row className="justify-content-md-center">
-            <Col xs={12} md={6}>
-              <Navbar>
-                <Container>
+
+          </Row>
+          </Container>
+
+        <Row><br></br></Row>
+          <Row className="justify-content-center">
+              <Navbar  style={{background: 'white', borderRadius: '10px'}}>
+                <Container className="justify-content-center">
                   <Navbar.Toggle aria-controls="basic-navbar-nav" />
                   <Navbar.Collapse id="homepage-navbar">
                     <Nav className="me-auto">
-                      <Navbar.Text href="#home">Explore By:</Navbar.Text>
-                      <Nav.Link onClick={() => { props.setShowDetail(false) }}>Trending</Nav.Link>
-                      <NavDropdown title="Publication Date" id="pub-date-dropdown">
+
+                        <Nav.Link style={{padding: '10px'}} onClick={() => { props.setShowDetail(false); props.setPage('Home'); props.updateGalleryBooks(null);}}>Home</Nav.Link>
+
+                        <Navbar.Text style={{padding: '10px'}}>Explore By:</Navbar.Text>
+                        <NavDropdown style={{padding: '20px'}} title="Publication Date" id="pub-date-dropdown" style={{background: 'white'}}>
                         <NavDropdown.Item onClick={() => { genrePubFilter('pub', null, '1800', '1900') }}>1800-1900</NavDropdown.Item>
                         <NavDropdown.Item onClick={() => { genrePubFilter('pub', null, '1901', '1950') }}>1901-1950 </NavDropdown.Item>
                         <NavDropdown.Item onClick={() => { genrePubFilter('pub', null, '1951', '1970') }}>1951-1970 </NavDropdown.Item>
@@ -142,21 +148,20 @@ const Header = (props) => {
                         <NavDropdown.Item onClick={() => { genrePubFilter('pub', null, '1991', '2000') }}>1991-2000 </NavDropdown.Item>
                         <NavDropdown.Item onClick={() => { genrePubFilter('pub', null, '2001', '2010') }}>2000-2010 </NavDropdown.Item>
                         <NavDropdown.Item onClick={() => { genrePubFilter('pub', null, '2010', '2023') }}>2010-2023</NavDropdown.Item>
+                       </NavDropdown>
 
-                      </NavDropdown>
-                      <NavDropdown title="Genre" id="genre-dropdown">
+                      <NavDropdown style={{padding: '20px'}} title="Genre" id="genre-dropdown" style={{background: 'white'}}>
                         <NavDropdown.Item onClick={() => { genrePubFilter('genre', 'Cooking')}}>Cooking</NavDropdown.Item>
                         <NavDropdown.Item onClick={() => { genrePubFilter('genre', 'Autobiography')}}>Autobiography</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">
-                          Separated link
-                        </NavDropdown.Item>
                       </NavDropdown>
+
+
                     </Nav>
                   </Navbar.Collapse>
                 </Container>
               </Navbar>
-            </Col>
+
           </Row>
         </Card.ImgOverlay>
       </Card>

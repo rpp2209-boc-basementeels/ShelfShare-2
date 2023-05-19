@@ -117,7 +117,7 @@ const App = () => {
     return (
       <Container>
         <Row>
-          <Col>
+          {/* <Col>
             <Button variant="outline-primary" onClick={() => {setSelectedPage('Home'); updateGalleryBooks(null); setTerm('');}}>Home</Button>
           </Col>
           <Col>
@@ -130,14 +130,14 @@ const App = () => {
           </Col>
           {Object.hasOwn(user, 'username') ? <Col>
             <Button variant="outline-primary" onClick={() => { setSelectedPage('Library') }}>My Library</Button>
-          </Col> : null}
-            <Header term={term} setTerm={setTerm} updateGalleryBooks={updateGalleryBooks} setShowDetail={setShowDetail} setClickedLogin={setClickedLogin} user={user} setUser={setUser} updateAllBooks={updateAllBooks} allBooks={allBooks}/>
+          </Col> : null} */}
+            <Header setPage={setSelectedPage} term={term} setTerm={setTerm} updateGalleryBooks={updateGalleryBooks} setShowDetail={setShowDetail} setClickedLogin={setClickedLogin} user={user} setUser={setUser} updateAllBooks={updateAllBooks} allBooks={allBooks}/>
           {selectedPage === 'Login' ? <GoogleSignIn setUser={setUser} setClickedLogin={setClickedLogin}/> : null}
           {selectedPage === 'Profile' ? <ProfilePage user={user} setUser={setUser}/> : null}
           {selectedPage === 'Library' ? <PersonalLibrary user={user}/> : null}
-          {selectedPage === 'Orders' ? <Orders user={user_user.id} page={selectedPage} bookData={{loaned: loan, borrowed: borrow, pending: pend}}/> : null}
-          {selectedPage === 'Home' ? <Gallery id={user.user_id} username={user.username} usernameThatWasClicked={usernameThatWasClicked} setUsernameThatWasClicked={setUsernameThatWasClicked} selectedBookId={selectedBookId} updateSelectedBookId={updateSelectedBookId} books={galleryBooks === null ? allBooks : galleryBooks} updateGalleryBooks={updateGalleryBooks} showBookDetail={showBookDetail} setShowDetail={setShowDetail}/> : null}
-          {/* <Footer /> */}
+          {selectedPage === 'Orders' ? <Orders user={7} page={selectedPage} bookData={{loaned: loan, borrowed: borrow, pending: pend}}/> : null}
+          {selectedPage === 'Home' ? <Gallery selectedBookId={selectedBookId} updateSelectedBookId={updateSelectedBookId} books={galleryBooks === null ? allBooks : galleryBooks} updateGalleryBooks={updateGalleryBooks} showBookDetail={showBookDetail} setShowDetail={setShowDetail}/> : null}
+          <Footer />
         </Row>
       </Container>
     )
