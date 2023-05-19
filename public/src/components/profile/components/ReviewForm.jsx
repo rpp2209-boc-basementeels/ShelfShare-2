@@ -8,7 +8,7 @@ const ReviewForm = (props) => {
     const [body, setBody] = useState('');
 
     const handleSaveReview = () => {
-        props.close(false);
+        props.setShowReviewForm(!props.showReviewForm);
         alert(`Thanks for reviewing ${props.book.title}!`)
 
         axios.post(`/reviews/${props.book.book_id}`, {
@@ -25,9 +25,12 @@ const ReviewForm = (props) => {
         <Form>
             <Form.Group>
                 <Form.Label style={{"fontWeight": "bold"}}>Tell us what you thought about {props.book.title}</Form.Label>
-                <Form.Control as="textarea" rows={5} onChange={(e) => {setBody(e.target.value)}}></Form.Control>
+                <Form.Control as="textarea" rows={5} columns={20} onChange={(e) => {setBody(e.target.value)}}></Form.Control>
             </Form.Group>
-            <Button variant="primary" onClick={handleSaveReview}>Post Review</Button>
+            <div style={{"width": "100%", "display": "flex", "justifyContent": "center", "marginTop": "1rem", "marginBottom": "1rem"}}>
+                <Button variant="primary" style={{"marginRight": "1rem"}} onClick={handleSaveReview}>Post Review</Button>
+                <Button variant="secondary" onClick={() => {props.setShowReviewForm(!props.showReviewForm)}}>Close</Button>
+            </div>
         </Form>
     )
 

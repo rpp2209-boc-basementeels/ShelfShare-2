@@ -90,7 +90,6 @@ const App = () => {
       })
   }, [])
 
-
   useEffect(() => {
     axios.get('/trending')
       .then((books) => {
