@@ -55,7 +55,7 @@ const EditInfoModal = (props) => {
                 user_id: props.info.user_id,
                 username: props.info.username,
                 is_library: props.info.is_library,
-                photo: props.info.photo,
+                photo_url: props.info.photo_url,
                 first_name: firstName,
                 last_name: lastName,
                 email,
@@ -173,7 +173,9 @@ const EditInfoModal = (props) => {
                 </Row>
                 <Form.Text>We'll never share your address with anyone else.</Form.Text>
             </Form>
-            <Button style={{"marginTop": "2vh", "marginBottom": "5vh"}} variant="outline-primary" onClick={handleSaveInfo}>Save My Information</Button>
+            <div style={{"width": "100%", "display": "flex", "justifyContent": "center", "marginTop": "1rem", "marginBottom": "1rem"}}>
+                <Button variant="outline-primary" onClick={handleSaveInfo}>Save My Information</Button>
+            </div>
         </div>
     )
 };

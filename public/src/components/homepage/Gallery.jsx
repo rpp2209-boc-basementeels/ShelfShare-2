@@ -79,8 +79,8 @@ const Gallery = (props) => {
       </Col>
     </Modal.Body>
     {showReviewForm ? <Container style={{"display": "flex", "justifyContent": "center", "alignItems": "center"}}>
-        <ReviewForm book={book} username={props.username} close={setShowReviewForm}/>
-      </Container> : <Modal.Footer>
+        <ReviewForm book={book} username={props.username} setShowReviewForm={setShowReviewForm} showReviewForm={showReviewForm} />
+      </Container> : <Modal.Footer style={{"display": "flex", "justifyContent": "center"}}>
       <Button onClick={() => {setShowReviewForm(true)}}>
         Leave a Review
       </Button>
