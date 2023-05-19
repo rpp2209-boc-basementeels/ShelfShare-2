@@ -24,6 +24,7 @@ const Gallery = (props) => {
     .then(() => {
       props.setShowDetail(false);
       alert(`Your request to borrow ${book.title} has been submitted. Please visit your orders page to manage requests.`);
+      window.location.reload(false);
     })
     .then(() => {
       axios.post('/borrow', {borrower_id: props.user.user_id, book_id: props.selectedBookId})

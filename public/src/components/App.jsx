@@ -93,6 +93,8 @@ const App = () => {
     fetchPending();
   }, [user.user_id])
 
+  console.log(user.user_id)
+
   ///////////////////////////////////////////
 
   // Need to log users into the app if the users exist
