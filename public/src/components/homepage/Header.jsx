@@ -44,7 +44,7 @@ const Header = (props) => {
     for (var i = 0; i < props.allBooks.length; i++) {
       let currentBook = props.allBooks[i];
       let currentBookTitle = currentBook.title.toLowerCase();
-      let currentAuthor = currentBook.author.toLowerCase();
+      // let currentAuthor = currentBook.author.toLowerCase();
       if (currentBookTitle.includes(props.term.toLowerCase())) {
         filtered.push(currentBook);
       }
@@ -129,7 +129,7 @@ const Header = (props) => {
       <Form.Control
         type="search"
         onChange= {handleChange}
-        placeholder="Search by Author or Book Title"
+        placeholder="Search by Book Title"
         value={props.term}
         aria-label="Search"
       />
