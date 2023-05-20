@@ -48,9 +48,9 @@ const Header = (props) => {
       if (currentBookTitle.includes(props.term.toLowerCase())) {
         filtered.push(currentBook);
       }
-      if (currentAuthor.includes(props.term.toLowerCase())) {
-        filtered.push(currentBook);
-      }
+      // if (currentAuthor.includes(props.term.toLowerCase())) {
+      //   filtered.push(currentBook);
+      // }
     }
     props.updateGalleryBooks(filtered);
   }
