@@ -37,7 +37,6 @@ const PersonalLibrary = ({ user }) => {
         const authors = bookData.authors.map((author) => {
           return author.name;
         });
-        console.log('pub date', bookData.publish_date)
         const bookPostData = {
           authors: authors,
           title: bookData.title,
@@ -62,7 +61,7 @@ const PersonalLibrary = ({ user }) => {
   return (
     <Container>
       <Container className="p-0" style={{display: 'flex'}}>
-        <Image rounded src={default_image} style={{marginBottom: '3rem', height: '10rem'}}></Image>
+        <Image rounded src={user.photo_url} style={{marginBottom: '3rem', height: '10rem'}}></Image>
         <ListGroup variant="flush" style={{marginTop: '2.5rem', marginLeft: '0.75rem'}}>
           <ListGroup.Item>{user.first_name.toUpperCase() + ' ' + user.last_name.toUpperCase()}</ListGroup.Item>
           <ListGroup.Item>{user.is_library ? 'PUBLIC LIBRARY' : 'INDIVIDUAL'}</ListGroup.Item>
