@@ -111,7 +111,7 @@ const Header = (props) => {
       <Card className="my-5">
         <Card.Img src='https://images.squarespace-cdn.com/content/v1/5e948fcefbecac6e4404cc44/1587394208978-OTKRLPNLSZ2QVQD1WUNI/Bookshelf-Banner.jpg' alt="Card image" />
         <Card.ImgOverlay>
-          <Card.Title onClick={() => { props.setShowDetail(false) }} className="justify-content-md-center">ShelfShare</Card.Title>
+          <Card.Title onClick={() => { props.setShowDetail(false) }} className="justify-content-md-center">ShelfShare: Borrow and Share Books</Card.Title>
 
           <Container>
             <Row className="justify-content-end">
