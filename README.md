@@ -20,13 +20,13 @@ The only completely crowd-sourced book borrowing platform.
 
 Users that are not signed in, will click on the sign in button. Users will then sign in with Google. If the user has an account already made, it will load their information and be redirected to the home page. If the user does not have an account, they will provide more demographic information and once that is completed.. They will be sent back to the home page.
 
-    <!-- <img title="TITLE HERE" alt="Alt text" src=""> -->
+
 
 <br>
 
 2. **Home Page**
 
-    <!-- <img title="TITLE HERE" alt="Alt text" src=""> -->
+
 
 <br>
 
@@ -39,24 +39,24 @@ Users can also navigate to their profile, and go to the Orders section. The Orde
 The orders will also display orders that are pending shipment. After the user has dropped off the book to a parcel carrier, they can click the confirmation button to update the order to the loaned list.
 
 
-    <!-- <img title="TITLE HERE" alt="Alt text" src=""> -->
+   <img title="Orders Tables" alt="Alt text" src="./pictures/orders.jpg">
 
 <br>
 
 4. **Profile**
 
-    <!-- <img title="TITLE HERE" alt="Alt text" src=""> -->
+
 
 <br>
 
 5. **Library**
 
-    <!-- <img title="TITLE HERE" alt="Alt text" src=""> -->
+
 
 <br>
 
 6. **API**
 
-    <!-- <img title="TITLE HERE" alt="Alt text" src=""> -->
+
 
 <br>
