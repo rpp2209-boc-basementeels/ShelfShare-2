@@ -10,6 +10,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import Stack from 'react-bootstrap/Stack';
 import axios from 'axios';
 
 const Header = (props) => {
@@ -124,26 +125,16 @@ const Header = (props) => {
 
           <Row>  <br></br> </Row>
 
-          <Container>
-          <Row className="justify-content-center">
-            <Col xs={10} sm={10} m={10} lg={10}>
-              <Form onSubmit={handleSearch}>
-              <Form.Control
-                type="search"
-                onChange= {handleChange}
-                placeholder="Search by Author or Book Title"
-                value={props.term}
-                aria-label="Search"
-                />
-                <Col xs={2} sm={2} m={2} lg={2}>
-              <Button variant="secondary" type="submit"> Search </Button>
-                </Col>
-              </Form>
-            </Col>
-
-
-          </Row>
-          </Container>
+      <Stack direction="horizontal" gap={3}>
+      <Form.Control
+        type="search"
+        onChange= {handleChange}
+        placeholder="Search by Author or Book Title"
+        value={props.term}
+        aria-label="Search"
+      />
+      <Button onClick={handleSearch}variant="secondary" type="submit"> Search </Button>
+      </Stack>
 
         <Row><br></br></Row>
           <Row className="justify-content-center">
