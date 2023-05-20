@@ -17,7 +17,6 @@ const DateParser = (dateString) => {
     '-' +
     addZero(day);
 
-  console.log('formatted', formatted)
   return formatted;
 };
 
