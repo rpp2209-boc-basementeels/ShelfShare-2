@@ -45,7 +45,7 @@ const BookCard = (props) => {
         <Card.Subtitle className="mb-2 text-muted"></Card.Subtitle>
         <Card.Text >
         </Card.Text>
-        <Button className="justify-content-center" variant="primary">More Information</Button>
+        <Button className="justify-content-center" variant="outline-primary">See More</Button>
       </Card.Body>
       </Card>
       </Container>

@@ -32,7 +32,7 @@ describe("Renders the Gallery", function () {
 
   test('Displays `no matching titles` message when there are not books to display', () => {
     render(<Gallery books={[{}]}/>);
-    expect(screen.getByText(/More Information/)).toBeInTheDocument();
+    expect(screen.getByText(/See More/)).toBeInTheDocument();
   });
 
 });

@@ -103,13 +103,13 @@ const Gallery = (props) => {
     {showReviewForm ? <Container style={{"display": "flex", "justifyContent": "center", "alignItems": "center"}}>
         <ReviewForm reviewPosted={reviewPosted} setReviewPosted={setReviewPosted} book={book} username={props.user.username} setShowReviewForm={setShowReviewForm} showReviewForm={showReviewForm} />
       </Container> : <Modal.Footer style={{"display": "flex", "justifyContent": "center"}}>
-      <Button onClick={() => {setShowReviewForm(true)}}>
+      <Button variant="outline-primary" onClick={() => {setShowReviewForm(true)}}>
         Leave a Review
       </Button>
-      <Button onClick={handleBorrowClick} variant="primary">
+      <Button onClick={handleBorrowClick} variant="outline-primary">
         Request to Borrow
       </Button>
-      <Button variant="secondary" onClick={handleClose}>
+      <Button variant="outline-secondary" onClick={handleClose}>
         Back to Gallery
       </Button>
     </Modal.Footer>}
