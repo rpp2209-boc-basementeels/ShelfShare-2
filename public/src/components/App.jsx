@@ -93,8 +93,6 @@ const App = () => {
     fetchPending();
   }, [user.user_id])
 
-  console.log(user.user_id)
-
   ///////////////////////////////////////////
 
   // Need to log users into the app if the users exist
@@ -153,7 +151,7 @@ const App = () => {
           {selectedPage === 'Profile' ? <ProfilePage user={user} setUser={setUser}/> : null}
           {selectedPage === 'Library' ? <PersonalLibrary user={user}/> : null}
           {selectedPage === 'Orders' ? <Orders user={user.user_id} page={selectedPage} bookData={{loaned: loan, borrowed: borrow, pending: pend}}/> : null}
-          {selectedPage === 'Home' ? <Gallery user={user} selectedBookId={selectedBookId} updateSelectedBookId={updateSelectedBookId} books={galleryBooks === null ? allBooks : galleryBooks} updateGalleryBooks={updateGalleryBooks} showBookDetail={showBookDetail} setShowDetail={setShowDetail}/> : null}
+          {selectedPage === 'Home' ? <Gallery usernameThatWasClicked={usernameThatWasClicked} setUsernameThatWasClicked={setUsernameThatWasClicked} user={user} selectedBookId={selectedBookId} updateSelectedBookId={updateSelectedBookId} books={galleryBooks === null ? allBooks : galleryBooks} updateGalleryBooks={updateGalleryBooks} showBookDetail={showBookDetail} setShowDetail={setShowDetail}/> : null}
           <Footer />
         </Row>
       </Container>
