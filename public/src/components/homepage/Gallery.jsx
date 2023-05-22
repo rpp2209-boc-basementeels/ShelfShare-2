@@ -11,6 +11,7 @@ import ReviewList from '../profile/components/ReviewList.jsx';
 import ReviewForm from '../profile/components/ReviewForm.jsx';
 
 const Gallery = (props) => {
+  console.log('props gallergy', props);
 
   const handleClose = () => props.setShowDetail(false);
 
