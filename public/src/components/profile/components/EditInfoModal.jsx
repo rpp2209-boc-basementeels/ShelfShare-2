@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import Image from 'react-bootstrap/Image';
 import axios from 'axios';
 
 const EditInfoModal = (props) => {
@@ -74,7 +75,13 @@ const EditInfoModal = (props) => {
 
     return (
         <div style={{"width": "45vw"}}>
-            <h3 style={{"textAlign": "center"}}>Edit Personal Information</h3>
+            <h3 style={{"textAlign": "center", "marginBottom": "2vh"}}>Edit Personal Information</h3>
+            <div style={{"display": "flex", "justifyContent": "center", "marginBottom": "2vh"}}>
+                <Image style={{"borderRadius": "50%", "width": "10rem"}} referrerPolicy="no-referrer" src={props.info.photo_url}></Image>
+            </div>
+            <div style={{"display": "flex", "justifyContent": "center", "marginBottom": "2vh"}}>
+                <Button variant="outline-secondary">Change Profile Photo</Button>
+            </div>
             <Form>
                 <Row>
                     <Col>
@@ -127,7 +134,7 @@ const EditInfoModal = (props) => {
                     </Col>: null}
                 </Row>
             </Form>
-            <h3 style={{"textAlign": "center", "marginTop": "2vh"}}>Edit Address</h3>
+            <h3 style={{"textAlign": "center", "marginTop": "2vh", "marginBottom": "2vh"}}>Edit Address</h3>
             <Form>
                 <Row>
                     <Col>
