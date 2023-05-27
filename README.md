@@ -59,6 +59,32 @@ Navigating to the detail page for a book on the homepage leads the user to a lis
 
 6. **API**
 
+The usage API is a convenient way to access user and book trend data. There are two endpoints: `usage/books/` and `/usage/genre`.
+
+To get information about a specific book, send a request to the books endpoint, including the ISBN of the title in question as a url paramater. For example, a request like this:
+
+`/usage/books/?isbn=9780767902526`
+
+Would return an object like this:
+
+![books endpoint return example](./pictures/usageAPI-books-endpoint.png)
+
+To get genre trend information based on user demographics, send a request to the genre endpoint, including the demographic type and demopgraphic selection as url parameters. For example, a request like this:
+
+`/usage/genre/?demo=gender&select=nonbinary`
+
+Would return an object like this:
+
+![genre endpoint gender return example](./pictures/usageAPI-genre-gender-endpoint.png)
+
+
+When selecting for an age, please include a range. For example:
+
+`/usage/genre/?demo=age&select=20-50`
+
+Would return and object like this:
+
+![genre endpoint age return example](./pictures/usageAPI-genre-age-endpoint.png)
 
 
 <br>
