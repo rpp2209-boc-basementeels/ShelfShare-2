@@ -47,8 +47,8 @@ The orders will also display orders that are pending shipment. After the user ha
 
 The information collected via Google Authentication flows through the system and into the user's personal profile page. Upon visiting their personal profile page, a user will see their information (profile photo, name, username, verification of library status if the account belongs to a library establishment, details like email, age, gender, address, and a list of the reviews the user has left on books). The user has the ability to edit their information to keep it updated.
 
-<img title="profile" src="./pictures/profile.png">
-<img title="editProfile" src="./pictures/editProfile.png">
+<img title="profile" width="350" height="500" src="./pictures/profile.png">
+<img title="editProfile" width="490" height="450" src="./pictures/editProfile.png">
 
 Navigating to the detail page for a book on the homepage leads the user to a list of reviews for the selected book. The user can post their own reviews here. Clicking on the username of a review takes the user to the selected user's public-facing profile page which shows basic information about that user (profile photo, name, username), a list of reviews that user has left on books, and that user's shelf (or books they are lending out for borrowing).
 
